@@ -1,103 +1,218 @@
 'use client';
 
+import { Shield, Bug, Leaf, Rat, TreePine, MessageCircle, Send, Axe } from 'lucide-react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+
+const SERVICES = [
+  { icon: Bug, label: 'Клещи', desc: 'от 3 000 ₽' },
+  { icon: Leaf, label: 'Борщевик', desc: 'от 5 000 ₽' },
+  { icon: Rat, label: 'Кроты', desc: 'от 4 000 ₽' },
+  { icon: TreePine, label: 'Короед', desc: 'от 8 000 ₽' },
+  { icon: Axe, label: 'Спил деревьев', desc: 'от 5 000 ₽' },
+];
+
+const ACCENT = '#2D6A4F';
+const FRAME_BG = '#F5F5F0';
+
+/* ═══ ANIMATIONS ═══ */
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+};
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+const fadeScale = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+
+/* ═══ GEOMETRY: FILLET CORNERS ═══ */
+function Fillet({ position, size = 32, className = '', color = '#F5F5F0' }: { position: 'tl' | 'tr' | 'bl' | 'br'; size?: number; className?: string; color?: string }) {
+  const gradients: Record<string, string> = {
+    tl: `radial-gradient(circle at 100% 100%, transparent ${size}px, ${color} ${size}px)`,
+    tr: `radial-gradient(circle at 0% 100%, transparent ${size}px, ${color} ${size}px)`,
+    bl: `radial-gradient(circle at 100% 0%, transparent ${size}px, ${color} ${size}px)`,
+    br: `radial-gradient(circle at 0% 0%, transparent ${size}px, ${color} ${size}px)`,
+  };
+  return (
+    <div
+      className={`absolute pointer-events-none z-[10] ${className}`}
+      style={{ width: size, height: size, background: gradients[position] }}
+    />
+  );
+}
+
+/* ═══ HUD FLOATING POINTERS (Matches GLITCH aesthetic) ═══ */
+function FloatingPointer({ service, className = '', lineClass, reverse = false }: any) {
+  const Icon = service.icon;
+  return (
+    <motion.div
+      variants={fadeScale}
+      className={`relative z-[10] flex items-center gap-3 group cursor-pointer pointer-events-auto ${reverse ? 'flex-row-reverse' : ''} ${className}`}
+    >
+      <div className="flex items-center gap-2 bg-black/20 backdrop-blur-[8px] px-4 py-2 rounded-full border border-white/20 transition-all duration-300 group-hover:bg-black/40 group-hover:border-white/40 group-hover:-translate-y-1 shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+        <Icon size={14} className="text-white" />
+        <span className="text-white text-[10px] sm:text-xs font-semibold uppercase tracking-widest whitespace-nowrap">
+          {service.label} <span className="opacity-60 font-normal ml-1">{service.desc}</span>
+        </span>
+      </div>
+      <div className={`h-[1px] bg-white/60 transition-colors group-hover:bg-white ${lineClass}`} style={{ boxShadow: '0 0 8px rgba(255,255,255,0.4)' }} />
+      <div className={`w-1.5 h-1.5 rounded-full bg-white/90 transition-transform group-hover:scale-150`} style={{ boxShadow: '0 0 12px rgba(255,255,255,0.9)' }} />
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   HERO SECTION — GLITCH REFERENCE 1:1
+   ═══════════════════════════════════════════ */
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-end overflow-hidden">
-      <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInScale {
-          from { opacity: 0; transform: scale(0.95); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        .animate-hero-1 { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; opacity: 0; }
-        .animate-hero-2 { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; opacity: 0; }
-        .animate-hero-3 { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; opacity: 0; }
-        .animate-hero-4 { animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards; opacity: 0; }
-      `}</style>
-
-      {/* Video background — only in Hero, not fixed */}
-      <div className="absolute inset-0 -z-10" style={{ willChange: 'transform', transform: 'translateZ(0)' }}>
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="w-full h-full object-cover"
-        >
-          <source src="/videos/hero_bg.mp4" type="video/mp4" />
-        </video>
-      </div>
-
-      {/* Soft dark overlay — gradient instead of flat */}
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/40 to-foreground/70" />
-
-      {/* Content — positioned at the bottom */}
-      <div className="relative z-10 px-4 md:px-8 max-w-[1400px] mx-auto w-full pb-16 md:pb-20 lg:pb-24 pt-32">
+    <section className="relative w-full h-[100svh] p-4 lg:p-6 overflow-hidden flex flex-col" style={{ backgroundColor: FRAME_BG }}>
+      {/* 
+        MAIN CONTAINER (The "Black" Video Area)
+        Everything is mapped inside this perfectly rounded container 
+      */}
+      <div className="relative w-full h-full rounded-[32px] overflow-hidden bg-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">
         
-        <div className="w-full flex flex-col lg:flex-row justify-between items-end pb-8 md:pb-12">
-          <div className="max-w-4xl">
-            <div className="mb-8 animate-hero-1">
-              <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md text-background/80 text-xs md:text-sm font-medium tracking-wide px-4 py-2 rounded-full mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
-                Официальный подрядчик
-              </span>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[100px] font-semibold leading-[0.95] tracking-tight text-balance text-background">
-                Защита <br />
-                вашей <br />
-                территории
-              </h1>
-            </div>
+        {/* Z-0: Full-bleed video */}
+        <video className="absolute inset-0 w-full h-full object-cover z-0 opacity-90" src="/videos/hero_bg.mp4" autoPlay muted loop playsInline />
+        
+        {/* Z-1: Overlays for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-[1]" />
 
-            <div className="flex flex-wrap gap-2 md:gap-3 mt-8 md:mt-10 animate-hero-2">
-              {['Клещи', 'Борщевик', 'Кроты', 'Короед', 'Арбористика'].map((item) => (
-                <span
-                  key={item}
-                  className="bg-white/10 backdrop-blur-sm text-background/90 text-sm md:text-base font-medium px-4 py-2 rounded-full border border-white/10"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
+        {/* ═══════════════════════════════════════════
+            WHITE PROTRUSIONS (Bento Cavities)
+            ═══════════════════════════════════════════ */}
+
+        {/* 1. TOP-LEFT: Logo / Branding Area */}
+        <div className="absolute top-0 left-0 rounded-br-[32px] h-[72px] lg:h-[100px] flex items-center pl-6 pr-8 z-[10]" style={{ backgroundColor: FRAME_BG }}>
+           <span className="text-xl lg:text-3xl font-black tracking-tighter text-[#1D1D1F]">
+             ГОС_ЛЕНД
+           </span>
+           <Fillet position="tl" size={32} className="-bottom-[32px] left-0" color={FRAME_BG} />
+           <Fillet position="tl" size={32} className="top-0 -right-[32px]" color={FRAME_BG} />
         </div>
 
-        {/* USP Bullets — pill badges */}
-        <div className="w-full mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 animate-hero-3">
-          {[
-            { icon: '✓', text: 'Гарантия в договоре' },
-            { icon: '✓', text: 'Выезд в день обращения' },
-            { icon: '✓', text: 'Безопасно для детей и животных' },
-          ].map((usp) => (
-            <div key={usp.text} className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2.5">
-              <span className="w-5 h-5 rounded-full bg-accent flex items-center justify-center text-white text-[10px] font-bold shrink-0">
-                {usp.icon}
-              </span>
-              <span className="text-xs md:text-sm font-medium text-background/80 tracking-wide">
-                {usp.text}
-              </span>
-            </div>
-          ))}
+        {/* 2. TOP-RIGHT: Navigation & Contact Pill */}
+        <div className="absolute top-0 right-0 rounded-bl-[32px] h-[72px] lg:h-[100px] flex items-center px-4 lg:px-8 gap-3 lg:gap-4 z-[10]" style={{ backgroundColor: FRAME_BG }}>
+           <div className="hidden lg:flex items-center gap-7 mr-2 text-[13px] font-semibold tracking-wide uppercase text-black/60">
+             <a href="#services" className="hover:text-black transition-colors">Услуги</a>
+             <a href="#about" className="hover:text-black transition-colors">О нас</a>
+             <a href="#faq" className="hover:text-black transition-colors">Вопросы</a>
+           </div>
+           
+           <a href="https://t.me/yourtelegramid" target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
+             <Send className="w-[18px] h-[18px] -ml-0.5" />
+           </a>
+
+           <a href="https://wa.me/74950000000" target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
+             <MessageCircle className="w-[18px] h-[18px]" />
+           </a>
+           
+           <a href="tel:+74950000000" className="hidden sm:flex items-center justify-center h-12 px-7 text-white rounded-full text-[14px] font-bold tracking-wider hover:brightness-110 transition-all shadow-lg" style={{ backgroundColor: ACCENT }}>
+             +7 495 000-00-00
+           </a>
+           
+           <Fillet position="tr" size={32} className="-bottom-[32px] right-0" color={FRAME_BG} />
+           <Fillet position="tr" size={32} className="top-0 -left-[32px]" color={FRAME_BG} />
         </div>
 
-        {/* CTA Buttons — capsule shape */}
-        <div className="w-full mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 md:gap-5 animate-hero-4">
-          <a
-            href="#contacts"
-            className="w-full sm:w-auto px-8 py-4 bg-background text-foreground text-sm font-semibold tracking-wide rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-center"
-          >
-            Оставить заявку →
-          </a>
-          <a
-            href="#quiz"
-            className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-md text-background text-sm font-semibold tracking-wide rounded-full border border-white/20 hover:bg-white/25 hover:-translate-y-0.5 transition-all duration-300 text-center"
-          >
-            Рассчитать стоимость
-          </a>
+        {/* 3. BOTTOM-RIGHT: Trust Badges - PURE TYPOGRAPHY AESTHETIC */}
+        <div className="hidden lg:flex absolute bottom-0 right-0 rounded-tl-[32px] p-6 lg:p-8 flex-col gap-5 w-[360px] z-[10]" style={{ backgroundColor: FRAME_BG }}>
+           <h3 className="text-[10px] font-black uppercase tracking-[0.2em]" style={{ color: ACCENT }}>
+             Рейтинг подрядчика
+           </h3>
+           
+           {/* Pure Typography Trust Badge 1 */}
+           <div className="relative overflow-hidden flex flex-col justify-center gap-1.5 px-6 py-5 bg-white rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] transition-transform hover:-translate-y-1 h-[110px]">
+              <span className="text-[10px] font-black text-black/40 uppercase tracking-[0.2em] relative z-10 w-full flex justify-between items-center">
+                 Рейтинг Авито
+                 <div className="flex gap-0.5 opacity-80">
+                   {[1, 2, 3, 4, 5].map((i) => (
+                     <svg key={i} className={`w-3.5 h-3.5 ${i === 5 ? 'text-black/10' : 'text-[#2D6A4F]'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                   ))}
+                 </div>
+              </span>
+              <div className="flex items-end gap-2 relative z-10">
+                 <span className="text-[48px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">4.9</span>
+                 <span className="text-xs font-bold text-black/20 pb-1 mb-0.5">/ 5.0</span>
+              </div>
+           </div>
+
+           {/* Pure Typography Trust Badge 2 */}
+           <div className="relative overflow-hidden flex flex-col justify-center gap-1.5 px-6 py-5 bg-white rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] transition-transform hover:-translate-y-1 h-[110px]">
+              <span className="text-[10px] font-black text-black/40 uppercase tracking-[0.2em] relative z-10 w-full flex justify-between items-center">
+                 Рейтинг Яндекс
+                 <div className="flex gap-0.5 opacity-80">
+                   {[1, 2, 3, 4, 5].map((i) => (
+                     <svg key={i} className={`w-3.5 h-3.5 ${i === 5 ? 'text-black/10' : 'text-[#2D6A4F]'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                   ))}
+                 </div>
+              </span>
+              <div className="flex items-end gap-2 relative z-10">
+                 <span className="text-[48px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">4.8</span>
+                 <span className="text-xs font-bold text-black/20 pb-1 mb-0.5">/ 5.0</span>
+              </div>
+           </div>
+
+           <Fillet position="br" size={32} className="-top-[32px] right-0" color={FRAME_BG} />
+           <Fillet position="br" size={32} className="bottom-0 -left-[32px]" color={FRAME_BG} />
         </div>
+
+        {/* ═══════════════════════════════════════════
+            MAIN CONTENT (Center-Left)
+            ═══════════════════════════════════════════ */}
+        <motion.div 
+          variants={stagger} 
+          initial="hidden" 
+          animate="visible" 
+          className="absolute left-4 lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
+        >
+           <motion.div variants={fadeUp} className="mb-6 pointer-events-auto">
+             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5">
+               <Shield className="w-4 h-4 text-white/80" />
+               <span className="text-[10px] lg:text-[11px] text-white/90 font-bold tracking-[0.2em] uppercase">
+                 Официальный подрядчик
+               </span>
+             </div>
+           </motion.div>
+
+           <motion.h1 
+             variants={fadeUp} 
+             className="text-[52px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-10"
+             style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
+           >
+             Защита<br/>вашей<br/>
+             <span className="text-transparent bg-clip-text pr-2" style={{ backgroundImage: 'linear-gradient(to right, #ffffff, rgba(255,255,255,0.5))' }}>
+               территории<span style={{ color: ACCENT }}>.</span>
+             </span>
+           </motion.h1>
+
+           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pointer-events-auto">
+             <button 
+               className="h-14 lg:h-16 px-8 lg:px-10 rounded-full text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-wide hover:scale-105 transition-all w-full sm:w-auto" 
+               style={{ backgroundColor: ACCENT, boxShadow: `0 8px 30px ${ACCENT}80` }}
+             >
+               Оставить заявку
+             </button>
+             <button className="h-14 lg:h-16 px-8 lg:px-10 rounded-full border border-white/30 text-white font-semibold text-[13px] lg:text-[15px] uppercase tracking-wide hover:bg-white/10 backdrop-blur-md transition-colors w-full sm:w-auto">
+               Прайс-лист
+             </button>
+           </motion.div>
+        </motion.div>
+
+        <div className="hidden lg:flex absolute top-[15vh] right-[5%] lg:right-[8%] z-[5] pointer-events-none flex-col gap-10 items-end">
+            <FloatingPointer service={SERVICES[0]} lineClass="w-12" />
+            <FloatingPointer service={SERVICES[1]} lineClass="w-[80px]" />
+            <FloatingPointer service={SERVICES[2]} lineClass="w-16" />
+            <FloatingPointer service={SERVICES[3]} lineClass="w-[100px]" />
+            <FloatingPointer service={SERVICES[4]} lineClass="w-[60px]" />
+        </div>
+
       </div>
     </section>
   );

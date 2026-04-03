@@ -112,11 +112,11 @@ export default function FloatingContact() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`
-              relative w-14 h-14 flex items-center justify-center 
-              transition-all duration-300 shadow-lg
+              relative w-14 h-14 flex items-center justify-center rounded-full
+              transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.12)]
               ${isOpen 
-                ? 'bg-foreground text-background rotate-45' 
-                : 'bg-foreground text-background hover:bg-foreground/90'
+                ? 'bg-white text-[#1D1D1F] rotate-45' 
+                : 'bg-[#1D1D1F] text-white hover:bg-black hover:scale-105'
               }
             `}
             aria-label="Связаться с нами"
@@ -148,7 +148,7 @@ export default function FloatingContact() {
 
             {/* Pulse ring when closed */}
             {!isOpen && (
-              <span className="absolute inset-0 animate-ping bg-foreground/20 pointer-events-none" style={{ animationDuration: '2s' }} />
+              <span className="absolute inset-0 rounded-full animate-ping bg-foreground/20 pointer-events-none" style={{ animationDuration: '2s' }} />
             )}
           </button>
         </motion.div>

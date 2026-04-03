@@ -2,37 +2,40 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
+import TiltCard from '@/components/ui/TiltCard';
+import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
 
 const SERVICES = [
   {
     id: '01',
-    shortTitle: 'Клещи',
+    shortTitle: 'Уничтожение клещей',
     title: 'Акарицидная обработка',
-    description: 'Уничтожение клещей препаратами IV класса опасности. Безопасно для людей и животных. Действие до 3 месяцев.',
+    description: 'Уничтожение клещей препаратами IV класса опасности. Действие до 3 месяцев. 100% безопасность для людей и животных.',
     price: 'от 3 500 ₽',
     image: '/images/services/ticks.png',
   },
   {
     id: '02',
-    shortTitle: 'Борщевик',
+    shortTitle: 'Борьба с борщевиком',
     title: 'Уничтожение борщевика',
-    description: 'Гербицидная обработка корневой системы. Гарантированное уничтожение за 1-2 этапа с предотвращением повторного роста.',
+    description: 'Гербицидная обработка корневой системы. Гарантированное уничтожение за 1-2 этапа с полным предотвращением повторного роста.',
     price: 'от 4 000 ₽',
     image: '/images/services/hogweed.png',
   },
   {
     id: '03',
-    shortTitle: 'Кроты',
+    shortTitle: 'Защита от кротов',
     title: 'Отлов и отпугивание',
-    description: 'Гуманный отлов и установка профессиональных систем отпугивания для защиты газона и корней растений.',
+    description: 'Гуманный отлов и установка профессиональных систем отпугивания для надежной защиты газона и корневой системы растений.',
     price: 'от 2 500 ₽',
     image: '/images/services/moles.png',
   },
   {
     id: '04',
-    shortTitle: 'Короед',
-    title: 'Лечение от короеда',
-    description: 'Стволовые инъекции и опрыскивание современными инсектицидами. Спасение хвойных и лиственных пород.',
+    shortTitle: 'Лечение от короеда',
+    title: 'Стволовые инъекции',
+    description: 'Инъекции и опрыскивание кроны современными инсектицидами. Спасение и восстановление хвойных и лиственных пород деревьев.',
     price: 'от 3 000 ₽',
     image: '/images/services/beetle.png',
   },
@@ -40,7 +43,7 @@ const SERVICES = [
     id: '05',
     shortTitle: 'Арбористика',
     title: 'Обрезка и спил деревьев',
-    description: 'Санитарная и формовочная обрезка, удаление аварийных деревьев с использованием альпинистского снаряжения.',
+    description: 'Санитарная и формовочная обрезка, аккуратное удаление опасных аварийных деревьев с использованием альпинистского снаряжения.',
     price: 'от 5 000 ₽',
     image: '/images/services/arboristics.png',
   },
@@ -48,7 +51,7 @@ const SERVICES = [
     id: '06',
     shortTitle: 'Лечение деревьев',
     title: 'Фитопатология',
-    description: 'Диагностика и лечение болезней деревьев. Обработка ран, дупел, профилактика грибковых поражений.',
+    description: 'Глубокая диагностика и лечение специфических болезней деревьев. Обработка повреждений, дупел и профилактика грибковых поражений.',
     price: 'от 4 000 ₽',
     image: '/images/services/tree_treatment.png',
   },
@@ -56,74 +59,100 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-16 md:py-24 lg:py-32 border-b border-border bg-background">
-      <div className="px-4 md:px-8 max-w-[1400px] mx-auto">
-      <div className="flex flex-col md:flex-row justify-between items-start mb-16 md:mb-20">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-6 md:mb-0">
-          Услуги
-        </h2>
-        <div className="md:w-1/3">
-          <p className="text-foreground/70 text-base md:text-lg font-medium tracking-wide">
-            Комплексные решения по защите вашей территории с гарантией результата.
-          </p>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {SERVICES.map((service, index) => (
-          <motion.a
-            key={service.id}
-            href="#contacts"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: '100px 0px' }}
-            className="group relative flex flex-col border border-border bg-background overflow-hidden hover:border-foreground/30 transition-colors duration-500"
-          >
-            {/* Image */}
-            <div className="relative w-full aspect-[4/3] overflow-hidden bg-zinc-100">
-              <Image
-                src={service.image}
-                alt={service.title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
-              
-              {/* Price badge */}
-              <div className="absolute bottom-4 right-4 bg-background/90 backdrop-blur-sm px-4 py-2 font-mono text-sm font-bold tracking-wider">
-                {service.price}
-              </div>
-
-              {/* Number badge */}
-              <div className="absolute top-4 left-4 font-mono text-xs tracking-widest text-background/80 bg-foreground/60 backdrop-blur-sm px-2 py-1">
-                [{service.id}]
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="flex flex-col flex-1 p-6 md:p-8">
-              <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-2 group-hover:text-foreground transition-colors duration-300">
-                {service.shortTitle}
+    <section id="services" className="relative py-24 lg:py-32 z-10 overflow-hidden">
+      <ScrollRevealContainer className="px-4 md:px-8 max-w-[1400px] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24">
+          <div className="max-w-2xl">
+            <ScrollRevealItem baseY={20}>
+              <h2 className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
+                Услуги
+              </h2>
+            </ScrollRevealItem>
+            <ScrollRevealItem baseY={30}>
+              <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
+                Комплексные решения<br />
+                <span className="text-black/30">под ключ</span>
               </h3>
-              <p className="font-mono text-xs tracking-widest text-foreground/40 mb-4">
-                {service.title}
-              </p>
-              <p className="text-sm text-foreground/60 leading-relaxed flex-1">
-                {service.description}
-              </p>
+            </ScrollRevealItem>
+          </div>
+          <ScrollRevealItem baseY={30} className="md:w-1/3 mt-8 md:mt-0">
+            <p className="text-[#1D1D1F]/60 text-base md:text-lg font-medium tracking-tight leading-relaxed">
+              Мы создаем безопасность для вашего участка: гарантируем скорость, сохранность экологии и 100% результат при каждом выезде.
+            </p>
+          </ScrollRevealItem>
+        </div>
 
-              {/* CTA hint */}
-              <div className="mt-6 flex items-center gap-2 text-sm font-bold tracking-wider text-foreground/30 group-hover:text-foreground transition-colors">
-                <span>Подробнее</span>
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </div>
-            </div>
-          </motion.a>
-        ))}
-      </div>
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {SERVICES.map((service, index) => {
+            // Make the second card (Borshchevik/Hogweed) the dark accent card
+            const isDark = index === 1;
+
+            return (
+              <ScrollRevealItem
+                key={service.id}
+                className="group h-full w-full"
+              >
+                <TiltCard intensity={8} className="h-full">
+                  <a
+                    href="#contacts"
+                    className={`relative flex h-full flex-col overflow-hidden rounded-[32px] transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.02)] ${
+                      isDark 
+                        ? 'bg-[#1D1D1F] text-white shadow-2xl' 
+                        : 'bg-white text-[#1D1D1F]'
+                    }`}
+                  >
+                {/* Top Half: Image */}
+                <div className="relative w-full aspect-[5/4] sm:aspect-[4/3] overflow-hidden bg-black/5">
+                  <Image
+                    src={service.image}
+                    alt={service.shortTitle}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  {/* Subtle Gradient for legibility */}
+                  <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
+                  
+                  {/* Step Number Overlay */}
+                  <div className="absolute top-6 left-6 font-mono text-sm tracking-widest text-white mix-blend-overlay opacity-80">
+                    {service.id}
+                  </div>
+
+                  {/* Circular Arrow Button */}
+                  <div className="absolute top-6 right-6 w-12 h-12 rounded-full flex items-center justify-center bg-white/20 backdrop-blur-md text-white border border-white/20 group-hover:bg-white group-hover:text-black transition-colors duration-300">
+                    <ArrowUpRight size={22} strokeWidth={2.5} className="group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-transform duration-300" />
+                  </div>
+                </div>
+
+                {/* Bottom Half: Content */}
+                <div className="flex flex-col flex-1 p-6 lg:p-8">
+                  <h4 className="text-[28px] leading-[1.1] font-black tracking-tight mb-4">
+                    {service.shortTitle}
+                  </h4>
+                  <p className={`text-base leading-relaxed mb-8 flex-1 font-medium ${isDark ? 'text-white/50' : 'text-black/50'}`}>
+                    {service.description}
+                  </p>
+                  
+                  {/* Divider & Price */}
+                  <div className={`mt-auto pt-6 border-t flex justify-between items-center ${isDark ? 'border-white/10' : 'border-black/5'}`}>
+                    <span className={`text-[10px] font-bold uppercase tracking-[0.2em] ${isDark ? 'text-white/30' : 'text-black/30'}`}>
+                      Рассчитать
+                    </span>
+                    <div className={`px-5 py-2.5 rounded-full text-[13px] font-bold tracking-wide transition-colors ${
+                      isDark 
+                        ? 'bg-[#2D6A4F] text-white group-hover:bg-[#347B5B]' 
+                        : 'bg-[#F5F5F0] text-black group-hover:bg-[#EBEBEB]'
+                    }`}>
+                      {service.price}
+                    </div>
+                  </div>
+                </div>
+                  </a>
+                </TiltCard>
+              </ScrollRevealItem>
+            );
+          })}
+        </div>
+      </ScrollRevealContainer>
     </section>
   );
 }

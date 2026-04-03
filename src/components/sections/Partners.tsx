@@ -1,5 +1,7 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 const PARTNERS = [
   'МУП «ГОРЗЕЛЕНХОЗ»',
   'КП «БАРВИХА ХИЛЛС»',
@@ -18,27 +20,26 @@ export default function Partners() {
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
       
       <div className="flex">
-        <style>{`
-          @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-marquee {
-            animation: marquee 25s linear infinite;
-            will-change: transform;
-          }
-        `}</style>
-        <div className="flex whitespace-nowrap gap-16 md:gap-32 px-8 items-center animate-marquee w-max">
+        <motion.div 
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            repeat: Infinity,
+            ease: "linear",
+            duration: 35
+          }}
+          className="flex whitespace-nowrap gap-16 md:gap-32 px-8 items-center w-max will-change-transform"
+        >
           {/* We repeat the array twice to ensure seamless looping */}
           {[...PARTNERS, ...PARTNERS].map((partner, index) => (
             <div 
               key={`${partner}-${index}`}
-              className="font-mono text-2xl md:text-3xl font-bold tracking-widest text-foreground/30 uppercase cursor-default hover:text-foreground transition-colors"
+              className="font-black text-3xl md:text-[40px] tracking-tighter text-[#1D1D1F]/5 uppercase cursor-default hover:text-[#1D1D1F]/20 transition-colors py-2"
+              style={{ WebkitTransform: 'translateZ(0)' }}
             >
               {partner}
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

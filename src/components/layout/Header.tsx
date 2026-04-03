@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Phone, Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
   { name: 'Услуги', href: '#services' },
@@ -25,69 +26,80 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-background/80 backdrop-blur-2xl shadow-sm'
-          : 'bg-transparent'
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out ${
+        scrolled ? 'pt-3 px-4 md:px-6' : 'pt-4 px-4 md:px-8'
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="text-xl md:text-2xl font-semibold tracking-tight relative z-50">
+      <div className="flex justify-center w-full">
+        <div
+          className={`w-fit flex items-center gap-4 lg:gap-8 transition-all duration-500 ease-out bg-white/90 backdrop-blur-2xl rounded-full pl-6 pr-2 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5 ${
+            scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
+          }`}
+        >
+        {/* Logo — pill */}
+        <Link
+          href="/"
+          className="font-semibold tracking-tight text-[#1D1D1F] text-base px-5 py-2"
+        >
           ГОС_ЛЕНД
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
+        <nav className="hidden lg:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors duration-200"
+              className="text-[13px] font-medium text-[#1D1D1F]/55 hover:text-[#1D1D1F] hover:bg-black/[0.04] rounded-full px-4 py-2 transition-all duration-200"
             >
               {link.name}
             </Link>
           ))}
         </nav>
 
-        {/* Desktop Contact & CTA */}
-        <div className="hidden lg:flex items-center gap-6">
+        {/* Right side — pill buttons */}
+        <div className="flex items-center gap-2">
+          {/* Phone — icon pill */}
           <a
             href="tel:+79990000000"
-            className="text-sm font-mono tracking-wider text-foreground/60 hover:text-foreground transition-colors"
+            className={`hidden md:flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 ${
+              scrolled
+                ? 'bg-[#F5F5F7] text-[#1D1D1F]/60 hover:bg-[#E8E8ED]'
+                : 'bg-white/10 backdrop-blur-md border border-white/15 text-white/70 hover:bg-white/20'
+            }`}
+            title="+7 (999) 000-00-00"
           >
-            +7 (999) 000-00-00
+            <Phone size={16} strokeWidth={1.5} />
           </a>
+
+          {/* CTA — pill */}
           <a
             href="#contacts"
-            className="text-sm font-semibold tracking-wide bg-foreground text-background px-6 py-2.5 rounded-full hover:bg-foreground/85 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+            className={`text-[13px] font-semibold tracking-wide rounded-full transition-all duration-300 ${
+              scrolled
+                ? 'bg-[#1D1D1F] text-white px-5 py-2.5 hover:bg-[#1D1D1F]/85'
+                : 'bg-white text-[#1D1D1F] px-5 py-2.5 hover:bg-white/90'
+            }`}
           >
             Заявка
           </a>
-        </div>
 
-        {/* Mobile Burger */}
-        <button
-          className="lg:hidden flex flex-col justify-center items-center w-10 h-10 z-50 relative gap-[6px] rounded-full hover:bg-foreground/5 transition-colors"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          <span
-            className={`block w-5 h-[1.5px] bg-foreground transition-transform duration-300 ${
-              isOpen ? 'rotate-45 translate-y-[7.5px]' : ''
+          {/* Mobile Burger — pill */}
+          <button
+            className={`lg:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 ${
+              isOpen
+                ? 'bg-[#F5F5F7] text-[#1D1D1F]'
+                : scrolled
+                  ? 'bg-[#F5F5F7] text-[#1D1D1F]/60'
+                  : 'bg-white/10 backdrop-blur-md border border-white/15 text-white'
             }`}
-          />
-          <span
-            className={`block w-5 h-[1.5px] bg-foreground transition-opacity duration-300 ${
-              isOpen ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
-          <span
-            className={`block w-5 h-[1.5px] bg-foreground transition-transform duration-300 ${
-              isOpen ? '-rotate-45 -translate-y-[7.5px]' : ''
-            }`}
-          />
-        </button>
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
+          </button>
+        </div>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -98,7 +110,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-0 left-0 w-full h-screen bg-background/95 backdrop-blur-2xl flex flex-col pt-24 px-6 lg:hidden"
+            className="fixed inset-0 top-20 bg-white/95 backdrop-blur-2xl flex flex-col px-6 pt-8 lg:hidden"
           >
             <nav className="flex flex-col gap-1">
               {NAV_LINKS.map((link, i) => (
@@ -111,34 +123,21 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="block py-4 text-2xl font-semibold text-foreground/90 hover:text-foreground transition-colors"
+                    className="block py-4 text-2xl font-semibold text-[#1D1D1F]/90 hover:text-[#1D1D1F] transition-colors"
                   >
                     {link.name}
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: NAV_LINKS.length * 0.05 }}
-              >
-                <Link
-                  href="#contacts"
-                  onClick={() => setIsOpen(false)}
-                  className="block py-4 text-2xl font-semibold text-foreground/90 hover:text-foreground transition-colors"
-                >
-                  Контакты
-                </Link>
-              </motion.div>
             </nav>
             <div className="mt-auto mb-12 flex flex-col gap-5">
-              <a href="tel:+79990000000" className="text-xl font-mono tracking-wider text-foreground/60">
+              <a href="tel:+79990000000" className="text-xl font-mono tracking-wider text-[#1D1D1F]/50">
                 +7 (999) 000-00-00
               </a>
               <Link
                 href="#contacts"
                 onClick={() => setIsOpen(false)}
-                className="w-full py-4 bg-foreground text-background text-center text-sm font-semibold tracking-wide rounded-full hover:bg-foreground/85 transition-colors"
+                className="w-full py-4 bg-[#1D1D1F] text-white text-center text-sm font-semibold tracking-wide rounded-full"
               >
                 Заказать звонок
               </Link>

@@ -2,8 +2,10 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { Play } from 'lucide-react';
 
 const STORIES = [
   { id: '01', title: 'Обработка участка 15 соток', image: '/images/videos/01_ticks.png', video: '/videos/demo.mp4' },
@@ -43,79 +45,84 @@ export default function VideoStories() {
   };
 
   return (
-    <section id="results" className="relative py-16 md:py-24 lg:py-32 border-b border-border overflow-hidden bg-background" ref={containerRef}>
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 mb-12 flex justify-between items-end">
-        <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tighter">
-          Видео-отчёты
-        </h2>
-        <div className="flex flex-col items-end gap-2">
-          <div className="font-mono text-sm tracking-widest text-foreground/50">
-            [ {String(activeIndex + 1).padStart(2, '0')} / {String(STORIES.length).padStart(2, '0')} ]
+    <section id="results" className="relative py-24 lg:py-32 z-10 w-full overflow-hidden" ref={containerRef}>
+      <ScrollRevealContainer className="max-w-[1400px] mx-auto px-4 md:px-8 mb-12 flex justify-between items-end">
+        <div className="max-w-2xl">
+          <ScrollRevealItem baseY={20}>
+            <h2 className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
+              Видео-отчёты
+            </h2>
+          </ScrollRevealItem>
+          <ScrollRevealItem baseY={30}>
+            <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
+              Результаты<br />
+              <span className="text-black/30">наших работ</span>
+            </h3>
+          </ScrollRevealItem>
+        </div>
+        
+        <ScrollRevealItem baseY={30} className="hidden md:flex flex-col items-end gap-3 pb-2">
+          <div className="font-bold text-[13px] tracking-widest text-black/40">
+            {String(activeIndex + 1).padStart(2, '0')} / {String(STORIES.length).padStart(2, '0')}
           </div>
-          <div className="w-32 h-[1px] bg-border relative">
+          <div className="w-[120px] h-1.5 bg-black/5 rounded-full relative overflow-hidden">
             <motion.div
-              className="absolute top-0 left-0 h-full bg-foreground"
+              className="absolute top-0 left-0 h-full bg-[#1D1D1F] rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${((activeIndex + 1) / STORIES.length) * 100}%` }}
               transition={{ duration: 0.3 }}
             />
           </div>
-        </div>
-      </div>
+        </ScrollRevealItem>
+      </ScrollRevealContainer>
 
       {/* Horizontal Scroll Area */}
       <div 
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar pl-4 md:pl-8 pr-[50vw] gap-8"
+        className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar pl-4 md:pl-8 pr-[50vw] gap-6 pb-8"
         style={{ scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }}
       >
         {STORIES.map((story, index) => (
           <motion.div
             key={story.id}
-            className="shrink-0 w-[80vw] md:w-[400px] h-[60vh] md:h-[600px] snap-center relative bg-zinc-100 border border-border group"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
+            className="shrink-0 w-[85vw] md:w-[380px] h-[55vh] md:h-[500px] snap-center relative rounded-[32px] overflow-hidden bg-black/5 border border-black/5 group cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: Math.min(index * 0.1, 0.4) }}
             viewport={{ once: true, margin: '100px 0px' }}
+            onClick={() => setPlayingVideo(story)}
           >
-           {/* Play Button Overlay */}
-            <div 
-              onClick={() => setPlayingVideo(story)}
-              className={cn("absolute inset-0 flex flex-col items-center justify-center transition-opacity cursor-pointer z-10", activeIndex === index ? "opacity-100" : "opacity-0 group-hover:opacity-100 bg-background/20 backdrop-blur-sm")}
-            >
-              <span className={cn("font-mono text-sm tracking-widest bg-background/80 backdrop-blur-md px-6 py-3 uppercase border transition-colors duration-300", activeIndex === index ? "border-foreground/30 text-foreground/50" : "border-border group-hover:bg-foreground group-hover:text-background")}>
-                {activeIndex === index ? '[ ИГРАЕТ ] ⏸' : '[ ПАУЗА ] ▶'}
-              </span>
+            {/* Smooth Video Cover Image */}
+            <Image 
+              src={story.image}
+              alt={story.title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+            />
+            
+            {/* Elegant Gradients */}
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
+
+            {/* Play Button Pill (floating) */}
+            <div className="absolute inset-0 m-auto w-[72px] h-[72px] bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 text-white z-20 group-hover:scale-110 group-hover:bg-white group-hover:text-[#1D1D1F] group-hover:border-transparent transition-all duration-500 shadow-2xl">
+              <Play fill="currentColor" size={24} className="ml-1" />
             </div>
 
-            {/* Video Cover Image */}
-            <div className="absolute inset-0 bg-zinc-900 overflow-hidden">
-              <Image 
-                src={story.image}
-                alt={story.title}
-                fill
-                className="object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-              />
-            </div>
-
-            {/* Video Placeholder Styling */}
-            <div className="absolute bottom-6 left-6 right-6 z-10">
-              <span className="font-mono text-xs tracking-widest bg-background/80 backdrop-blur px-2 py-1 uppercase mb-2 block w-fit">
-                {story.id}
-              </span>
-              <h3 className="text-lg md:text-xl font-bold tracking-tighter bg-background/80 backdrop-blur px-3 py-2 leading-tight">
+            {/* Video Post Meta */}
+            <div className="absolute bottom-8 left-8 right-8 z-10">
+              <div className="flex gap-2 mb-4">
+                <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-bold tracking-widest text-white uppercase border border-white/10">
+                  Кейс {story.id}
+                </span>
+              </div>
+              <h3 className="text-2xl font-black tracking-tighter text-white leading-[1.1]">
                 {story.title}
               </h3>
             </div>
           </motion.div>
         ))}
-      </div>
-      
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 mt-16 flex justify-center md:justify-start">
-        <a href="#contacts" className="inline-flex items-center justify-center px-8 py-5 bg-foreground text-background text-sm font-bold tracking-widest uppercase hover:bg-zinc-800 transition-colors border border-foreground w-full md:w-auto">
-          [ Хочу такой же результат → ]
-        </a>
       </div>
 
       {/* Custom CSS to hide scrollbar in Webkit */}
@@ -132,20 +139,20 @@ export default function VideoStories() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-md p-0 md:p-8"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#1D1D1F]/90 backdrop-blur-xl p-0 md:p-8"
           >
             <button 
               onClick={() => setPlayingVideo(null)}
-              className="absolute top-4 right-4 md:top-8 md:right-8 z-[110] text-background bg-foreground/50 hover:bg-foreground backdrop-blur-md px-4 py-3 rounded-full font-mono text-xs tracking-widest uppercase transition-colors flex items-center gap-2"
+              className="absolute top-6 right-6 md:top-8 md:right-8 z-[110] text-[#1D1D1F] bg-white hover:bg-zinc-200 transition-colors px-6 py-2.5 rounded-full font-bold text-[13px] tracking-wide flex items-center shadow-2xl"
             >
-              <span>[</span> Закрыть <span>]</span>
+              Закрыть
             </button>
 
             <motion.div
               initial={{ scale: 0.95, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 20 }}
-              className="relative w-full h-full md:w-auto md:h-full md:aspect-[9/16] bg-black overflow-hidden md:shadow-2xl md:ring-1 md:ring-border"
+              className="relative w-full h-full md:w-auto md:h-full md:aspect-[9/16] bg-black overflow-hidden md:rounded-[40px] shadow-2xl"
             >
               <video
                 src={playingVideo.video}
@@ -155,10 +162,9 @@ export default function VideoStories() {
                 loop
                 className="w-full h-full object-cover"
               />
-              {/* Overlay title info inside video */}
-              <div className="absolute top-0 left-0 w-full p-6 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
-                <p className="text-white/70 font-mono text-sm mb-2 tracking-widest">[ {playingVideo.id} ]</p>
-                <h3 className="text-white font-bold tracking-tighter text-xl md:text-3xl leading-none w-5/6">
+              <div className="absolute top-0 left-0 w-full p-8 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
+                <p className="text-white/70 font-bold uppercase tracking-[0.2em] text-[10px] mb-3">Кейс {playingVideo.id}</p>
+                <h3 className="text-white font-black tracking-tighter text-2xl md:text-3xl leading-[1.1] max-w-[80%]">
                   {playingVideo.title}
                 </h3>
               </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
 
 const REVIEWS = [
   {
@@ -43,19 +43,27 @@ const REVIEWS = [
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="py-16 md:py-24 lg:py-32 border-b border-border bg-foreground text-background overflow-hidden relative">
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 mb-16 flex flex-col md:flex-row justify-between items-end">
-        <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tighter">
-          Отзывы
-        </h2>
-        <p className="font-mono text-sm tracking-widest text-background/60 mt-6 md:mt-0">
-          [ Мнение наших клиентов ]
-        </p>
-      </div>
+    <section id="reviews" className="relative py-24 lg:py-32 w-full z-10 overflow-hidden">
+      <ScrollRevealContainer className="max-w-[1400px] mx-auto px-4 md:px-8 mb-16 flex flex-col md:flex-row justify-between items-end">
+        <div className="max-w-2xl">
+          <ScrollRevealItem baseY={20}>
+            <h2 className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
+              Отзывы
+            </h2>
+          </ScrollRevealItem>
+          <ScrollRevealItem baseY={30}>
+            <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
+              Нам доверяют<br />
+              <span className="text-black/30">клиенты</span>
+            </h3>
+          </ScrollRevealItem>
+        </div>
+      </ScrollRevealContainer>
 
       {/* Marquee Container */}
-      <div className="relative w-full flex overflow-hidden">
-        {/* First set */}
+      <ScrollRevealItem baseY={50}>
+        <div className="relative w-full flex overflow-hidden mask-image-edges">
+          {/* First set */}
         <motion.div 
           className="flex shrink-0 w-max"
           animate={{ x: "-100%" }}
@@ -64,18 +72,17 @@ export default function Reviews() {
           {REVIEWS.map((review) => (
             <div 
               key={`set1-${review.id}`} 
-              className="w-[85vw] md:w-[500px] flex-shrink-0 border border-background/20 p-8 md:p-12 mr-8 flex flex-col justify-between min-h-[300px]"
+              className="w-[85vw] md:w-[450px] flex-shrink-0 bg-white rounded-[32px] border border-black/5 p-8 md:p-10 mr-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col justify-between"
             >
-              <div className="font-serif text-6xl text-background/20 absolute -z-10 -top-4 -left-2">«</div>
-              <div className="mb-8 relative z-10 flex-1">
-                <div className="font-mono text-background/50 mb-4">{review.rating}</div>
-                <p className="text-lg md:text-xl font-medium tracking-tight">
+              <div className="mb-6">
+                <div className="font-black text-[#2D6A4F] tracking-widest text-lg mb-4">{review.rating}</div>
+                <p className="text-[17px] font-medium leading-relaxed text-[#1D1D1F]/80">
                   {review.text}
                 </p>
               </div>
-              <div className="flex justify-between items-baseline border-t border-background/20 pt-6 mt-auto">
-                <span className="font-bold tracking-wide">{review.name}</span>
-                <span className="font-mono text-xs tracking-widest text-background/50">{review.date}</span>
+              <div className="flex justify-between items-center border-t border-black/5 pt-6 mt-auto">
+                <span className="font-bold tracking-tight text-[#1D1D1F]">{review.name}</span>
+                <span className="text-[11px] font-bold tracking-widest text-black/40 uppercase">{review.date}</span>
               </div>
             </div>
           ))}
@@ -90,33 +97,27 @@ export default function Reviews() {
           {REVIEWS.map((review) => (
             <div 
               key={`set2-${review.id}`} 
-              className="w-[85vw] md:w-[500px] flex-shrink-0 border border-background/20 p-8 md:p-12 mr-8 flex flex-col justify-between min-h-[300px]"
+              className="w-[85vw] md:w-[450px] flex-shrink-0 bg-white rounded-[32px] border border-black/5 p-8 md:p-10 mr-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col justify-between"
             >
-              <div className="font-serif text-6xl text-background/20 absolute -z-10 -top-4 -left-2">«</div>
-              <div className="mb-8 relative z-10 flex-1">
-                <div className="font-mono text-background/50 mb-4">{review.rating}</div>
-                <p className="text-lg md:text-xl font-medium tracking-tight">
+              <div className="mb-6">
+                <div className="font-black text-[#2D6A4F] tracking-widest text-lg mb-4">{review.rating}</div>
+                <p className="text-[17px] font-medium leading-relaxed text-[#1D1D1F]/80">
                   {review.text}
                 </p>
               </div>
-              <div className="flex justify-between items-baseline border-t border-background/20 pt-6 mt-auto">
-                <span className="font-bold tracking-wide">{review.name}</span>
-                <span className="font-mono text-xs tracking-widest text-background/50">{review.date}</span>
+              <div className="flex justify-between items-center border-t border-black/5 pt-6 mt-auto">
+                <span className="font-bold tracking-tight text-[#1D1D1F]">{review.name}</span>
+                <span className="text-[11px] font-bold tracking-widest text-black/40 uppercase">{review.date}</span>
               </div>
             </div>
           ))}
         </motion.div>
       </div>
+      </ScrollRevealItem>
       
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 mt-20 flex justify-center md:justify-start">
-        <a href="#contacts" className="inline-flex items-center justify-center px-8 py-5 bg-background text-foreground text-sm font-bold tracking-widest uppercase hover:bg-zinc-200 transition-colors border border-background w-full md:w-auto relative z-10">
-          [ Стать довольным клиентом → ]
-        </a>
-      </div>
-
-      {/* Decorative vertical lines */}
-      <div className="absolute top-0 right-0 w-[1px] h-full bg-background/10 hidden xl:block z-0" style={{ right: 'max(4vw, calc((100vw - 1400px) / 2))' }} />
-      <div className="absolute top-0 left-0 w-[1px] h-full bg-background/10 hidden xl:block z-0" style={{ left: 'max(4vw, calc((100vw - 1400px) / 2))' }} />
+      {/* Edge Gradients for Marquee */}
+      <div className="absolute top-0 bottom-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[#F5F5F0] to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 bottom-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[#F5F5F0] to-transparent z-10 pointer-events-none" />
     </section>
   );
 }

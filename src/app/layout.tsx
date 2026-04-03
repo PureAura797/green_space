@@ -1,18 +1,19 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono, Geist } from 'next/font/google';
+import { Onest, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import ScrollProgress from '@/components/layout/ScrollProgress';
 import MobileStickyCTA from '@/components/layout/MobileStickyCTA';
 import QuizModal from '@/components/layout/QuizModal';
 import FloatingContact from '@/components/layout/FloatingContact';
+import FilmGrain from '@/components/ui/FilmGrain';
+import Preloader from '@/components/layout/Preloader';
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({
-  variable: '--font-inter',
+const onest = Onest({
   subsets: ['latin', 'cyrillic'],
+  variable: '--font-sans',
+  display: 'swap',
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -113,7 +114,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={cn("h-full", "antialiased", "scroll-smooth", inter.variable, jetbrainsMono.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", "scroll-smooth", onest.variable, jetbrainsMono.variable, "font-sans")}
     >
       <head>
         <script
@@ -121,7 +122,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans bg-background text-foreground min-h-full flex flex-col">
+      <body className="font-sans bg-[#F5F5F0] text-foreground min-h-full flex flex-col">
+        <FilmGrain />
+        <Preloader />
         <SmoothScroll>
           <ScrollProgress />
           {children}
