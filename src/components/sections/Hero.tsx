@@ -172,7 +172,7 @@ export default function Hero() {
           variants={stagger} 
           initial="hidden" 
           animate="visible" 
-          className="absolute left-4 lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
+          className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
         >
            <motion.div variants={fadeUp} className="mb-6 pointer-events-auto">
              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5">
@@ -185,7 +185,7 @@ export default function Hero() {
 
            <motion.h1 
              variants={fadeUp} 
-             className="text-[52px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-10"
+             className="text-[40px] min-[375px]:text-[46px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-10 break-words hyphens-auto"
              style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
            >
              Безопасность<br/>вашего<br/>
@@ -194,16 +194,20 @@ export default function Hero() {
              </span>
            </motion.h1>
 
-           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pointer-events-auto">
-             <button 
-               className="h-14 lg:h-16 px-8 lg:px-10 rounded-full text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-wide hover:scale-105 transition-all w-full sm:w-auto" 
+           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pointer-events-auto">
+             <a 
+               href="#contacts"
+               className="flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-wide hover:scale-105 active:scale-95 transition-all w-full sm:w-auto text-center" 
                style={{ backgroundColor: ACCENT, boxShadow: `0 8px 30px ${ACCENT}80` }}
              >
                Рассчитать стоимость
-             </button>
-             <button className="h-14 lg:h-16 px-8 lg:px-10 rounded-full border border-white/30 text-white font-semibold text-[13px] lg:text-[15px] uppercase tracking-wide hover:bg-white/10 backdrop-blur-md transition-colors w-full sm:w-auto">
+             </a>
+             <a 
+               href="#pricing"
+               className="flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full border border-white/30 text-white font-semibold text-[13px] lg:text-[15px] uppercase tracking-wide hover:bg-white/10 backdrop-blur-md active:scale-95 transition-all w-full sm:w-auto text-center"
+             >
                Наши цены
-             </button>
+             </a>
            </motion.div>
         </motion.div>
 
