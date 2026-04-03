@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { Shield, Bug, Leaf, Rat, TreePine, MessageCircle, Send, Axe, Wind, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -69,6 +70,30 @@ function FloatingPointer({ service, className = '', lineClass, reverse = false }
    HERO SECTION — GLITCH REFERENCE 1:1
    ═══════════════════════════════════════════ */
 export default function Hero() {
+  // Force iOS autoplay on first user interaction if blocked by Low Power Mode
+  useEffect(() => {
+    const tryPlayVideo = () => {
+      const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
+      if (video && video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    // Try immediately
+    tryPlayVideo();
+
+    // Try on interaction
+    window.addEventListener('scroll', tryPlayVideo, { once: true, passive: true });
+    window.addEventListener('touchstart', tryPlayVideo, { once: true, passive: true });
+    window.addEventListener('click', tryPlayVideo, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', tryPlayVideo);
+      window.removeEventListener('touchstart', tryPlayVideo);
+      window.removeEventListener('click', tryPlayVideo);
+    };
+  }, []);
+
   return (
     <section className="relative w-full h-[100svh] p-4 lg:p-6 overflow-hidden flex flex-col" style={{ backgroundColor: FRAME_BG }}>
       {/* 
@@ -81,7 +106,7 @@ export default function Hero() {
         <div 
           className="absolute inset-0 w-full h-full z-0 opacity-90 pointer-events-none"
           dangerouslySetInnerHTML={{
-            __html: `<video class="w-full h-full object-cover" src="/videos/hero_bg.mp4" autoplay loop muted playsinline preload="auto"></video>`
+            __html: `<video id="hero-bg-video" class="w-full h-full object-cover" src="/videos/hero_bg.mp4" autoplay loop muted playsinline preload="auto"></video>`
           }}
         />
         

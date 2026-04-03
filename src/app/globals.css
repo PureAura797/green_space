@@ -195,3 +195,10 @@ footer {
   --sidebar-border: rgba(255, 255, 255, 0.1);
   --sidebar-ring: #86868B;
 }
+/* Force hide iOS Safari generic video big play button */
+video::-webkit-media-controls {
+    display: none !important;
+}
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
