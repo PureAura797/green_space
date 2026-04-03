@@ -32,8 +32,12 @@ export default function Header() {
     >
       <div className="flex justify-center w-full">
         <div
-          className={`w-fit flex items-center gap-4 lg:gap-8 transition-all duration-500 ease-out bg-white/90 backdrop-blur-2xl rounded-full pl-6 pr-2 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5 ${
-            scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
+          className={`w-fit flex flex-row items-center justify-between gap-4 lg:gap-8 transition-all duration-500 ease-out rounded-full pl-6 pr-2 py-2 ${
+            isOpen 
+              ? 'bg-transparent shadow-none border-transparent' 
+              : 'bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5'
+          } ${
+            scrolled || isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
           }`}
         >
         {/* Logo — pill */}
@@ -86,9 +90,9 @@ export default function Header() {
 
           {/* Mobile Burger — pill */}
           <button
-            className={`lg:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 ${
+            className={`lg:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 flex-shrink-0 ${
               isOpen
-                ? 'bg-[#F5F5F7] text-[#1D1D1F]'
+                ? 'bg-black/5 text-[#1D1D1F]'
                 : scrolled
                   ? 'bg-[#F5F5F7] text-[#1D1D1F]/60'
                   : 'bg-white/10 backdrop-blur-md border border-white/15 text-white'
@@ -106,11 +110,12 @@ export default function Header() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 top-20 bg-white/95 backdrop-blur-2xl flex flex-col px-6 pt-8 lg:hidden"
+            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            animate={{ opacity: 1, backdropFilter: 'blur(20px)' }}
+            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 -z-10 bg-[#F5F5F0]/95 flex flex-col px-6 pt-32 lg:hidden w-full h-[100dvh]"
+            style={{ position: 'fixed' }}
           >
             <nav className="flex flex-col gap-1">
               {NAV_LINKS.map((link, i) => (
