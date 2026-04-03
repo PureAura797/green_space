@@ -73,10 +73,7 @@ export default function TiltCard({
       }}
       className={`relative rounded-[inherit] ${className}`}
     >
-      <div 
-        className="w-full h-full rounded-[inherit] overflow-hidden" 
-        style={{ transform: "translateZ(30px)" }}
-      >
+      <div className="w-full h-full rounded-[inherit] overflow-hidden">
         {children}
       </div>
 

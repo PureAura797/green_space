@@ -90,15 +90,15 @@ export default function Preloader() {
             <rect width="100%" height="100%" fill="#F5F5F0" mask="url(#pill-mask)" />
           </svg>
 
-          {/* Dark glass pill to prevent clashes with Hero UI elements visible through the hole */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1, transition: { delay: 0.1 } }}
             exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3 } }}
             className="absolute z-10 flex items-center justify-center w-[220px] h-[80px] rounded-[40px] bg-black/50 backdrop-blur-sm pointer-events-none shadow-[0_0_40px_rgba(0,0,0,0.5)]"
           >
-            <div className="font-mono font-bold text-sm tracking-[0.2em] text-white">
-              [ {progress.toString().padStart(3, '0')} % ]
+            <div className="font-mono font-medium text-[16px] tracking-[0.3em] text-white tabular-nums flex items-center gap-2 -mr-2">
+              <span>{progress.toString().padStart(3, '0')}</span>
+              <span className="text-white/40">%</span>
             </div>
           </motion.div>
         </motion.div>
