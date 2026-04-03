@@ -77,8 +77,13 @@ export default function Hero() {
       */}
       <div className="relative w-full h-full rounded-[32px] overflow-hidden bg-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">
         
-        {/* Z-0: Full-bleed video */}
-        <video className="absolute inset-0 w-full h-full object-cover z-0 opacity-90" src="/videos/hero_bg.mp4" autoPlay muted loop playsInline />
+        {/* Z-0: Full-bleed video (Using dangerouslySetInnerHTML bypasses React hydration bugs on iOS Safari for muted/autoplay) */}
+        <div 
+          className="absolute inset-0 w-full h-full z-0 opacity-90 pointer-events-none"
+          dangerouslySetInnerHTML={{
+            __html: `<video class="w-full h-full object-cover" src="/videos/hero_bg.mp4" autoplay loop muted playsinline preload="auto"></video>`
+          }}
+        />
         
         {/* Z-1: Overlays for contrast */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent z-[1]" />
