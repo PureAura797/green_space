@@ -30,39 +30,49 @@ export default function Header() {
         scrolled ? 'pt-3 px-4 md:px-6' : 'pt-4 px-4 md:px-8'
       }`}
     >
-      <div className="flex justify-center w-full">
-        <div
-          className={`w-fit flex flex-row items-center justify-between gap-4 lg:gap-8 transition-all duration-500 ease-out rounded-full pl-6 pr-2 py-2 ${
-            isOpen 
-              ? 'bg-transparent shadow-none border-transparent' 
-              : 'bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5'
-          } ${
-            scrolled || isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
-          }`}
-        >
-        {/* Logo — pill */}
-        <Link
-          href="/"
-          className="font-semibold tracking-tight text-[#1D1D1F] text-base px-5 py-2"
-        >
-          ГОС_ЛЕНД
-        </Link>
+      <div className="flex items-center justify-between w-full max-w-[1400px] mx-auto relative">
+        
+        {/* Left Island — Logo */}
+        <div className={`transition-all duration-500 ease-out ${scrolled || isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'}`}>
+          <Link
+            href="/"
+            className={`inline-flex items-center font-bold tracking-tighter text-[#1D1D1F] text-[15px] px-6 h-[52px] rounded-full transition-all duration-500 ${
+              isOpen 
+                ? 'bg-transparent shadow-none border-transparent' 
+                : 'bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5'
+            }`}
+          >
+            ГОС_ЛЕНД
+          </Link>
+        </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        {/* Center Island — Desktop Nav */}
+        <nav 
+          className={`hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-[2px] px-2 h-[52px] rounded-full transition-all duration-500 ease-out ${
+            scrolled && !isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
+          } bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5`}
+        >
           {NAV_LINKS.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-[13px] font-medium text-[#1D1D1F]/55 hover:text-[#1D1D1F] hover:bg-black/[0.04] rounded-full px-4 py-2 transition-all duration-200"
+              className="px-4 h-10 flex items-center rounded-full text-[13px] font-semibold text-[#1D1D1F]/55 hover:text-[#1D1D1F] hover:bg-black/[0.04] transition-all duration-200"
             >
               {link.name}
             </Link>
           ))}
         </nav>
 
-        {/* Right side — pill buttons */}
-        <div className="flex items-center gap-2">
+        {/* Right Island — Actions */}
+        <div 
+          className={`flex items-center gap-1.5 p-1.5 h-[52px] rounded-full transition-all duration-500 ease-out ${
+            scrolled || isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
+          } ${
+            isOpen 
+              ? 'bg-transparent shadow-none border-transparent' 
+              : 'bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5'
+          }`}
+        >
           {/* Phone — icon pill */}
           <a
             href="tel:+79990000000"
@@ -76,19 +86,19 @@ export default function Header() {
             <Phone size={16} strokeWidth={1.5} />
           </a>
 
-          {/* CTA — pill */}
+          {/* CTA — button pill */}
           <a
             href="#contacts"
-            className={`text-[13px] font-semibold tracking-wide rounded-full transition-all duration-300 ${
+            className={`hidden sm:flex items-center justify-center text-[13px] font-bold tracking-wide rounded-full transition-all duration-300 h-10 px-5 ${
               scrolled
-                ? 'bg-[#1D1D1F] text-white px-5 py-2.5 hover:bg-[#1D1D1F]/85'
-                : 'bg-white text-[#1D1D1F] px-5 py-2.5 hover:bg-white/90'
+                ? 'bg-[#1D1D1F] text-white hover:bg-black'
+                : 'bg-white text-[#1D1D1F] hover:bg-white/90'
             }`}
           >
             Рассчитать
           </a>
 
-          {/* Mobile Burger — pill */}
+          {/* Mobile Burger — icon pill */}
           <button
             className={`lg:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 flex-shrink-0 ${
               isOpen
@@ -102,7 +112,6 @@ export default function Header() {
           >
             {isOpen ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
           </button>
-        </div>
         </div>
       </div>
 
