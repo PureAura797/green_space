@@ -62,7 +62,7 @@ export default function Numbers() {
         
         <div className="mb-20 max-w-4xl relative z-10">
           <ScrubbingText 
-            text="Мы удаляем проблему, а не симптомы. Комплексная зачистка территорий от клещей, короеда и борщевика с гарантией на весь сезон по ГОСТ 12.1.007-76."
+            text="Мы удаляем проблему, а не симптомы. Комплексная зачистка территорий от клещей, короеда, ос, комаров, кротов и борщевика с гарантией на весь сезон по ГОСТ 12.1.007-76."
             className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight"
           />
         </div>

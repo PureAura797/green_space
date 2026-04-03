@@ -1,14 +1,16 @@
 'use client';
 
-import { Shield, Bug, Leaf, Rat, TreePine, MessageCircle, Send, Axe } from 'lucide-react';
+import { Shield, Bug, Leaf, Rat, TreePine, MessageCircle, Send, Axe, Wind, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const SERVICES = [
-  { icon: Bug, label: 'Клещи', desc: 'от 3 000 ₽' },
-  { icon: Leaf, label: 'Борщевик', desc: 'от 5 000 ₽' },
+  { icon: Bug, label: 'Клещи', desc: 'от 3 500 ₽' },
+  { icon: Leaf, label: 'Борщевик', desc: 'от 4 000 ₽' },
   { icon: Rat, label: 'Кроты', desc: 'от 4 000 ₽' },
-  { icon: TreePine, label: 'Короед', desc: 'от 8 000 ₽' },
+  { icon: TreePine, label: 'Короед и Древоточец', desc: 'от 6 000 ₽' },
+  { icon: Wind, label: 'Комары', desc: 'от 3 500 ₽' },
+  { icon: Zap, label: 'Осы и Шершни', desc: 'от 4 000 ₽' },
   { icon: Axe, label: 'Спил деревьев', desc: 'от 5 000 ₽' },
 ];
 
@@ -211,13 +213,15 @@ export default function Hero() {
            </motion.div>
         </motion.div>
 
-        <div className="hidden lg:flex absolute top-[15vh] right-[5%] lg:right-[8%] z-[5] pointer-events-none flex-col gap-10 items-end">
-            <FloatingPointer service={SERVICES[0]} lineClass="w-12" />
-            <FloatingPointer service={SERVICES[1]} lineClass="w-[80px]" />
-            <FloatingPointer service={SERVICES[2]} lineClass="w-16" />
-            <FloatingPointer service={SERVICES[3]} lineClass="w-[100px]" />
-            <FloatingPointer service={SERVICES[4]} lineClass="w-[60px]" />
-        </div>
+         <div className="hidden lg:flex absolute top-[10vh] right-[4%] lg:right-[6%] z-[5] pointer-events-none flex-col gap-8 items-end">
+             <FloatingPointer service={SERVICES[0]} lineClass="w-8" />
+             <FloatingPointer service={SERVICES[1]} lineClass="w-[60px]" />
+             <FloatingPointer service={SERVICES[2]} lineClass="w-12" />
+             <FloatingPointer service={SERVICES[3]} lineClass="w-[80px]" />
+             <FloatingPointer service={SERVICES[4]} lineClass="w-[40px]" />
+             <FloatingPointer service={SERVICES[5]} lineClass="w-[70px]" />
+             <FloatingPointer service={SERVICES[6]} lineClass="w-6" />
+         </div>
 
       </div>
     </section>
