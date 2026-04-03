@@ -24,16 +24,6 @@ const CHANNELS = [
       </svg>
     ),
   },
-  {
-    id: 'max',
-    label: 'MAX',
-    href: 'https://max.ru/',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.65 14.1h-1.73l-1.57-2.56L10.8 16.1H9.04l2.35-3.6-2.19-3.4h1.73l1.42 2.36 1.44-2.36h1.73l-2.2 3.38 2.33 3.62z"/>
-      </svg>
-    ),
-  },
 ];
 
 export default function FloatingContact() {
@@ -82,7 +72,7 @@ export default function FloatingContact() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col gap-2 mb-2"
+                  className="flex flex-col gap-1 mb-4 bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-black/5 p-2 rounded-[24px]"
                 >
                   {CHANNELS.map((channel, index) => (
                     <motion.a
@@ -94,13 +84,13 @@ export default function FloatingContact() {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.2, delay: index * 0.05 }}
-                      className="flex items-center gap-3 bg-foreground text-background pl-4 pr-5 py-3 hover:bg-foreground/80 transition-colors group"
+                      className="flex items-center gap-3 text-[#1D1D1F]/70 hover:text-[#1D1D1F] hover:bg-black/[0.04] px-4 py-3 rounded-[16px] transition-all duration-200 group"
                       onClick={() => setIsOpen(false)}
                     >
-                      <span className="opacity-80 group-hover:opacity-100 transition-opacity">
+                      <span className="opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
                         {channel.icon}
                       </span>
-                      <span className="font-mono text-xs tracking-widest whitespace-nowrap">
+                      <span className="font-semibold text-[13px] tracking-wide whitespace-nowrap">
                         {channel.label}
                       </span>
                     </motion.a>
