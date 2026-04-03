@@ -7,8 +7,8 @@ const STEPS = [
   {
     id: '01',
     title: 'Быстрая заявка',
-    description: 'Оставьте заявку на сайте или позвоните. Ответим в течение 15 минут и сразу же согласуем удобное для вас время.',
-    tag: 'до 15 мин',
+    description: 'Вы просто оставляете заявку или звоните нам. Мы перезваниваем в течение 5 минут и сразу согласовываем удобное время.',
+    tag: 'до 5 мин',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -18,7 +18,7 @@ const STEPS = [
   {
     id: '02',
     title: 'Бесплатный осмотр',
-    description: 'Бесплатный выезд специалиста-агронома для глубокой оценки состояния участка, точного объёма работ и подбора сертифицированных препаратов.',
+    description: 'Инженер приедет точно в срок, бесплатно осмотрит участок и честно расскажет, что нужно сделать (без скрытых доплат).',
     tag: '1 день',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -29,7 +29,7 @@ const STEPS = [
   {
     id: '03',
     title: 'Эко-обработка',
-    description: 'Проведём тщательную обработку в согласованное время премиальными препаратами IV класса с соблюдением абсолютно всех стандартов безопасности.',
+    description: 'Идеально чистая работа. Наши специалисты всё подготовят, сделают свою работу на 100% и аккуратно уберут за собой.',
     tag: 'от 2 часов',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -40,8 +40,8 @@ const STEPS = [
   {
     id: '04',
     title: 'Официальная гарантия',
-    description: 'Контроль результата через 7 дней. Бесплатная повторная обработка при любой необходимости в течение всего закрепленного гарантийного периода.',
-    tag: 'защита 3 мес',
+    description: 'Контролируем результат. Бесплатно приедем и сделаем повторную обработку по первому же зову, если что-то пошло не так.',
+    tag: 'гарантия по договору',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/>
@@ -64,7 +64,7 @@ export default function HowWeWork() {
             <ScrollRevealItem baseY={30}>
               <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
                 Прозрачный процесс<br />
-                <span className="text-black/30">работы</span>
+                <span className="text-black/30">от А до Я</span>
               </h3>
             </ScrollRevealItem>
           </div>

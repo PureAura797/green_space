@@ -176,7 +176,7 @@ export default function Hero() {
              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5">
                <Shield className="w-4 h-4 text-white/80" />
                <span className="text-[10px] lg:text-[11px] text-white/90 font-bold tracking-[0.2em] uppercase">
-                 Официальный подрядчик
+                 Работаем как для себя
                </span>
              </div>
            </motion.div>
@@ -186,9 +186,9 @@ export default function Hero() {
              className="text-[52px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-10"
              style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
            >
-             Защита<br/>вашей<br/>
+             Безопасность<br/>вашего<br/>
              <span className="text-transparent bg-clip-text pr-2" style={{ backgroundImage: 'linear-gradient(to right, #ffffff, rgba(255,255,255,0.5))' }}>
-               территории<span style={{ color: ACCENT }}>.</span>
+               участка<span style={{ color: ACCENT }}>.</span>
              </span>
            </motion.h1>
 
@@ -197,10 +197,10 @@ export default function Hero() {
                className="h-14 lg:h-16 px-8 lg:px-10 rounded-full text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-wide hover:scale-105 transition-all w-full sm:w-auto" 
                style={{ backgroundColor: ACCENT, boxShadow: `0 8px 30px ${ACCENT}80` }}
              >
-               Оставить заявку
+               Рассчитать стоимость
              </button>
              <button className="h-14 lg:h-16 px-8 lg:px-10 rounded-full border border-white/30 text-white font-semibold text-[13px] lg:text-[15px] uppercase tracking-wide hover:bg-white/10 backdrop-blur-md transition-colors w-full sm:w-auto">
-               Прайс-лист
+               Наши цены
              </button>
            </motion.div>
         </motion.div>

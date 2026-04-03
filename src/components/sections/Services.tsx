@@ -11,7 +11,7 @@ const SERVICES = [
     id: '01',
     shortTitle: 'Уничтожение клещей',
     title: 'Акарицидная обработка',
-    description: 'Уничтожение клещей препаратами IV класса опасности. Действие до 3 месяцев. 100% безопасность для людей и животных.',
+    description: 'Раз и навсегда обезопасим газон от клещей. 100% гарантия и полная безопасность для собак и детей уже через 2 часа.',
     price: 'от 3 500 ₽',
     image: '/images/services/ticks.png',
   },
@@ -19,7 +19,7 @@ const SERVICES = [
     id: '02',
     shortTitle: 'Борьба с борщевиком',
     title: 'Уничтожение борщевика',
-    description: 'Гербицидная обработка корневой системы. Гарантированное уничтожение за 1-2 этапа с полным предотвращением повторного роста.',
+    description: 'Выжжем борщевик с корнем и перекопаем так, чтобы он больше никогда не смог вернуться на ваш участок в следующем году.',
     price: 'от 4 000 ₽',
     image: '/images/services/hogweed.png',
   },
@@ -43,7 +43,7 @@ const SERVICES = [
     id: '05',
     shortTitle: 'Арбористика',
     title: 'Обрезка и спил деревьев',
-    description: 'Санитарная и формовочная обрезка, аккуратное удаление опасных аварийных деревьев с использованием альпинистского снаряжения.',
+    description: 'Ювелирно спилим самое сложное и опасно нависающее дерево по частям. Никак не повредив при этом вашу крышу, провода или забор.',
     price: 'от 5 000 ₽',
     image: '/images/services/arboristics.png',
   },
@@ -70,14 +70,14 @@ export default function Services() {
             </ScrollRevealItem>
             <ScrollRevealItem baseY={30}>
               <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
-                Комплексные решения<br />
-                <span className="text-black/30">под ключ</span>
+                Что мы умеем<br />
+                <span className="text-black/30">делать на 5+</span>
               </h3>
             </ScrollRevealItem>
           </div>
           <ScrollRevealItem baseY={30} className="md:w-1/3 mt-8 md:mt-0">
             <p className="text-[#1D1D1F]/60 text-base md:text-lg font-medium tracking-tight leading-relaxed">
-              Мы создаем безопасность для вашего участка: гарантируем скорость, сохранность экологии и 100% результат при каждом выезде.
+              Аккуратно спилим дерево и сделаем газон полностью безопасным для вас, ваших детей и домашних животных.
             </p>
           </ScrollRevealItem>
         </div>

@@ -85,7 +85,7 @@ export default function Header() {
                 : 'bg-white text-[#1D1D1F] px-5 py-2.5 hover:bg-white/90'
             }`}
           >
-            Заявка
+            Рассчитать
           </a>
 
           {/* Mobile Burger — pill */}
