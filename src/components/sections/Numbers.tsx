@@ -55,7 +55,7 @@ export default function Numbers() {
   const isInView = useInView(ref, { once: true, margin: '100px 0px' });
 
   return (
-    <section className="relative z-10 w-full px-4 md:px-8 max-w-[1400px] mx-auto mb-24 lg:mb-32 mt-12">
+    <section className="relative z-10 w-full px-4 md:px-8 max-w-[1400px] mx-auto py-16 lg:py-24">
       <div ref={ref} className="bg-[#1D1D1F] rounded-[32px] sm:rounded-[48px] p-8 md:p-16 lg:p-20 text-white overflow-hidden shadow-2xl relative">
         {/* Subtle decorative glow */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none" />

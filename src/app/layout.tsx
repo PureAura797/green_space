@@ -113,7 +113,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={cn("h-full", "antialiased", "scroll-smooth", onest.variable, jetbrainsMono.variable, "font-sans")}
+      className={cn("h-full", "antialiased", "scroll-smooth scroll-pt-32 lg:scroll-pt-40", onest.variable, jetbrainsMono.variable, "font-sans")}
     >
       <head>
         <script

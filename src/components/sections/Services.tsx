@@ -59,7 +59,7 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-24 lg:py-32 z-10 overflow-hidden">
+    <section id="services" className="relative pt-4 pb-16 lg:pt-8 lg:pb-24 z-10 overflow-hidden">
       <ScrollRevealContainer className="px-4 md:px-8 max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24">
           <div className="max-w-2xl">
