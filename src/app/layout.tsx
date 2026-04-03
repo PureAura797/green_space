@@ -3,7 +3,6 @@ import { Onest, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import ScrollProgress from '@/components/layout/ScrollProgress';
-import MobileStickyCTA from '@/components/layout/MobileStickyCTA';
 import QuizModal from '@/components/layout/QuizModal';
 import FloatingContact from '@/components/layout/FloatingContact';
 import FilmGrain from '@/components/ui/FilmGrain';
@@ -128,7 +127,6 @@ export default function RootLayout({
         <SmoothScroll>
           <ScrollProgress />
           {children}
-          <MobileStickyCTA />
           <FloatingContact />
           <QuizModal />
         </SmoothScroll>
