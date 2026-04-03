@@ -10,9 +10,11 @@ import BeforeAfter from '@/components/sections/BeforeAfter';
 import Licenses from '@/components/sections/Licenses';
 import Team from '@/components/sections/Team';
 import Reviews from '@/components/sections/Reviews';
+import LeadCapture from '@/components/sections/LeadCapture';
 import FAQ from '@/components/sections/FAQ';
 import Contacts from '@/components/sections/Contacts';
 import Footer from '@/components/layout/Footer';
+import MobileStickyCTA from '@/components/layout/MobileStickyCTA';
 
 export default function Home() {
   return (
@@ -30,10 +32,12 @@ export default function Home() {
         <Licenses />
         <Team />
         <Reviews />
+        <LeadCapture />
         <FAQ />
         <Contacts />
       </main>
       <Footer />
+      <MobileStickyCTA />
     </>
   );
 }

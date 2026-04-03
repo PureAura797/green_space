@@ -31,7 +31,7 @@ const TEAM = [
     contacts: [
       { type: 'ТЕЛЕФОН', link: 'tel:+79990000000' },
       { type: 'EMAIL', link: 'mailto:info@goslend.ru' },
-      { type: 'WHATSAPP', link: '#' },
+      { type: 'MAX', link: '#' },
     ]
   },
   {
@@ -45,7 +45,7 @@ const TEAM = [
     contacts: [
       { type: 'ТЕЛЕФОН', link: 'tel:+79990000000' },
       { type: 'TELEGRAM', link: '#' },
-      { type: 'WHATSAPP', link: '#' },
+      { type: 'MAX', link: '#' },
     ]
   }
 ];

@@ -26,8 +26,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out ${
-        scrolled ? 'pt-3 px-4 md:px-6' : 'pt-4 px-4 md:px-8'
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out px-4 md:px-8 ${
+        scrolled ? 'pt-3' : 'pt-4'
       }`}
     >
       <div className="flex items-center justify-between w-full max-w-[1400px] mx-auto relative">

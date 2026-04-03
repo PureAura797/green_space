@@ -8,10 +8,8 @@ const SERVICES = [
   { icon: Bug, label: 'Клещи', desc: 'от 3 500 ₽' },
   { icon: Leaf, label: 'Борщевик', desc: 'от 4 000 ₽' },
   { icon: Rat, label: 'Кроты', desc: 'от 4 000 ₽' },
-  { icon: TreePine, label: 'Короед и Древоточец', desc: 'от 6 000 ₽' },
+  { icon: TreePine, label: 'Короед', desc: 'от 6 000 ₽' },
   { icon: Wind, label: 'Комары', desc: 'от 3 500 ₽' },
-  { icon: Zap, label: 'Осы и Шершни', desc: 'от 4 000 ₽' },
-  { icon: Axe, label: 'Спил деревьев', desc: 'от 5 000 ₽' },
 ];
 
 const ACCENT = '#2D6A4F';
@@ -176,11 +174,17 @@ export default function Hero() {
           animate="visible" 
           className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
         >
-           <motion.div variants={fadeUp} className="mb-6 pointer-events-auto">
-             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5">
-               <Shield className="w-4 h-4 text-white/80" />
-               <span className="text-[10px] lg:text-[11px] text-white/90 font-bold tracking-[0.2em] uppercase">
-                 Работаем как для себя
+           <motion.div variants={fadeUp} className="mb-6 pointer-events-auto flex flex-wrap gap-2 lg:gap-3">
+             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 transition-transform hover:bg-white/20">
+               <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+               <span className="text-[10px] lg:text-[11px] text-white/90 font-bold tracking-[0.15em] lg:tracking-[0.2em] uppercase">
+                 100+ видов работ по участку
+               </span>
+             </div>
+             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 transition-transform hover:bg-white/20">
+               <Shield className="w-3.5 h-3.5 text-white/80" />
+               <span className="text-[10px] lg:text-[11px] text-white/90 font-bold tracking-[0.15em] lg:tracking-[0.2em] uppercase">
+                 Гарантия по договору
                </span>
              </div>
            </motion.div>
@@ -213,14 +217,12 @@ export default function Hero() {
            </motion.div>
         </motion.div>
 
-         <div className="hidden lg:flex absolute top-[10vh] right-[4%] lg:right-[6%] z-[5] pointer-events-none flex-col gap-8 items-end">
-             <FloatingPointer service={SERVICES[0]} lineClass="w-8" />
-             <FloatingPointer service={SERVICES[1]} lineClass="w-[60px]" />
-             <FloatingPointer service={SERVICES[2]} lineClass="w-12" />
-             <FloatingPointer service={SERVICES[3]} lineClass="w-[80px]" />
-             <FloatingPointer service={SERVICES[4]} lineClass="w-[40px]" />
-             <FloatingPointer service={SERVICES[5]} lineClass="w-[70px]" />
-             <FloatingPointer service={SERVICES[6]} lineClass="w-6" />
+         <div className="hidden lg:flex absolute top-[15vh] right-[5%] lg:right-[8%] z-[5] pointer-events-none flex-col gap-10 items-end">
+             <FloatingPointer service={SERVICES[0]} lineClass="w-12" />
+             <FloatingPointer service={SERVICES[1]} lineClass="w-[80px]" />
+             <FloatingPointer service={SERVICES[2]} lineClass="w-16" />
+             <FloatingPointer service={SERVICES[3]} lineClass="w-[100px]" />
+             <FloatingPointer service={SERVICES[4]} lineClass="w-[60px]" />
          </div>
 
       </div>
