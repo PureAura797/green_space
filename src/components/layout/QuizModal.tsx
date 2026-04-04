@@ -143,9 +143,9 @@ export default function QuizModal() {
             {/* Left Side: Interactive UI */}
             <div className="w-full md:w-1/2 flex flex-col h-full overflow-y-auto relative z-10">
               {/* Header Area */}
-              <div className="flex items-center justify-between p-6 sm:p-10 border-b border-white/10 shrink-0">
+              <div className="flex items-center justify-between p-6 sm:p-10 shrink-0 relative z-20">
                 <div className="flex items-center gap-3">
-                  <span className="bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase text-white/50">
+                  <span className="bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase text-white/50">
                     Шаг {step + 1} из {STEPS.length + 1}
                   </span>
                 </div>
@@ -173,15 +173,15 @@ export default function QuizModal() {
                 </div>
 
                 {step < STEPS.length ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-3 w-full max-w-md mx-auto md:mx-0">
                     {STEPS[step].options.map((option) => (
                       <button
                         key={option}
                         onClick={() => handleOptionSelect(option)}
-                        className="group flex items-center justify-between p-6 text-left bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 rounded-[24px] hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:-translate-y-1 transition-all duration-300"
+                        className="group flex items-center justify-between px-6 py-5 text-left bg-transparent border border-white/10 hover:bg-white/5 hover:border-white/20 rounded-2xl transition-all duration-300 w-full"
                       >
-                        <span className="text-[14px] font-bold text-white pr-4">{option}</span>
-                        <div className="w-8 h-8 rounded-full bg-black/40 border border-white/10 flex items-center justify-center group-hover:bg-[#2D6A4F] group-hover:text-white transition-colors shrink-0 text-white/40 group-hover:border-transparent">
+                        <span className="text-[15px] font-semibold text-white/80 group-hover:text-white transition-colors">{option}</span>
+                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#2D6A4F] group-hover:text-white transition-colors shrink-0 text-white/40">
                           <ArrowRight size={16} />
                         </div>
                       </button>
