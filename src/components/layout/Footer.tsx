@@ -19,8 +19,8 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="w-full bg-[#F5F5F0] px-4 md:px-8 pb-8 z-10 relative">
-      <ScrollRevealContainer className="max-w-[1400px] mx-auto bg-[#1D1D1F] text-white rounded-[40px] px-8 py-16 md:p-16 lg:p-20 shadow-[0_20px_60px_rgba(0,0,0,0.1)]">
+    <footer className="w-full bg-[#F5F5F0] px-4 md:px-8 pb-4 md:pb-8 z-10 relative">
+      <ScrollRevealContainer className="max-w-[1400px] mx-auto bg-[#1D1D1F] text-white rounded-[40px] px-8 pt-16 pb-[130px] md:p-16 lg:p-20 shadow-[0_20px_60px_rgba(0,0,0,0.1)]">
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 lg:gap-24">
           {/* Col 1 */}
           <ScrollRevealItem baseY={20} className="flex flex-col gap-8 max-w-sm">
