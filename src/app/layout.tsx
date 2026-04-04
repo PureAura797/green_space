@@ -7,6 +7,7 @@ import QuizModal from '@/components/layout/QuizModal';
 import FloatingContact from '@/components/layout/FloatingContact';
 import FilmGrain from '@/components/ui/FilmGrain';
 import Preloader from '@/components/layout/Preloader';
+import CookieBanner from '@/components/ui/CookieBanner';
 import { cn } from "@/lib/utils";
 
 const onest = Onest({
@@ -129,6 +130,7 @@ export default function RootLayout({
           {children}
           <FloatingContact />
           <QuizModal />
+          <CookieBanner />
         </SmoothScroll>
       </body>
     </html>
