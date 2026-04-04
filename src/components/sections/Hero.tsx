@@ -6,11 +6,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const SERVICES = [
-  { icon: Bug, label: 'Клещи', desc: 'от 3 500 ₽' },
-  { icon: Leaf, label: 'Борщевик', desc: 'от 4 000 ₽' },
-  { icon: Rat, label: 'Кроты', desc: 'от 4 000 ₽' },
-  { icon: TreePine, label: 'Короед', desc: 'от 6 000 ₽' },
-  { icon: Wind, label: 'Комары', desc: 'от 3 500 ₽' },
+  { label: 'Клещи', desc: 'от 3 500 ₽' },
+  { label: 'Борщевик', desc: 'от 4 000 ₽' },
+  { label: 'Кроты', desc: 'от 4 000 ₽' },
+  { label: 'Короед', desc: 'от 6 000 ₽' },
+  { label: 'Комары', desc: 'от 3 500 ₽' },
 ];
 
 const ACCENT = '#2D6A4F';
@@ -47,14 +47,14 @@ function Fillet({ position, size = 32, className = '', color = '#F5F5F0' }: { po
 }
 
 function FloatingPointer({ service, className = '', lineClass, reverse = false }: any) {
-  const Icon = service.icon;
   return (
     <motion.div
       variants={fadeScale}
       className={`relative z-[10] flex items-center gap-3 group cursor-pointer pointer-events-auto ${reverse ? 'flex-row-reverse' : ''} ${className}`}
     >
-      <div className="flex items-center gap-2 bg-white px-4 py-2.5 rounded-full transition-all duration-300 group-hover:bg-[#F5F5F0] group-hover:-translate-y-1 shadow-[0_8px_30px_rgba(0,0,0,0.15)]">
-        <Icon size={16} strokeWidth={2.5} className="text-[#1D1D1F]" />
+      <div className="flex items-center gap-2.5 bg-white px-4 py-2.5 rounded-full transition-all duration-300 group-hover:bg-[#F5F5F0] group-hover:-translate-y-1 shadow-[0_8px_30px_rgba(0,0,0,0.15)]">
+        {/* Minimalist Accent Dot */}
+        <div className="w-1.5 h-1.5 rounded-full bg-[#2D6A4F]" />
         <span className="text-[#1D1D1F] text-[10px] sm:text-[11px] font-black uppercase tracking-[0.15em] whitespace-nowrap">
           {service.label} <span className="opacity-40 font-bold ml-1">{service.desc}</span>
         </span>
