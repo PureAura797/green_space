@@ -138,7 +138,7 @@ export default function QuizModal() {
             initial={{ scale: 0.95, y: 20, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
-            className="w-full max-w-5xl bg-[#1D1D1F] rounded-[32px] sm:rounded-[40px] shadow-[0_30px_80px_rgba(0,0,0,0.6)] relative flex flex-col md:flex-row max-h-[90vh] overflow-hidden border border-white/5"
+            className="w-full max-w-4xl bg-[#1D1D1F] rounded-[32px] sm:rounded-[40px] shadow-[0_30px_80px_rgba(0,0,0,0.6)] relative flex flex-col md:flex-row max-h-[90vh] overflow-hidden border border-white/5"
           >
             {/* Left Side: Interactive UI */}
             <div className="w-full md:w-1/2 flex flex-col h-full overflow-y-auto relative z-10">
@@ -165,32 +165,32 @@ export default function QuizModal() {
               </div>
 
               {/* Content Area */}
-              <div className="p-6 sm:p-10 flex-1 flex flex-col justify-center">
-                <div className="mb-10 text-center md:text-left">
-                  <h3 className="text-3xl sm:text-4xl lg:text-[40px] font-black leading-[1.1] tracking-tighter text-white">
+              <div className="p-6 sm:p-10 flex-1 flex flex-col justify-center items-center">
+                <div className="mb-8 text-center w-full">
+                  <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-black leading-[1.1] tracking-tighter text-white">
                     {step < STEPS.length ? STEPS[step].title : 'Куда прислать расчет?'}
                   </h3>
                 </div>
 
                 {step < STEPS.length ? (
-                  <div className="flex flex-col gap-3 w-full max-w-md mx-auto md:mx-0">
+                  <div className="flex flex-col gap-3 w-full max-w-sm mx-auto">
                     {STEPS[step].options.map((option) => (
                       <button
                         key={option}
                         onClick={() => handleOptionSelect(option)}
-                        className="group flex items-center justify-between px-6 py-5 text-left bg-transparent border border-white/10 hover:bg-white/5 hover:border-white/20 rounded-2xl transition-all duration-300 w-full"
+                        className="group flex items-center justify-between px-6 py-4 text-left bg-transparent border border-white/10 hover:bg-white/5 hover:border-white/20 rounded-2xl transition-all duration-300 w-full"
                       >
-                        <span className="text-[15px] font-semibold text-white/80 group-hover:text-white transition-colors">{option}</span>
-                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#2D6A4F] group-hover:text-white transition-colors shrink-0 text-white/40">
-                          <ArrowRight size={16} />
+                        <span className="text-[14px] font-semibold text-white/80 group-hover:text-white transition-colors">{option}</span>
+                        <div className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#2D6A4F] group-hover:text-white transition-colors shrink-0 text-white/40">
+                          <ArrowRight size={14} />
                         </div>
                       </button>
                     ))}
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-sm mx-auto md:mx-0 w-full relative z-20">
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-sm mx-auto w-full relative z-20">
                     <div className="flex flex-col">
-                      <label className="text-[11px] font-bold tracking-widest uppercase text-white/40 mb-3 ml-4">
+                      <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 mb-2 ml-4">
                         ТЕЛЕФОН ИЛИ WHATSAPP
                       </label>
                       <IMaskInput
@@ -198,7 +198,7 @@ export default function QuizModal() {
                         type="tel"
                         value={phone}
                         onAccept={(value) => setPhone(value)}
-                        className="w-full h-16 sm:h-20 bg-black/40 border border-white/10 px-8 rounded-full font-bold text-lg tracking-wide focus:outline-none focus:ring-1 focus:ring-white/30 focus:bg-white/5 placeholder:text-white/20 text-white transition-all text-center md:text-left shadow-inner"
+                        className="w-full h-14 bg-black/40 border border-white/10 px-6 rounded-full font-bold text-[15px] tracking-wide focus:outline-none focus:border-white/30 focus:bg-white/5 placeholder:text-white/20 text-white transition-all text-center shadow-inner"
                         placeholder="+7 (999) 000-00-00"
                       />
                     </div>
@@ -223,7 +223,7 @@ export default function QuizModal() {
                             )}
                           </AnimatePresence>
                         </motion.div>
-                        <span className={`text-[10px] sm:text-[11px] font-medium leading-[1.4] transition-colors duration-300 tracking-wide ${shakeConsent ? 'text-red-400' : 'text-white/40 group-hover:text-white/60'}`}>
+                        <span className={`text-[10px] font-medium leading-[1.4] transition-colors duration-300 tracking-wide text-center sm:text-left ${shakeConsent ? 'text-red-400' : 'text-white/40 group-hover:text-white/60'}`}>
                           Я согласен на обработку персональных данных в соответствии с{' '}
                           <span 
                             onClick={(e) => { e.stopPropagation(); setIsPrivacyOpen(true); }}
@@ -236,7 +236,7 @@ export default function QuizModal() {
 
                       <button
                         type="submit"
-                        className={`w-full h-16 sm:h-20 flex items-center justify-center rounded-full text-white font-bold text-[13px] uppercase tracking-wide transition-all duration-300 ${consentGiven ? 'bg-[#2D6A4F] hover:brightness-110 active:scale-[0.98] shadow-lg cursor-pointer' : 'bg-white/5 text-white/30 cursor-not-allowed border border-white/5'}`}
+                        className={`w-full h-14 flex items-center justify-center rounded-full text-white font-bold text-[12px] uppercase tracking-wide transition-all duration-300 ${consentGiven ? 'bg-[#2D6A4F] hover:brightness-110 active:scale-[0.98] shadow-lg cursor-pointer' : 'bg-white/5 text-white/30 cursor-not-allowed border border-white/5'}`}
                       >
                         Получить расчет
                       </button>
