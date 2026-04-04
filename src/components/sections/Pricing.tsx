@@ -164,6 +164,11 @@ export default function Pricing() {
         <div className="mt-16 flex flex-col md:flex-row items-center gap-6 justify-center">
           <a
             href="#quiz"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState(null, '', '#quiz');
+              window.dispatchEvent(new Event('hashchange'));
+            }}
             className="inline-flex items-center justify-center px-8 py-4 bg-[#2D6A4F] text-white text-sm font-bold tracking-widest uppercase rounded-full hover:bg-[#347B5B] transition-colors shadow-xl shadow-[#2D6A4F]/20 w-full md:w-auto"
           >
             Рассчитать для моего участка
