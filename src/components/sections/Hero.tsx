@@ -47,22 +47,20 @@ function Fillet({ position, size = 32, className = '', color = '#F5F5F0' }: { po
 }
 
 function FloatingPointer({ service, className = '', lineClass, reverse = false }: any) {
+  const Icon = service.icon;
   return (
     <motion.div
       variants={fadeScale}
       className={`relative z-[10] flex items-center gap-3 group cursor-pointer pointer-events-auto ${reverse ? 'flex-row-reverse' : ''} ${className}`}
     >
-      <div className="flex items-center gap-2.5 bg-white/5 backdrop-blur-3xl px-4 py-2.5 rounded-full border border-white/[0.08] transition-all duration-300 group-hover:bg-white/10 group-hover:-translate-y-1 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_8px_32px_rgba(0,0,0,0.3)]">
-        {/* Architectural / Technical Marker instead of generic illustration */}
-        <div className="w-[18px] h-[18px] rounded-full border border-white/20 flex items-center justify-center bg-black/20">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#34C759]" style={{ boxShadow: '0 0 10px rgba(52, 199, 89, 0.8)' }} />
-        </div>
-        <span className="text-white/90 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] whitespace-nowrap">
-          {service.label} <span className="opacity-50 font-medium ml-1">{service.desc}</span>
+      <div className="flex items-center gap-2 bg-white px-4 py-2.5 rounded-full transition-all duration-300 group-hover:bg-[#F5F5F0] group-hover:-translate-y-1 shadow-[0_8px_30px_rgba(0,0,0,0.15)]">
+        <Icon size={16} strokeWidth={2.5} className="text-[#1D1D1F]" />
+        <span className="text-[#1D1D1F] text-[10px] sm:text-[11px] font-black uppercase tracking-[0.15em] whitespace-nowrap">
+          {service.label} <span className="opacity-40 font-bold ml-1">{service.desc}</span>
         </span>
       </div>
-      <div className={`h-[1px] bg-white/60 transition-colors group-hover:bg-white ${lineClass}`} style={{ boxShadow: '0 0 8px rgba(255,255,255,0.4)' }} />
-      <div className={`w-1.5 h-1.5 rounded-full bg-white/90 transition-transform group-hover:scale-150`} style={{ boxShadow: '0 0 12px rgba(255,255,255,0.9)' }} />
+      <div className={`h-[1.5px] bg-white transition-colors group-hover:bg-white/70 ${lineClass}`} style={{ boxShadow: '0 0 8px rgba(0,0,0,0.2)' }} />
+      <div className={`w-2 h-2 rounded-full bg-white transition-transform group-hover:scale-150 shadow-md`} />
     </motion.div>
   );
 }
@@ -206,16 +204,15 @@ export default function Hero() {
           className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
         >
            <motion.div variants={fadeUp} className="mb-6 pointer-events-auto flex flex-wrap gap-2 lg:gap-3">
-             <div className="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur-3xl border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_8px_32px_rgba(0,0,0,0.3)] rounded-full px-4 py-2 transition-transform hover:bg-white/10">
-               <div className="w-1.5 h-1.5 rounded-full bg-white/80" />
-               <span className="text-[10px] lg:text-[11px] text-white/90 font-bold tracking-[0.15em] lg:tracking-[0.2em] uppercase">
+             <div className="inline-flex items-center gap-2.5 bg-white shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
+               <div className="w-2 h-2 rounded-full bg-[#34C759]" />
+               <span className="text-[10px] lg:text-[11px] text-[#1D1D1F] font-black tracking-[0.15em] lg:tracking-[0.2em] uppercase">
                  100+ видов работ по участку
                </span>
              </div>
-             <div className="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur-3xl border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_8px_32px_rgba(0,0,0,0.3)] rounded-full px-4 py-2 transition-transform hover:bg-white/10">
-               {/* Apple-style ultra thin icon */}
-               <Shield strokeWidth={1} className="w-4 h-4 text-[#34C759]" />
-               <span className="text-[10px] lg:text-[11px] text-white/90 font-bold tracking-[0.15em] lg:tracking-[0.2em] uppercase">
+             <div className="inline-flex items-center gap-2.5 bg-[#1D1D1F] border-2 border-white/10 shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
+               <Shield strokeWidth={2.5} className="w-4 h-4 text-white" />
+               <span className="text-[10px] lg:text-[11px] text-white font-black tracking-[0.15em] lg:tracking-[0.2em] uppercase">
                  Гарантия по договору
                </span>
              </div>

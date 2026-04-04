@@ -26,9 +26,9 @@ export default function LeadCapture() {
       <ScrollRevealContainer className="px-6 md:px-12 lg:px-20 relative z-10 flex flex-col items-center text-center">
         
         <ScrollRevealItem baseY={20}>
-           <div className="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur-3xl rounded-full px-4 py-2 mb-8 border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_8px_32px_rgba(0,0,0,0.3)]">
-             <div className="w-1.5 h-1.5 rounded-full bg-[#34C759] animate-pulse" style={{ boxShadow: '0 0 10px rgba(52, 199, 89, 0.8)' }} />
-             <span className="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase text-white/90">
+           <div className="inline-flex items-center gap-2.5 bg-white shadow-xl rounded-full px-4 py-2 mb-8 transition-transform hover:scale-[1.02]">
+             <div className="w-2 h-2 rounded-full bg-[#34C759] animate-pulse" />
+             <span className="text-[10px] lg:text-[11px] font-black tracking-[0.2em] uppercase text-[#1D1D1F]">
                Связь без посредников
              </span>
            </div>
