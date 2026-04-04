@@ -135,145 +135,124 @@ export default function QuizModal() {
           </AnimatePresence>
 
           <motion.div
-            initial={{ scale: 0.95, y: 20, opacity: 0 }}
-            animate={{ scale: 1, y: 0, opacity: 1 }}
-            exit={{ scale: 0.95, y: 20, opacity: 0 }}
-            className="w-full max-w-4xl bg-[#1D1D1F] rounded-[32px] sm:rounded-[40px] shadow-[0_30px_80px_rgba(0,0,0,0.6)] relative flex flex-col md:flex-row max-h-[90vh] overflow-hidden border border-white/5"
+            initial={{ scale: 0.95, y: 20 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.95, y: 20 }}
+            className="w-full max-w-2xl bg-[#F5F5F0] rounded-[40px] shadow-[0_20px_60px_rgba(0,0,0,0.1)] relative overflow-hidden flex flex-col max-h-[90vh]"
           >
-            {/* Left Side: Interactive UI */}
-            <div className="w-full md:w-1/2 flex flex-col h-full overflow-y-auto relative z-10">
-              {/* Header Area */}
-              <div className="flex items-center justify-between p-6 sm:p-10 shrink-0 relative z-20">
-                <div className="flex items-center gap-3">
-                  <span className="bg-white/5 border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase text-white/50">
-                    Шаг {step + 1} из {STEPS.length + 1}
-                  </span>
-                </div>
-                <button 
-                  onClick={closeModal}
-                  className="w-10 h-10 bg-white/5 hover:bg-white/10 border border-white/5 hover:scale-105 rounded-full flex items-center justify-center transition-all"
-                >
-                  <X size={18} className="text-white/60" />
-                </button>
+            {/* Header Area */}
+            <div className="flex items-center justify-between p-6 sm:p-10 border-b border-black/5">
+              <div className="flex items-center gap-3">
+                <span className="bg-white px-3 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase text-black/60 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                  Шаг {step + 1} из {STEPS.length + 1}
+                </span>
+              </div>
+              <button 
+                onClick={closeModal}
+                className="w-10 h-10 bg-white hover:bg-black/5 hover:scale-105 rounded-full flex items-center justify-center transition-all shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
+              >
+                <X size={18} className="text-black/60" />
+              </button>
+            </div>
+
+            {/* Progress Bar under header */}
+            <div className="w-full h-1 bg-black/5">
+              <div className="h-full bg-[#2D6A4F] transition-all duration-500 ease-out" style={{ width: `${((step + 1) / (STEPS.length + 1)) * 100}%` }} />
+            </div>
+
+            {/* Content Area */}
+            <div className="p-6 sm:p-10 overflow-y-auto">
+              <div className="mb-10 text-center">
+                <h3 className="text-3xl sm:text-4xl lg:text-[40px] font-black leading-tight tracking-tighter text-[#1D1D1F]">
+                  {step < STEPS.length ? STEPS[step].title : 'Куда прислать расчет?'}
+                </h3>
               </div>
 
-              {/* Progress Bar under header */}
-              <div className="w-full h-1 bg-white/5 shrink-0">
-                <div className="h-full bg-[#34C759] shadow-[0_0_15px_rgba(52,199,89,0.4)] transition-all duration-500 ease-out relative" style={{ width: `${((step + 1) / (STEPS.length + 1)) * 100}%` }}>
-                  <div className="absolute right-0 top-0 bottom-0 w-10 bg-white/30 blur-[2px]" />
+              {step < STEPS.length ? (
+                <div className="flex flex-col gap-3 max-w-md mx-auto w-full">
+                  {STEPS[step].options.map((option) => (
+                    <button
+                      key={option}
+                      onClick={() => handleOptionSelect(option)}
+                      className="group flex items-center justify-between px-6 py-4 text-left bg-white border border-black/5 hover:border-black/10 hover:bg-black/[0.02] rounded-2xl hover:-translate-y-[2px] transition-all duration-300 w-full shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
+                    >
+                      <span className="text-[15px] font-bold text-[#1D1D1F] pr-4">{option}</span>
+                      <div className="w-8 h-8 rounded-full bg-[#F5F5F0] flex items-center justify-center group-hover:bg-[#2D6A4F] group-hover:text-white transition-colors shrink-0 text-black/30 group-hover:border-transparent">
+                        <ArrowRight size={16} />
+                      </div>
+                    </button>
+                  ))}
                 </div>
-              </div>
-
-              {/* Content Area */}
-              <div className="p-6 sm:p-10 flex-1 flex flex-col justify-center items-center">
-                <div className="mb-8 text-center w-full">
-                  <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-black leading-[1.1] tracking-tighter text-white">
-                    {step < STEPS.length ? STEPS[step].title : 'Куда прислать расчет?'}
-                  </h3>
-                </div>
-
-                {step < STEPS.length ? (
-                  <div className="flex flex-col gap-3 w-full max-w-sm mx-auto">
-                    {STEPS[step].options.map((option) => (
-                      <button
-                        key={option}
-                        onClick={() => handleOptionSelect(option)}
-                        className="group flex items-center justify-between px-6 py-4 text-left bg-transparent border border-white/10 hover:bg-white/5 hover:border-white/20 rounded-2xl transition-all duration-300 w-full"
-                      >
-                        <span className="text-[14px] font-semibold text-white/80 group-hover:text-white transition-colors">{option}</span>
-                        <div className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#2D6A4F] group-hover:text-white transition-colors shrink-0 text-white/40">
-                          <ArrowRight size={14} />
-                        </div>
-                      </button>
-                    ))}
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-sm mx-auto">
+                  <div className="flex flex-col">
+                    <label className="text-[11px] font-bold tracking-widest uppercase text-black/40 mb-3 ml-4">
+                      ТЕЛЕФОН ИЛИ WHATSAPP
+                    </label>
+                    <IMaskInput
+                      mask="+{7} (000) 000-00-00"
+                      type="tel"
+                      value={phone}
+                      onAccept={(value) => setPhone(value)}
+                      className="w-full bg-white border border-black/5 px-6 py-5 rounded-full font-bold text-lg tracking-wide focus:outline-none focus:ring-2 focus:ring-[#2D6A4F] focus:border-transparent placeholder:text-black/20 text-center transition-all shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
+                      placeholder="+7 (999) 000-00-00"
+                    />
                   </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-sm mx-auto w-full relative z-20">
-                    <div className="flex flex-col">
-                      <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 mb-2 ml-4">
-                        ТЕЛЕФОН ИЛИ WHATSAPP
-                      </label>
-                      <IMaskInput
-                        mask="+{7} (000) 000-00-00"
-                        type="tel"
-                        value={phone}
-                        onAccept={(value) => setPhone(value)}
-                        className="w-full h-14 bg-black/40 border border-white/10 px-6 rounded-full font-bold text-[15px] tracking-wide focus:outline-none focus:border-white/30 focus:bg-white/5 placeholder:text-white/20 text-white transition-all text-center shadow-inner"
-                        placeholder="+7 (999) 000-00-00"
-                      />
-                    </div>
 
-                    {/* 152-FZ Checkbox */}
-                    <div className="flex flex-col gap-4">
-                      <button
-                        type="button"
-                        onClick={() => setConsentGiven(!consentGiven)}
-                        className="flex items-start gap-3 w-full text-left group pt-2"
+                  {/* 152-FZ Checkbox */}
+                  <div className="flex flex-col gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setConsentGiven(!consentGiven)}
+                      className="flex items-start gap-3 w-full text-left group"
+                    >
+                      <motion.div 
+                        animate={shakeConsent ? { x: [-5, 5, -5, 5, 0] } : {}}
+                        transition={{ duration: 0.4 }}
+                        className={`w-5 h-5 flex-shrink-0 mt-0.5 rounded-full border flex items-center justify-center transition-all duration-300 ${consentGiven ? 'bg-[#2D6A4F] border-[#2D6A4F]' : shakeConsent ? 'border-red-500 bg-red-50' : 'border-black/20 bg-white group-hover:border-black/40'}`}
                       >
-                        <motion.div 
-                          animate={shakeConsent ? { x: [-5, 5, -5, 5, 0] } : {}}
-                          transition={{ duration: 0.4 }}
-                          className={`w-5 h-5 flex-shrink-0 mt-0.5 rounded-full border flex items-center justify-center transition-all duration-300 ${consentGiven ? 'bg-[#2D6A4F] border-[#2D6A4F]' : shakeConsent ? 'border-red-500 bg-red-500/20' : 'border-white/20 bg-black/20 group-hover:border-white/40'}`}
+                        <AnimatePresence>
+                          {consentGiven && (
+                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                              <Check size={12} className="text-white" strokeWidth={4} />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                      <span className={`text-[10px] sm:text-[11px] font-medium leading-[1.4] transition-colors duration-300 ${shakeConsent ? 'text-red-500' : 'text-black/40 group-hover:text-black/60'}`}>
+                        Я согласен на обработку персональных данных в соответствии с{' '}
+                        <span 
+                          onClick={(e) => { e.stopPropagation(); setIsPrivacyOpen(true); }}
+                          className="text-[#2D6A4F] underline decoration-black/20 underline-offset-2 hover:decoration-[#2D6A4F]"
                         >
-                          <AnimatePresence>
-                            {consentGiven && (
-                              <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
-                                <Check size={12} className="text-white" strokeWidth={4} />
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </motion.div>
-                        <span className={`text-[10px] font-medium leading-[1.4] transition-colors duration-300 tracking-wide text-center sm:text-left ${shakeConsent ? 'text-red-400' : 'text-white/40 group-hover:text-white/60'}`}>
-                          Я согласен на обработку персональных данных в соответствии с{' '}
-                          <span 
-                            onClick={(e) => { e.stopPropagation(); setIsPrivacyOpen(true); }}
-                            className="text-white/70 underline decoration-white/20 underline-offset-3 hover:text-white hover:decoration-white/50 transition-colors"
-                          >
-                            Политикой конфиденциальности
-                          </span>
+                          Политикой конфиденциальности
                         </span>
-                      </button>
+                      </span>
+                    </button>
 
-                      <button
-                        type="submit"
-                        className={`w-full h-14 flex items-center justify-center rounded-full text-white font-bold text-[12px] uppercase tracking-wide transition-all duration-300 ${consentGiven ? 'bg-[#2D6A4F] hover:brightness-110 active:scale-[0.98] shadow-lg cursor-pointer' : 'bg-white/5 text-white/30 cursor-not-allowed border border-white/5'}`}
-                      >
-                        Получить расчет
-                      </button>
-                    </div>
-                  </form>
-                )}
-              </div>
-              
-              {/* Footer / Back button */}
-              {step > 0 && (
-                <div className="p-6 border-t border-white/10 bg-black/20 shrink-0">
-                  <button 
-                    onClick={() => setStep(step - 1)}
-                    className="text-[11px] font-bold tracking-widest uppercase text-white/40 hover:text-white transition-colors flex items-center gap-2"
-                    disabled={step === STEPS.length && answers.length === 0}
-                  >
-                    <span>←</span> Назад к шагу {step}
-                  </button>
-                </div>
+                    <button
+                      type="submit"
+                      className={`w-full py-5 rounded-full text-white font-bold text-[13px] uppercase tracking-wide transition-all duration-300 ${consentGiven ? 'bg-[#2D6A4F] hover:scale-105 shadow-[0_8px_30px_rgba(45,106,79,0.4)] cursor-pointer' : 'bg-black/20 cursor-not-allowed'}`}
+                    >
+                      Получить расчет
+                    </button>
+                  </div>
+                </form>
               )}
             </div>
-
-            {/* Right Side: 3D Image Poster */}
-            <div 
-              className="hidden md:block w-1/2 bg-[#0F0F10] relative border-l border-white/5"
-              style={{
-                backgroundImage: 'url(/images/quiz-bg.png)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center center',
-                backgroundRepeat: 'no-repeat'
-              }}
-            >
-               {/* Inner gradient to seamlessly blend the edge with the dark UI */}
-               <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#1D1D1F] to-transparent pointer-events-none" />
-               <div className="absolute inset-0 bg-[#2D6A4F] opacity-[0.03] mix-blend-screen pointer-events-none" />
-            </div>
-
+            
+            {/* Footer / Back button */}
+            {step > 0 && (
+              <div className="p-6 border-t border-black/5 bg-black/[0.02] flex justify-center mt-auto">
+                <button 
+                  onClick={() => setStep(step - 1)}
+                  className="text-[11px] font-bold tracking-widest uppercase text-black/40 hover:text-black transition-colors"
+                  disabled={step === STEPS.length && answers.length === 0}
+                >
+                  ← Назад к шагу {step}
+                </button>
+              </div>
+            )}
           </motion.div>
 
         </motion.div>
