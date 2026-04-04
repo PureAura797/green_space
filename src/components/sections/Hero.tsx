@@ -232,8 +232,7 @@ export default function Hero() {
            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pointer-events-auto">
              <a 
                href="#contacts"
-               className="group relative overflow-hidden flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:scale-105 active:scale-95 w-full sm:w-auto text-center" 
-               style={{ backgroundColor: ACCENT, boxShadow: `0 8px 30px ${ACCENT}80` }}
+               className="group relative overflow-hidden flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full bg-white text-[#1D1D1F] font-black text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:scale-105 active:scale-95 w-full sm:w-auto text-center shadow-[0_8px_30px_rgba(255,255,255,0.2)] hover:bg-[#F5F5F0]" 
              >
                {/* Rolling Text Wrapper */}
                <div className="relative overflow-hidden inline-flex items-center h-[20px]">
@@ -247,7 +246,7 @@ export default function Hero() {
              </a>
              <a 
                href="#services"
-               className="group relative overflow-hidden flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full text-white/90 font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-white/10 active:scale-95 w-full sm:w-auto text-center backdrop-blur-md border border-white/20"
+               className="group relative overflow-hidden flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full bg-[#1D1D1F] border-2 border-white/10 text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:border-white/30 active:scale-95 w-full sm:w-auto text-center shadow-xl"
              >
                {/* Rolling Text Wrapper */}
                <div className="relative overflow-hidden inline-flex items-center h-[20px]">
