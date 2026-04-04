@@ -26,7 +26,7 @@ export default function LeadCapture() {
     <section 
       className="py-20 lg:py-32 w-full z-10 relative overflow-hidden bg-[#1D1D1F] text-white rounded-[40px] lg:rounded-[80px] mx-2 max-w-[calc(100%-16px)] lg:max-w-[calc(100%-32px)] xl:max-w-[1400px] xl:mx-auto mb-16 shadow-2xl"
       style={{
-        backgroundImage: 'url(/images/lead-bg.webp)',
+        backgroundImage: 'url(/images/lead-bg.png)',
         backgroundSize: 'cover',
         backgroundPosition: '100% center', // Anchor image to the right
         backgroundRepeat: 'no-repeat'
