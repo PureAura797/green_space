@@ -23,8 +23,20 @@ export default function LeadCapture() {
   };
 
   return (
-    <section className="py-20 lg:py-32 w-full z-10 relative overflow-hidden bg-[#1D1D1F] text-white rounded-[40px] lg:rounded-[80px] mx-2 max-w-[calc(100%-16px)] lg:max-w-[calc(100%-32px)] xl:max-w-[1400px] xl:mx-auto mb-16 shadow-2xl">
-      <ScrollRevealContainer className="px-6 md:px-12 lg:px-20 relative z-10 flex flex-col items-center text-center">
+    <section 
+      className="py-20 lg:py-32 w-full z-10 relative overflow-hidden bg-[#1D1D1F] text-white rounded-[40px] lg:rounded-[80px] mx-2 max-w-[calc(100%-16px)] lg:max-w-[calc(100%-32px)] xl:max-w-[1400px] xl:mx-auto mb-16 shadow-2xl"
+      style={{
+        backgroundImage: 'url(/images/lead-bg.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: '100% center', // Anchor image to the right
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Dark overlay gradients for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#1D1D1F] via-[#1D1D1F]/90 to-transparent pointer-events-none z-0" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1D1D1F] to-transparent pointer-events-none z-0 sm:hidden" />
+
+      <ScrollRevealContainer className="px-6 md:px-12 lg:px-20 relative z-10 flex flex-col items-start text-left">
         
         <ScrollRevealItem baseY={20}>
            <div className="inline-flex items-center gap-2.5 bg-white shadow-xl rounded-full px-4 py-2 mb-8 transition-transform hover:scale-[1.02]">
@@ -41,13 +53,13 @@ export default function LeadCapture() {
           </h2>
         </ScrollRevealItem>
 
-        <ScrollRevealItem baseY={30} delay={0.2} className="max-w-2xl mb-12">
-          <p className="text-lg text-white/60 font-medium">
+        <ScrollRevealItem baseY={30} delay={0.2} className="max-w-xl mb-12">
+          <p className="text-lg lg:text-xl text-white/70 font-medium">
             Оставьте телефон — наш технический директор перезвонит вам сам через 3 минуты и бесплатно проконсультирует по вашей задаче. Никакого навязывания.
           </p>
         </ScrollRevealItem>
 
-        <ScrollRevealItem baseY={30} delay={0.3} className="w-full max-w-xl relative z-20 flex flex-col items-center">
+        <ScrollRevealItem baseY={30} delay={0.3} className="w-full max-w-xl relative z-20 flex flex-col items-start">
           <form className="flex flex-col sm:flex-row gap-3 w-full" onSubmit={handleSubmit}>
             <IMaskInput
               mask="+{7} (000) 000-00-00"
@@ -70,7 +82,7 @@ export default function LeadCapture() {
           <button
             type="button"
             onClick={() => setConsentGiven(!consentGiven)}
-            className="flex items-center justify-center gap-3 w-full text-center sm:text-left group mt-6"
+            className="flex items-center justify-start gap-3 w-full text-left group mt-6"
           >
             <motion.div 
               animate={shakeConsent ? { x: [-5, 5, -5, 5, 0] } : {}}
@@ -99,10 +111,6 @@ export default function LeadCapture() {
         </ScrollRevealItem>
 
       </ScrollRevealContainer>
-      
-      {/* Premium Background Ambience */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#2D6A4F] opacity-[0.15] blur-[120px] rounded-full translate-x-1/3 -translate-y-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#000000] opacity-40 blur-[100px] rounded-full pointer-events-none" />
       
       <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
     </section>
