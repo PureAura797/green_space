@@ -46,18 +46,19 @@ function Fillet({ position, size = 32, className = '', color = '#F5F5F0' }: { po
   );
 }
 
-/* ═══ HUD FLOATING POINTERS (Matches GLITCH aesthetic) ═══ */
 function FloatingPointer({ service, className = '', lineClass, reverse = false }: any) {
-  const Icon = service.icon;
   return (
     <motion.div
       variants={fadeScale}
       className={`relative z-[10] flex items-center gap-3 group cursor-pointer pointer-events-auto ${reverse ? 'flex-row-reverse' : ''} ${className}`}
     >
-      <div className="flex items-center gap-2 bg-black/20 backdrop-blur-[8px] px-4 py-2 rounded-full border border-white/20 transition-all duration-300 group-hover:bg-black/40 group-hover:border-white/40 group-hover:-translate-y-1 shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
-        <Icon size={14} className="text-white" />
-        <span className="text-white text-[10px] sm:text-xs font-semibold uppercase tracking-widest whitespace-nowrap">
-          {service.label} <span className="opacity-60 font-normal ml-1">{service.desc}</span>
+      <div className="flex items-center gap-2.5 bg-white/5 backdrop-blur-3xl px-4 py-2.5 rounded-full border border-white/[0.08] transition-all duration-300 group-hover:bg-white/10 group-hover:-translate-y-1 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_8px_32px_rgba(0,0,0,0.3)]">
+        {/* Architectural / Technical Marker instead of generic illustration */}
+        <div className="w-[18px] h-[18px] rounded-full border border-white/20 flex items-center justify-center bg-black/20">
+          <div className="w-1.5 h-1.5 rounded-full bg-[#34C759]" style={{ boxShadow: '0 0 10px rgba(52, 199, 89, 0.8)' }} />
+        </div>
+        <span className="text-white/90 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] whitespace-nowrap">
+          {service.label} <span className="opacity-50 font-medium ml-1">{service.desc}</span>
         </span>
       </div>
       <div className={`h-[1px] bg-white/60 transition-colors group-hover:bg-white ${lineClass}`} style={{ boxShadow: '0 0 8px rgba(255,255,255,0.4)' }} />
@@ -205,14 +206,15 @@ export default function Hero() {
           className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
         >
            <motion.div variants={fadeUp} className="mb-6 pointer-events-auto flex flex-wrap gap-2 lg:gap-3">
-             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 transition-transform hover:bg-white/20">
-               <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+             <div className="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur-3xl border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_8px_32px_rgba(0,0,0,0.3)] rounded-full px-4 py-2 transition-transform hover:bg-white/10">
+               <div className="w-1.5 h-1.5 rounded-full bg-white/80" />
                <span className="text-[10px] lg:text-[11px] text-white/90 font-bold tracking-[0.15em] lg:tracking-[0.2em] uppercase">
                  100+ видов работ по участку
                </span>
              </div>
-             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 transition-transform hover:bg-white/20">
-               <Shield className="w-3.5 h-3.5 text-white/80" />
+             <div className="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur-3xl border border-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_8px_32px_rgba(0,0,0,0.3)] rounded-full px-4 py-2 transition-transform hover:bg-white/10">
+               {/* Apple-style ultra thin icon */}
+               <Shield strokeWidth={1} className="w-4 h-4 text-[#34C759]" />
                <span className="text-[10px] lg:text-[11px] text-white/90 font-bold tracking-[0.15em] lg:tracking-[0.2em] uppercase">
                  Гарантия по договору
                </span>
