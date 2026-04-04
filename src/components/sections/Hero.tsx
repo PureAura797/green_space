@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Shield, Bug, Leaf, Rat, TreePine, MessageCircle, Send, Axe, Wind, Zap } from 'lucide-react';
+import { Shield, Bug, Leaf, Rat, TreePine, MessageCircle, Send, Axe, Wind, Zap, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -229,33 +229,39 @@ export default function Hero() {
              </span>
            </motion.h1>
 
-           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pointer-events-auto">
+           <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-2 sm:p-2.5 rounded-[32px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
                href="#contacts"
-               className="group relative overflow-hidden flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full bg-white text-[#1D1D1F] font-black text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:scale-105 active:scale-95 w-full sm:w-auto text-center shadow-[0_8px_30px_rgba(255,255,255,0.2)] hover:bg-[#F5F5F0]" 
+               className="group relative overflow-hidden flex items-center justify-between h-[60px] lg:h-[68px] pl-6 pr-2 lg:pl-8 lg:pr-2.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full" 
              >
                {/* Rolling Text Wrapper */}
-               <div className="relative overflow-hidden inline-flex items-center h-[20px]">
+               <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
                  <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
                    Рассчитать стоимость
                  </span>
-                 <span className="absolute inset-0 flex items-center justify-center translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
+                 <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
                    Рассчитать стоимость
                  </span>
+               </div>
+               <div className="w-[44px] h-[44px] lg:w-[48px] lg:h-[48px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-md transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45">
+                 <ArrowUpRight className="w-5 h-5 text-[#2D6A4F]" strokeWidth={2.5} />
                </div>
              </a>
              <a 
                href="#services"
-               className="group relative overflow-hidden flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full bg-[#1D1D1F] border-2 border-white/10 text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:border-white/30 active:scale-95 w-full sm:w-auto text-center shadow-xl"
+               className="group relative overflow-hidden flex items-center justify-between h-[60px] lg:h-[68px] pl-6 pr-2 lg:pl-8 lg:pr-2.5 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 sm:w-auto w-full"
              >
                {/* Rolling Text Wrapper */}
-               <div className="relative overflow-hidden inline-flex items-center h-[20px]">
+               <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
                  <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
                    Наши цены
                  </span>
-                 <span className="absolute inset-0 flex items-center justify-center translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
+                 <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
                    Наши цены
                  </span>
+               </div>
+               <div className="w-[44px] h-[44px] lg:w-[48px] lg:h-[48px] rounded-full bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 group-hover:bg-white">
+                 <ArrowUpRight className="w-5 h-5 text-white group-hover:text-[#1D1D1F] transition-colors duration-300" strokeWidth={2.5} />
                </div>
              </a>
            </motion.div>
