@@ -1,10 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
+import PrivacyModal from '@/components/ui/PrivacyModal';
 
 export default function Footer() {
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+
   // Easter Egg for developers inspecting the console
   useEffect(() => {
     console.log(
@@ -61,9 +64,13 @@ export default function Footer() {
             © 2026 ГОС_ЛЕНД. Все права защищены.
           </p>
           <div className="flex flex-wrap gap-4 md:gap-6 justify-center items-center">
-            <Link href="#" className="text-[11px] font-bold tracking-widest text-white/30 hover:text-white uppercase transition-colors">
+            <a 
+              href="#" 
+              onClick={(e) => { e.preventDefault(); setIsPrivacyOpen(true); }}
+              className="text-[11px] font-bold tracking-widest text-white/30 hover:text-white uppercase transition-colors"
+            >
               Политика конфиденциальности
-            </Link>
+            </a>
             <div className="w-1 h-1 rounded-full bg-white/10 hidden md:block" />
             <a 
               href="https://t.me/asphxdel" 
@@ -77,6 +84,8 @@ export default function Footer() {
           </div>
         </ScrollRevealItem>
       </ScrollRevealContainer>
+
+      <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
     </footer>
   );
 }
