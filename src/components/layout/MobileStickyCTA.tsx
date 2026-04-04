@@ -31,6 +31,7 @@ export default function MobileStickyCTA() {
   const { scrollY } = useScroll();
   const [isVisible, setIsVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     // Show after scrolling past Hero (roughly 600px)
@@ -55,13 +56,25 @@ export default function MobileStickyCTA() {
     return () => document.removeEventListener('click', handleClick);
   }, [isOpen]);
 
+  // Listen for Header mobile menu toggle
+  useEffect(() => {
+    const handleMenuToggle = (e: any) => {
+      setIsMenuOpen(e.detail.isOpen);
+      if (e.detail.isOpen) {
+        setIsOpen(false); // Close CTA's own sub-menu if global menu opens
+      }
+    };
+    document.addEventListener('mobile-menu-toggle', handleMenuToggle);
+    return () => document.removeEventListener('mobile-menu-toggle', handleMenuToggle);
+  }, []);
+
   return (
     <motion.div
       data-mobile-dock
       initial={{ y: 100, opacity: 0 }}
       animate={{ 
-        y: isVisible ? 0 : 100,
-        opacity: isVisible ? 1 : 0
+        y: (isVisible && !isMenuOpen) ? 0 : 100,
+        opacity: (isVisible && !isMenuOpen) ? 1 : 0
       }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className="fixed bottom-4 left-4 right-4 z-[90] md:hidden pointer-events-none"

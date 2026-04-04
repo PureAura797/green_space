@@ -24,6 +24,17 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Body scroll lock and broadcast menu state
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: { isOpen: true } }));
+    } else {
+      document.body.style.overflow = '';
+      document.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: { isOpen: false } }));
+    }
+  }, [isOpen]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out px-4 md:px-8 ${
