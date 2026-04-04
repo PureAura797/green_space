@@ -5,6 +5,7 @@ import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollR
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PrivacyModal from '@/components/ui/PrivacyModal';
+import { IMaskInput } from 'react-imask';
 
 export default function LeadCapture() {
   const [consentGiven, setConsentGiven] = useState(false);
@@ -48,9 +49,10 @@ export default function LeadCapture() {
 
         <ScrollRevealItem baseY={30} delay={0.3} className="w-full max-w-xl relative z-20 flex flex-col items-center">
           <form className="flex flex-col sm:flex-row gap-3 w-full" onSubmit={handleSubmit}>
-            <input 
-              type="tel" 
+            <IMaskInput
+              mask="+{7} (000) 000-00-00"
               placeholder="+7 (999) 000-00-00"
+              type="tel"
               className="flex-1 h-16 sm:h-20 bg-white/5 border border-white/10 rounded-[28px] sm:rounded-full px-8 text-lg font-medium text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all text-center sm:text-left shadow-inner"
               required
             />
