@@ -232,16 +232,32 @@ export default function Hero() {
            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pointer-events-auto">
              <a 
                href="#contacts"
-               className="flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-wide hover:scale-105 active:scale-95 transition-all w-full sm:w-auto text-center" 
+               className="group relative overflow-hidden flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:scale-105 active:scale-95 w-full sm:w-auto text-center" 
                style={{ backgroundColor: ACCENT, boxShadow: `0 8px 30px ${ACCENT}80` }}
              >
-               Рассчитать стоимость
+               {/* Rolling Text Wrapper */}
+               <div className="relative overflow-hidden inline-flex items-center h-[20px]">
+                 <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
+                   Рассчитать стоимость
+                 </span>
+                 <span className="absolute inset-0 flex items-center justify-center translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
+                   Рассчитать стоимость
+                 </span>
+               </div>
              </a>
              <a 
-               href="#pricing"
-               className="flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full border border-white/30 text-white font-semibold text-[13px] lg:text-[15px] uppercase tracking-wide hover:bg-white/10 backdrop-blur-md active:scale-95 transition-all w-full sm:w-auto text-center"
+               href="#services"
+               className="group relative overflow-hidden flex items-center justify-center h-14 lg:h-16 px-8 lg:px-10 rounded-full text-white/90 font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-white/10 active:scale-95 w-full sm:w-auto text-center backdrop-blur-md border border-white/20"
              >
-               Наши цены
+               {/* Rolling Text Wrapper */}
+               <div className="relative overflow-hidden inline-flex items-center h-[20px]">
+                 <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
+                   Наши цены
+                 </span>
+                 <span className="absolute inset-0 flex items-center justify-center translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
+                   Наши цены
+                 </span>
+               </div>
              </a>
            </motion.div>
         </motion.div>
