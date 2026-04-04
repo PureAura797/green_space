@@ -6,6 +6,7 @@ import { Check } from 'lucide-react';
 import VelocityText from '@/components/ui/VelocityText';
 import PrivacyModal from '@/components/ui/PrivacyModal';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
+import { IMaskInput } from 'react-imask';
 
 export default function Contacts() {
   const [formData, setFormData] = useState({ name: '', phone: '' });
@@ -23,18 +24,7 @@ export default function Contacts() {
     }
   }, [toast]);
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let val = e.target.value.replace(/\D/g, '');
-    if (val.startsWith('7') || val.startsWith('8')) val = val.slice(1);
-    
-    let formatted = '+7';
-    if (val.length > 0) formatted += ` (${val.substring(0, 3)}`;
-    if (val.length >= 4) formatted += `) ${val.substring(3, 6)}`;
-    if (val.length >= 7) formatted += `-${val.substring(6, 8)}`;
-    if (val.length >= 9) formatted += `-${val.substring(8, 10)}`;
-    
-    setFormData({ ...formData, phone: formatted });
-  };
+  // react-imask handles exact formatting
 
   const validate = () => {
     let valid = true;
@@ -171,14 +161,14 @@ export default function Contacts() {
                 <label htmlFor="phone" className="text-[12px] font-bold tracking-widest text-[#1D1D1F]/40 uppercase ml-4">
                   Телефон
                 </label>
-                <input
+                <IMaskInput
                   id="phone"
+                  mask="+{7} (000) 000-00-00"
+                  placeholder="+7 (999) 000-00-00"
                   type="tel"
                   value={formData.phone}
-                  onChange={handlePhoneChange}
+                  onAccept={(value) => setFormData({ ...formData, phone: value })}
                   className="bg-black/5 rounded-2xl border border-transparent px-6 py-5 outline-none focus:border-black/20 focus:bg-transparent transition-all duration-300 font-mono font-bold text-lg text-[#1D1D1F] placeholder-black/20"
-                  placeholder="+7 (999) 000-00-00"
-                  maxLength={18}
                 />
                 {errors.phone && <span className="text-[12px] font-bold text-red-500 ml-4">{errors.phone}</span>}
               </div>

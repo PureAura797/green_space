@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, CheckCircle2, Check } from 'lucide-react';
 import PrivacyModal from '../ui/PrivacyModal';
+import { IMaskInput } from 'react-imask';
 
 const STEPS = [
   {
@@ -20,7 +21,7 @@ export default function QuizModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
-  const [phone, setPhone] = useState('+7 (___) ___-__-__');
+  const [phone, setPhone] = useState('');
   const [toastMsg, setToastMsg] = useState<{ type: 'error' | 'success', title: string, desc: string } | null>(null);
   
   // 152-FZ Consent States
@@ -97,29 +98,7 @@ export default function QuizModal() {
       closeModal();
     }, 2000);
   };
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let input = e.target.value.replace(/\D/g, '');
-    if (input.startsWith('7') || input.startsWith('8')) input = input.slice(1);
-    
-    let formatted = '+7 (';
-    if (input.length > 0) formatted += input.slice(0, 3);
-    else formatted += '___';
-    
-    formatted += ') ';
-    if (input.length > 3) formatted += input.slice(3, 6);
-    else formatted += '___';
-    
-    formatted += '-';
-    if (input.length > 6) formatted += input.slice(6, 8);
-    else formatted += '__';
-    
-    formatted += '-';
-    if (input.length > 8) formatted += input.slice(8, 10);
-    else formatted += '__';
-
-    setPhone(formatted);
-  };
+  // react-imask handles formatting constraints
 
   return (
     <>
@@ -204,12 +183,13 @@ export default function QuizModal() {
                     <label className="text-[11px] font-bold tracking-widest uppercase text-black/40 mb-3 ml-4">
                       ТЕЛЕФОН ИЛИ WHATSAPP
                     </label>
-                    <input
+                    <IMaskInput
+                      mask="+{7} (000) 000-00-00"
                       type="tel"
                       value={phone}
-                      onChange={handlePhoneChange}
+                      onAccept={(value) => setPhone(value)}
                       className="w-full bg-white border border-black/5 px-6 py-5 rounded-full font-bold text-lg tracking-wide focus:outline-none focus:ring-2 focus:ring-[#2D6A4F] focus:border-transparent placeholder:text-black/20 text-center transition-all shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
-                      placeholder="+7 (___) ___-__-__"
+                      placeholder="+7 (999) 000-00-00"
                     />
                   </div>
 
