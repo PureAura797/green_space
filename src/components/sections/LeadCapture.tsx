@@ -24,7 +24,7 @@ export default function LeadCapture() {
 
   return (
     <section 
-      className="py-20 lg:py-32 w-full z-10 relative overflow-hidden bg-[#1D1D1F] text-white rounded-[40px] lg:rounded-[80px] mx-2 max-w-[calc(100%-16px)] lg:max-w-[calc(100%-32px)] xl:max-w-[1400px] xl:mx-auto mb-16 shadow-2xl"
+      className="pt-28 pb-20 lg:py-32 w-full z-10 relative overflow-hidden bg-[#1D1D1F] text-white rounded-[40px] lg:rounded-[80px] mx-2 max-w-[calc(100%-16px)] lg:max-w-[calc(100%-32px)] xl:max-w-[1400px] xl:mx-auto mb-16 shadow-2xl"
       style={{
         backgroundImage: 'url(/images/lead-bg.png)',
         backgroundSize: 'cover',
@@ -65,12 +65,12 @@ export default function LeadCapture() {
               mask="+{7} (000) 000-00-00"
               placeholder="+7 (999) 000-00-00"
               type="tel"
-              className="flex-1 h-16 sm:h-20 bg-white/5 border border-white/10 rounded-[28px] sm:rounded-full px-8 text-lg font-medium text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all text-center sm:text-left shadow-inner"
+              className="w-full sm:flex-1 h-14 sm:h-16 appearance-none bg-white/5 border border-white/10 rounded-full px-8 text-lg font-medium text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all text-center sm:text-left shadow-inner"
               required
             />
             <button 
               type="submit"
-              className={`h-16 sm:h-20 rounded-[28px] sm:rounded-full px-10 font-bold text-[15px] tracking-wide uppercase transition-all flex items-center justify-center gap-3 shrink-0 relative ${consentGiven ? 'bg-[#2D6A4F] text-white hover:brightness-110 active:scale-[0.98] shadow-lg group overflow-hidden' : 'bg-white/10 text-white/40 cursor-not-allowed'}`}
+              className={`w-full sm:w-auto h-14 sm:h-16 rounded-full px-10 font-bold text-[14px] tracking-wide uppercase transition-all flex items-center justify-center gap-3 shrink-0 relative ${consentGiven ? 'bg-[#2D6A4F] text-white hover:brightness-110 active:scale-[0.98] shadow-lg group overflow-hidden' : 'bg-white/10 text-white/40 cursor-not-allowed'}`}
             >
               {consentGiven && <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none" />}
               <PhoneCall strokeWidth={2} className="w-5 h-5 relative z-10" />
