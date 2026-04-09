@@ -88,6 +88,7 @@ export default function BeforeAfter() {
                 src={activeService.images.before}
                 alt={`${activeService.name} ДО`}
                 fill
+                sizes="100vw"
                 className="object-cover transition-opacity duration-300 pointer-events-none"
               />
               <div className="absolute top-6 left-6 font-bold text-[11px] tracking-widest text-[#1D1D1F] bg-white/80 backdrop-blur-md px-4 py-2 rounded-full uppercase shadow-sm z-10 border border-white/20">
@@ -104,6 +105,7 @@ export default function BeforeAfter() {
                 src={activeService.images.after}
                 alt={`${activeService.name} ПОСЛЕ`}
                 fill
+                sizes="100vw"
                 className="object-cover transition-opacity duration-300 pointer-events-none"
               />
               <div className="absolute top-6 right-6 font-bold text-[11px] tracking-widest text-white bg-[#2D6A4F]/80 backdrop-blur-md px-4 py-2 rounded-full uppercase shadow-sm z-10 border border-[#2D6A4F]/20">

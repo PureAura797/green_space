@@ -53,7 +53,7 @@ export default function Header() {
                 : 'bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5'
             }`}
           >
-            ГОС_ЛЕНД
+            КАРБО_ДЕЗ
           </Link>
         </div>
 

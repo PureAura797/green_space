@@ -25,10 +25,10 @@ export default function Footer() {
           {/* Col 1 */}
           <ScrollRevealItem baseY={20} className="flex flex-col gap-8 max-w-sm">
             <Link href="/" className="text-4xl md:text-5xl font-black tracking-tighter uppercase text-white hover:text-white/80 transition-colors">
-              ГОС_ЛЕНД
+              КАРБО_ДЕЗ
             </Link>
             <p className="text-white/50 text-base font-medium tracking-tight leading-relaxed">
-              Профессиональная защита земельных участков и арбористика. Официальный договор и гарантия.
+              ООО «КАРБОДЕЗ» — профессиональная защита земельных участков и арбористика. Лицензия Роспотребнадзора.
             </p>
           </ScrollRevealItem>
 
@@ -50,9 +50,10 @@ export default function Footer() {
             <ScrollRevealItem baseY={40} className="flex flex-col gap-6">
               <h4 className="text-[11px] font-bold tracking-widest text-white/30 uppercase">Реквизиты</h4>
               <div className="flex flex-col gap-4 text-white/80 font-mono text-sm tracking-wide">
-                <p>ИНН: <span className="text-white">7700000000</span></p>
-                <p>ОГРН: <span className="text-white">1027700000000</span></p>
-                <p>ОКВЭД: <span className="text-white">81.29.1</span></p>
+                <p>ИНН: <span className="text-white">9713023085</span></p>
+                <p>КПП: <span className="text-white">771301001</span></p>
+                <p>Р/С: <span className="text-white">4070281···7304</span></p>
+                <p>Банк: <span className="text-white">ООО «Банк Точка»</span></p>
               </div>
             </ScrollRevealItem>
           </div>
@@ -61,7 +62,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <ScrollRevealItem baseY={30} className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[12px] font-medium tracking-wider text-white/40 uppercase">
-            © 2026 ГОС_ЛЕНД. Все права защищены.
+            © 2026 ООО «КАРБОДЕЗ». Все права защищены.
           </p>
           <div className="flex flex-wrap gap-4 md:gap-6 justify-center items-center">
             <a 

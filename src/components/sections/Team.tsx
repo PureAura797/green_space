@@ -88,7 +88,8 @@ export default function Team() {
                     <Image 
                       src={member.image} 
                       alt={member.name} 
-                      fill 
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] saturate-50 group-hover:saturate-100"
                     />
                     

@@ -119,8 +119,9 @@ export default function Hero() {
 
         {/* 1. TOP-LEFT: Logo / Branding Area */}
         <div className="absolute top-0 left-0 rounded-br-[32px] h-[72px] lg:h-[100px] flex items-center pl-6 pr-8 z-[10]" style={{ backgroundColor: FRAME_BG }}>
-           <span className="text-xl lg:text-3xl font-black tracking-tighter text-[#1D1D1F]">
-             ГОС_ЛЕНД
+           <span className="text-xl lg:text-3xl font-black tracking-tighter text-[#1D1D1F] flex flex-col leading-[0.85] lg:leading-[0.85]">
+             <span>КАРБО_</span>
+             <span>_ДЕЗ</span>
            </span>
            <Fillet position="tl" size={32} className="-bottom-[32px] left-0" color={FRAME_BG} />
            <Fillet position="tl" size={32} className="top-0 -right-[32px]" color={FRAME_BG} />

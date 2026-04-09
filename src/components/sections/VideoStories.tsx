@@ -98,6 +98,7 @@ export default function VideoStories() {
               src={story.image}
               alt={story.title}
               fill
+              sizes="(max-width: 768px) 85vw, 380px"
               className="object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)]"
             />
             
