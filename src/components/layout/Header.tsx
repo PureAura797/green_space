@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Phone, Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
   { name: 'Услуги', href: '#services' },
@@ -23,86 +24,104 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Body scroll lock and broadcast menu state
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: { isOpen: true } }));
+    } else {
+      document.body.style.overflow = '';
+      document.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: { isOpen: false } }));
+    }
+  }, [isOpen]);
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out ${
-        scrolled ? 'px-4 md:px-6 pt-3' : 'px-0 pt-0'
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out px-4 md:px-8 ${
+        scrolled ? 'pt-3' : 'pt-4'
       }`}
     >
-      {/* Floating pill — centered, max-width constrained */}
-      <div
-        className={`max-w-[1400px] mx-auto transition-all duration-500 ease-out ${
-          scrolled
-            ? 'rounded-2xl bg-white/85 backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)]'
-            : 'rounded-none'
-        }`}
-      >
-        <div className="px-5 md:px-8 h-16 flex items-center justify-between">
-          {/* Logo */}
+      <div className="flex items-center justify-between w-full max-w-[1400px] mx-auto relative">
+        
+        {/* Left Island — Logo */}
+        <div className={`transition-all duration-500 ease-out ${scrolled || isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'}`}>
           <Link
             href="/"
-            className={`text-lg md:text-xl font-semibold tracking-tight relative z-50 transition-colors duration-500 ${
-              scrolled ? 'text-[#1D1D1F]' : 'text-white'
+            className={`inline-flex items-center font-bold tracking-tighter text-[#1D1D1F] text-[15px] px-6 h-[52px] rounded-full transition-all duration-500 ${
+              isOpen 
+                ? 'bg-transparent shadow-none border-transparent' 
+                : 'bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5'
             }`}
           >
-            ГОС_ЛЕНД
+            КАРБО_ДЕЗ
           </Link>
+        </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`text-[13px] font-medium transition-colors duration-300 ${
-                  scrolled
-                    ? 'text-[#1D1D1F]/60 hover:text-[#1D1D1F]'
-                    : 'text-white/70 hover:text-white'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Desktop Contact & CTA */}
-          <div className="hidden lg:flex items-center gap-5">
-            <a
-              href="tel:+79990000000"
-              className={`text-[13px] font-mono tracking-wider transition-colors duration-300 ${
-                scrolled ? 'text-[#1D1D1F]/45 hover:text-[#1D1D1F]' : 'text-white/50 hover:text-white'
-              }`}
+        {/* Center Island — Desktop Nav */}
+        <nav 
+          className={`hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-[2px] px-2 h-[52px] rounded-full transition-all duration-500 ease-out ${
+            scrolled && !isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
+          } bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5`}
+        >
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="px-4 h-10 flex items-center rounded-full text-[13px] font-semibold text-[#1D1D1F]/55 hover:text-[#1D1D1F] hover:bg-black/[0.04] transition-all duration-200"
             >
-              +7 (999) 000-00-00
-            </a>
-            <a
-              href="#contacts"
-              className={`text-[13px] font-semibold tracking-wide px-5 py-2 rounded-full transition-all duration-300 ${
-                scrolled
-                  ? 'bg-[#1D1D1F] text-white hover:bg-[#1D1D1F]/85'
-                  : 'bg-white/15 backdrop-blur-sm text-white border border-white/20 hover:bg-white/25'
-              }`}
-            >
-              Заявка
-            </a>
-          </div>
+              {link.name}
+            </Link>
+          ))}
+        </nav>
 
-          {/* Mobile Burger */}
+        {/* Right Island — Actions */}
+        <div 
+          className={`flex items-center gap-1.5 p-1.5 h-[52px] rounded-full transition-all duration-500 ease-out ${
+            scrolled || isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
+          } ${
+            isOpen 
+              ? 'bg-transparent shadow-none border-transparent' 
+              : 'bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5'
+          }`}
+        >
+          {/* Phone — icon pill */}
+          <a
+            href="tel:+79990000000"
+            className={`hidden md:flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 ${
+              scrolled
+                ? 'bg-[#F5F5F7] text-[#1D1D1F]/60 hover:bg-[#E8E8ED]'
+                : 'bg-white/10 backdrop-blur-md border border-white/15 text-white/70 hover:bg-white/20'
+            }`}
+            title="+7 (999) 000-00-00"
+          >
+            <Phone size={16} strokeWidth={1.5} />
+          </a>
+
+          {/* CTA — button pill */}
+          <a
+            href="#contacts"
+            className={`hidden sm:flex items-center justify-center text-[13px] font-bold tracking-wide rounded-full transition-all duration-300 h-10 px-5 ${
+              scrolled
+                ? 'bg-[#1D1D1F] text-white hover:bg-black'
+                : 'bg-white text-[#1D1D1F] hover:bg-white/90'
+            }`}
+          >
+            Рассчитать
+          </a>
+
+          {/* Mobile Burger — icon pill */}
           <button
-            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 z-50 relative gap-[5px]"
+            className={`lg:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 flex-shrink-0 ${
+              isOpen
+                ? 'bg-black/5 text-[#1D1D1F]'
+                : scrolled
+                  ? 'bg-[#F5F5F7] text-[#1D1D1F]/60'
+                  : 'bg-white/10 backdrop-blur-md border border-white/15 text-white'
+            }`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                className={`block w-5 h-[1.5px] transition-all duration-300 ${
-                  isOpen ? 'bg-[#1D1D1F]' : scrolled ? 'bg-[#1D1D1F]' : 'bg-white'
-                } ${i === 0 && isOpen ? 'rotate-45 translate-y-[6.5px]' : ''}
-                  ${i === 1 && isOpen ? 'opacity-0' : ''}
-                  ${i === 2 && isOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`}
-              />
-            ))}
+            {isOpen ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
           </button>
         </div>
       </div>
@@ -111,11 +130,12 @@ export default function Header() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 bg-white/95 backdrop-blur-2xl flex flex-col pt-24 px-6 lg:hidden"
+            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            animate={{ opacity: 1, backdropFilter: 'blur(20px)' }}
+            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 -z-10 bg-[#F5F5F0]/95 flex flex-col px-6 pt-32 lg:hidden w-full h-[100dvh]"
+            style={{ position: 'fixed' }}
           >
             <nav className="flex flex-col gap-1">
               {NAV_LINKS.map((link, i) => (
@@ -142,7 +162,7 @@ export default function Header() {
               <Link
                 href="#contacts"
                 onClick={() => setIsOpen(false)}
-                className="w-full py-4 bg-[#1D1D1F] text-white text-center text-sm font-semibold tracking-wide rounded-2xl"
+                className="w-full py-4 bg-[#1D1D1F] text-white text-center text-sm font-semibold tracking-wide rounded-full"
               >
                 Заказать звонок
               </Link>
