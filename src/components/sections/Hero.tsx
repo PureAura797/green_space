@@ -206,22 +206,22 @@ export default function Hero() {
         >
            <motion.div variants={fadeUp} className="mb-6 pointer-events-auto flex flex-wrap gap-2 lg:gap-3">
              <div className="inline-flex items-center gap-2.5 bg-white shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
-               <div className="w-2 h-2 rounded-full bg-[#34C759]" />
+               <div className="w-2.5 h-2.5 rounded-full bg-[#34C759] animate-pulse" />
                <span className="text-[10px] lg:text-[11px] text-[#1D1D1F] font-black tracking-[0.15em] lg:tracking-[0.2em] uppercase">
-                 100+ видов работ по участку
+                 Москва и Область
                </span>
              </div>
              <div className="inline-flex items-center gap-2.5 bg-[#1D1D1F] border-2 border-white/10 shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
-               <Shield strokeWidth={2.5} className="w-4 h-4 text-white" />
+               <span className="text-[14px]">⚡️</span>
                <span className="text-[10px] lg:text-[11px] text-white font-black tracking-[0.15em] lg:tracking-[0.2em] uppercase">
-                 Гарантия по договору
+                 Выезд за 2 часа
                </span>
              </div>
            </motion.div>
 
            <motion.h1 
              variants={fadeUp} 
-             className="text-[40px] min-[375px]:text-[46px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-10 break-words hyphens-auto"
+             className="text-[40px] min-[375px]:text-[46px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-6 break-words hyphens-auto"
              style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
            >
              Безопасность<br/>вашего<br/>
@@ -229,6 +229,16 @@ export default function Hero() {
                участка<span style={{ color: ACCENT }}>.</span>
              </span>
            </motion.h1>
+
+           <motion.p
+             variants={fadeUp}
+             className="text-white/80 text-[15px] sm:text-[18px] max-w-[480px] leading-relaxed font-medium mb-10"
+             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
+           >
+             Профессиональная защита территорий. 
+             Фиксируем цену в договоре <span className="text-white font-bold">от 3 500 ₽</span>{' '}
+             с гарантией результата до 3 лет.
+           </motion.p>
 
            <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-2 sm:p-2.5 rounded-[32px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
