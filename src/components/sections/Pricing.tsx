@@ -1,100 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
-
-const PRICING = [
-  {
-    service: 'Клещи',
-    subtitle: 'Акарицидная обработка',
-    prices: [
-      { area: 'до 10 соток', price: '3 500' },
-      { area: '10 — 30 соток', price: '5 000' },
-      { area: '30+ соток', price: '8 000' },
-    ],
-  },
-  {
-    service: 'Борщевик',
-    subtitle: 'Гербицидная обработка',
-    prices: [
-      { area: 'до 10 соток', price: '4 000' },
-      { area: '10 — 30 соток', price: '7 000' },
-      { area: '30+ соток', price: '12 000' },
-    ],
-  },
-  {
-    service: 'Кроты',
-    subtitle: 'Газация / Фумигация',
-    prices: [
-      { area: 'до 10 соток', price: '4 000' },
-      { area: '10 — 30 соток', price: '7 000' },
-      { area: '30+ соток', price: '10 000' },
-    ],
-  },
-  {
-    service: 'Короед и Древоточец',
-    subtitle: 'Обработка деревьев и домов',
-    prices: [
-      { area: '1 дерево / постройка', price: '6 000' },
-      { area: '3 — 5 деревьев', price: '12 000' },
-      { area: 'Комплексно', price: 'Договорная' },
-    ],
-  },
-  {
-    service: 'Мульчирование',
-    subtitle: 'Декоративная щепа',
-    prices: [
-      { area: 'до 10 соток', price: '3 000' },
-      { area: '10 — 30 соток', price: '6 000' },
-      { area: '30+ соток', price: 'Договорная' },
-    ],
-  },
-  {
-    service: 'Комары',
-    subtitle: 'Горячий/Холодный туман',
-    prices: [
-      { area: 'до 10 соток', price: '3 500' },
-      { area: '10 — 30 соток', price: '5 000' },
-      { area: '30+ соток', price: '8 000' },
-    ],
-  },
-  {
-    service: 'Осы и Шершни',
-    subtitle: 'Уничтожение гнезд',
-    prices: [
-      { area: '1 гнездо', price: '4 000' },
-      { area: '2-3 гнезда', price: '6 000' },
-      { area: 'Сложный доступ', price: '8 000' },
-    ],
-  },
-  {
-    service: 'Змеи и летучие мыши',
-    subtitle: 'Барьерная защита',
-    prices: [
-      { area: 'до 10 соток', price: '5 000' },
-      { area: '10 — 30 соток', price: '8 000' },
-      { area: '30+ соток', price: '12 000' },
-    ],
-  },
-  {
-    service: 'Арбористика',
-    subtitle: 'Обрезка и спил',
-    prices: [
-      { area: 'Обрезка', price: '5 000' },
-      { area: 'Спил дерева', price: '15 000' },
-      { area: 'Корчевание', price: '8 000' },
-    ],
-  },
-  {
-    service: 'Лечение деревьев',
-    subtitle: 'Фитопатология',
-    prices: [
-      { area: '1 дерево', price: '4 000' },
-      { area: '3 — 5 деревьев', price: '10 000' },
-      { area: '5+ деревьев', price: 'Договорная' },
-    ],
-  },
-];
+import { services } from '@/lib/site-data';
 
 export default function Pricing() {
   return (
@@ -123,28 +30,28 @@ export default function Pricing() {
 
         {/* Pricing Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {PRICING.map((item, index) => (
+          {services.map((item) => (
             <ScrollRevealItem
-              key={item.service}
+              key={item.pricingTitle}
               className="flex flex-col bg-white rounded-[32px] border border-black/5 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all duration-500 overflow-hidden"
             >
               {/* Header */}
               <div className="p-8 pb-6 border-b border-black/5">
                 <h3 className="text-[28px] font-black tracking-tight text-[#1D1D1F] leading-[1.1] mb-2">
-                  {item.service}
+                  {item.pricingTitle}
                 </h3>
                 <p className="text-[13px] font-bold tracking-wide text-black/40 uppercase">
-                  {item.subtitle}
+                  {'pricingSubtitle' in item ? item.pricingSubtitle : item.title}
                 </p>
               </div>
 
               {/* Prices Container */}
               <div className="flex flex-col flex-1 p-8 pt-4 bg-[#F8F8F6]/50">
-                {item.prices.map((price, i) => (
+                {item.pricing.map((price, i) => (
                   <div
                     key={price.area}
                     className={`flex justify-between items-center py-4 ${
-                      i < item.prices.length - 1 ? 'border-b border-black/5' : ''
+                      i < item.pricing.length - 1 ? 'border-b border-black/5' : ''
                     }`}
                   >
                     <span className="text-[15px] font-medium text-black/60 tracking-tight">

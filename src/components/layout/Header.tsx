@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Phone, Menu, X } from 'lucide-react';
+import { Phone, Menu, X } from 'lucide-react';
+import { company } from '@/lib/site-data';
 
 const NAV_LINKS = [
   { name: 'Услуги', href: '#services' },
   { name: 'Стоимость', href: '#pricing' },
-  { name: 'Результаты', href: '#results' },
   { name: 'Команда', href: '#team' },
   { name: 'Отзывы', href: '#reviews' },
   { name: 'FAQ', href: '#faq' },
@@ -47,13 +47,14 @@ export default function Header() {
         <div className={`transition-all duration-500 ease-out ${scrolled || isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'}`}>
           <Link
             href="/"
-            className={`inline-flex items-center font-bold tracking-tighter text-[#1D1D1F] text-[15px] px-6 h-[52px] rounded-full transition-all duration-500 ${
+            className={`inline-flex flex-col justify-center font-black tracking-tighter leading-[0.9] text-[#1D1D1F] text-[12px] px-6 h-[52px] rounded-full transition-all duration-500 ${
               isOpen 
                 ? 'bg-transparent shadow-none border-transparent' 
                 : 'bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5'
             }`}
           >
-            КАРБО_ДЕЗ
+            <span>{company.logoLine1}</span>
+            <span>{company.logoLine2}</span>
           </Link>
         </div>
 
@@ -86,13 +87,13 @@ export default function Header() {
         >
           {/* Phone — icon pill */}
           <a
-            href="tel:+79998959989"
+            href={`tel:${company.phone}`}
             className={`hidden md:flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 ${
               scrolled
                 ? 'bg-[#F5F5F7] text-[#1D1D1F]/60 hover:bg-[#E8E8ED]'
                 : 'bg-white/10 backdrop-blur-md border border-white/15 text-white/70 hover:bg-white/20'
             }`}
-            title="+7 (999) 895-99-89"
+            title={company.phoneDisplay}
           >
             <Phone size={16} strokeWidth={1.5} />
           </a>
@@ -156,8 +157,8 @@ export default function Header() {
               ))}
             </nav>
             <div className="mt-auto mb-12 flex flex-col gap-5">
-              <a href="tel:+79998959989" className="text-xl font-mono tracking-wider text-[#1D1D1F]/50">
-                +7 (999) 895-99-89
+              <a href={`tel:${company.phone}`} className="text-xl font-mono tracking-wider text-[#1D1D1F]/50">
+                {company.phoneDisplay}
               </a>
               <Link
                 href="#contacts"

@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Shield, Bug, Leaf, Rat, TreePine, MessageCircle, Send, Axe, Wind, Zap, ArrowUpRight } from 'lucide-react';
+import { Send, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { company } from '@/lib/site-data';
 
 const SERVICES = [
   { label: 'Клещи', desc: 'от 3 500 ₽' },
@@ -12,6 +12,8 @@ const SERVICES = [
   { label: 'Короед', desc: 'от 6 000 ₽' },
   { label: 'Комары', desc: 'от 3 500 ₽' },
 ];
+
+type HeroService = typeof SERVICES[number];
 
 const ACCENT = '#2D6A4F';
 const FRAME_BG = '#F5F5F0';
@@ -46,7 +48,17 @@ function Fillet({ position, size = 32, className = '', color = '#F5F5F0' }: { po
   );
 }
 
-function FloatingPointer({ service, className = '', lineClass, reverse = false }: any) {
+function FloatingPointer({
+  service,
+  className = '',
+  lineClass,
+  reverse = false,
+}: {
+  service: HeroService;
+  className?: string;
+  lineClass?: string;
+  reverse?: boolean;
+}) {
   return (
     <motion.div
       variants={fadeScale}
@@ -120,8 +132,8 @@ export default function Hero() {
         {/* 1. TOP-LEFT: Logo / Branding Area */}
         <div className="absolute top-0 left-0 rounded-br-[32px] h-[72px] lg:h-[100px] flex items-center pl-6 pr-8 z-[10]" style={{ backgroundColor: FRAME_BG }}>
            <span className="text-xl lg:text-3xl font-black tracking-tighter text-[#1D1D1F] flex flex-col leading-[0.85] lg:leading-[0.85]">
-             <span>КАРБО_</span>
-             <span>_ДЕЗ</span>
+             <span>{company.logoLine1}</span>
+             <span>{company.logoLine2}</span>
            </span>
            <Fillet position="tl" size={32} className="-bottom-[32px] left-0" color={FRAME_BG} />
            <Fillet position="tl" size={32} className="top-0 -right-[32px]" color={FRAME_BG} />
@@ -135,18 +147,18 @@ export default function Hero() {
              <a href="#faq" className="hover:text-black transition-colors">Вопросы</a>
            </div>
            
-           <a href="https://t.me/yourtelegramid" target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
+           <a href={company.telegramUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
              <Send className="w-[18px] h-[18px] -ml-0.5" />
            </a>
 
-           <a href="#max" target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
+           <a href={company.maxUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000" fill="currentColor">
                 <path d="M512.095,308.192c-99.422-5.214-177.007,63.775-194.116,171.753 c-14.168,89.419,10.952,198.378,32.438,203.862 c9.113,2.326,31.044-14.448,46.999-29.494c3-2.829,7.536-3.305,11.053-1.154 c24.872,15.209,53.032,26.638,84.077,28.266 c102.069,5.352,192.52-74.531,197.866-176.608 C695.759,402.741,614.163,313.544,512.095,308.192z M345.605,826.578 c-3.849-2.725-9.153-1.986-12.379,1.455 c-43.12,45.99-153.474,78.25-158.529,15.48c0-49.18-11.046-90.623-23.208-136.252 c-14.895-55.885-31.465-118.049-31.465-208.398 c0-215.448,176.694-377.475,386.194-377.475S879.976,291.325,879.976,500.955 S710.49,876.337,508.201,876.337C436.434,876.337,401.607,866.228,345.605,826.578z"/>
              </svg>
            </a>
            
-           <a href="tel:+79998959989" className="hidden sm:flex items-center justify-center h-12 px-7 text-white rounded-full text-[14px] font-bold tracking-wider hover:brightness-110 transition-all shadow-lg" style={{ backgroundColor: ACCENT }}>
-             +7 (999) 895-99-89
+           <a href={`tel:${company.phone}`} className="hidden sm:flex items-center justify-center h-12 px-7 text-white rounded-full text-[14px] font-bold tracking-wider hover:brightness-110 transition-all shadow-lg" style={{ backgroundColor: ACCENT }}>
+             {company.phoneDisplay}
            </a>
            
            <Fillet position="tr" size={32} className="-bottom-[32px] right-0" color={FRAME_BG} />
@@ -202,7 +214,7 @@ export default function Hero() {
           variants={stagger} 
           initial="hidden" 
           animate="visible" 
-          className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
+          className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[calc(50%+48px)] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
         >
            <motion.div variants={fadeUp} className="mb-6 pointer-events-auto flex flex-wrap gap-2 lg:gap-3">
              <div className="inline-flex items-center gap-2.5 bg-white shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">

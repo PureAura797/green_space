@@ -6,20 +6,46 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PrivacyModal from '@/components/ui/PrivacyModal';
 import { IMaskInput } from 'react-imask';
+import { submitLead } from '@/lib/lead-client';
 
 export default function LeadCapture() {
+  const [phone, setPhone] = useState('');
   const [consentGiven, setConsentGiven] = useState(false);
   const [shakeConsent, setShakeConsent] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!consentGiven) {
       setShakeConsent(true);
       setTimeout(() => setShakeConsent(false), 400);
       return;
     }
-    // Handle form submission logic here
+
+    if (phone.length < 18) {
+      setStatusMessage('Введите телефон полностью.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatusMessage('');
+
+    try {
+      const result = await submitLead({
+        source: 'Блок Остались сомнения',
+        phone,
+      });
+
+      setStatusMessage(`Заявка №${result.ticketId} принята. Скоро перезвоним.`);
+      setPhone('');
+    } catch (error) {
+      setStatusMessage(error instanceof Error ? error.message : 'Не удалось отправить заявку. Позвоните нам напрямую.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -65,18 +91,26 @@ export default function LeadCapture() {
               mask="+{7} (000) 000-00-00"
               placeholder="+7 (999) 000-00-00"
               type="tel"
+              value={phone}
+              onAccept={(value) => setPhone(value)}
               className="w-full sm:flex-1 h-14 sm:h-16 appearance-none bg-white/5 border border-white/10 rounded-full px-8 text-lg font-medium text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all text-center sm:text-left shadow-inner"
               required
             />
             <button 
               type="submit"
+              disabled={!consentGiven || isSubmitting}
               className={`w-full sm:w-auto h-14 sm:h-16 rounded-full px-10 font-bold text-[14px] tracking-wide uppercase transition-all flex items-center justify-center gap-3 shrink-0 relative ${consentGiven ? 'bg-[#2D6A4F] text-white hover:brightness-110 active:scale-[0.98] shadow-lg group overflow-hidden' : 'bg-white/10 text-white/40 cursor-not-allowed'}`}
             >
               {consentGiven && <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none" />}
               <PhoneCall strokeWidth={2} className="w-5 h-5 relative z-10" />
-              <span className="relative z-10 mt-0.5">Жду звонка</span>
+              <span className="relative z-10 mt-0.5">{isSubmitting ? 'Отправляем...' : 'Жду звонка'}</span>
             </button>
           </form>
+          {statusMessage && (
+            <p className="mt-4 text-[12px] font-bold tracking-wide text-white/70">
+              {statusMessage}
+            </p>
+          )}
 
           {/* 152-FZ Checkbox */}
           <button

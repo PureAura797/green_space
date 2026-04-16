@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { company } from '@/lib/site-data';
 
 interface PrivacyModalProps {
   isOpen: boolean;
@@ -11,12 +12,6 @@ interface PrivacyModalProps {
 }
 
 export default function PrivacyModal({ isOpen, onClose }: PrivacyModalProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   // Lock body scroll when the modal is open
   useEffect(() => {
     if (!isOpen) return;
@@ -30,7 +25,9 @@ export default function PrivacyModal({ isOpen, onClose }: PrivacyModalProps) {
     };
   }, [isOpen]);
 
-  if (!mounted) return null;
+  const portalTarget = typeof document === 'undefined' ? null : document.body;
+
+  if (!portalTarget) return null;
 
   return createPortal(
     <AnimatePresence>
@@ -64,14 +61,14 @@ export default function PrivacyModal({ isOpen, onClose }: PrivacyModalProps) {
             {/* Scrollable Content */}
             <div className="p-6 sm:p-10 overflow-y-auto bg-white flex-1 text-sm sm:text-base text-black/70 font-medium leading-relaxed space-y-6">
               <p>
-                Настоящая Политика конфиденциальности персональных данных (далее – Политика) действует в отношении всей информации, которую сайт <strong>КАРБОДЕЗ</strong> (ООО «КАРБОДЕЗ», ИНН 9713023085) может получить о Пользователе во время использования сайта, программ и продуктов.
+                Настоящая Политика конфиденциальности персональных данных (далее – Политика) действует в отношении всей информации, которую сайт <strong>{company.brandName}</strong> ({company.legalName}, ИНН 9713023085) может получить о Пользователе во время использования сайта, программ и продуктов.
               </p>
 
               <div>
                 <h4 className="text-black font-bold mb-2">1. Определение терминов</h4>
                 <p>1.1. В настоящей Политике используются следующие термины:</p>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
-                  <li><strong>«Администрация сайта»</strong> — уполномоченные сотрудники на управление сайтом (ООО «КАРБОДЕЗ», ИНН 9713023085, КПП 771301001).</li>
+                  <li><strong>«Администрация сайта»</strong> — уполномоченные сотрудники на управление сайтом ({company.legalName}, ИНН 9713023085, КПП 771301001).</li>
                   <li><strong>«Персональные данные»</strong> — любая информация, относящаяся к прямо или косвенно определенному или определяемому физическому лицу.</li>
                   <li><strong>«Обработка персональных данных»</strong> — любое действие с персональными данными, совершаемое с использованием средств автоматизации или без таковых (сбор, запись, хранение, уточнение, использование, удаление).</li>
                 </ul>
@@ -104,7 +101,7 @@ export default function PrivacyModal({ isOpen, onClose }: PrivacyModalProps) {
                   4.1. Обработка персональных данных Пользователя осуществляется без ограничения срока (до достижения целей обработки), любым законным способом.
                 </p>
                 <p className="mt-2">
-                  4.2. Пользователь может в любой момент отозвать свое согласие, направив письменное уведомление на email: <strong>info@goslend.ru</strong>.
+                  4.2. Пользователь может в любой момент отозвать свое согласие, направив письменное уведомление на email: <strong>{company.email}</strong>.
                 </p>
               </div>
 
@@ -132,6 +129,6 @@ export default function PrivacyModal({ isOpen, onClose }: PrivacyModalProps) {
         </motion.div>
       )}
     </AnimatePresence>,
-    document.body
+    portalTarget
   );
 }

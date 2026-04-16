@@ -4,7 +4,6 @@ import Partners from '@/components/sections/Partners';
 import Numbers from '@/components/sections/Numbers';
 import Services from '@/components/sections/Services';
 import HowWeWork from '@/components/sections/HowWeWork';
-import VideoStories from '@/components/sections/VideoStories';
 import Pricing from '@/components/sections/Pricing';
 import BeforeAfter from '@/components/sections/BeforeAfter';
 import Licenses from '@/components/sections/Licenses';
@@ -26,7 +25,6 @@ export default function Home() {
         <Numbers />
         <Services />
         <HowWeWork />
-        <VideoStories />
         <Pricing />
         <BeforeAfter />
         <Licenses />

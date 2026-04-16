@@ -9,6 +9,7 @@ import FilmGrain from '@/components/ui/FilmGrain';
 import Preloader from '@/components/layout/Preloader';
 import CookieBanner from '@/components/ui/CookieBanner';
 import { cn } from "@/lib/utils";
+import { absoluteUrl, company, faqs, services, siteUrl } from '@/lib/site-data';
 
 const onest = Onest({
   subsets: ['latin', 'cyrillic'],
@@ -22,33 +23,46 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://goslend.ru'),
+  metadataBase: new URL(siteUrl),
+  applicationName: company.brandName,
   title: {
-    default: 'КАРБОДЕЗ | Уничтожение клещей, борщевика и арбористика',
-    template: '%s | КАРБОДЕЗ',
+    default: `${company.brandName} | Уничтожение клещей, борщевика и арбористика`,
+    template: `%s | ${company.brandName}`,
   },
-  description: 'ООО «КАРБОДЕЗ» — профессиональная расчистка участков, уничтожение клещей, кротов, борщевика и безопасный спил аварийных деревьев. Лицензия Роспотребнадзора. Гарантия по договору.',
-  keywords: ['уничтожение клещей', 'обработка от клещей', 'уничтожение борщевика', 'спил деревьев', 'удаление кротов', 'арбористика', 'расчистка участка', 'карбодез', 'дезинсекция'],
-  authors: [{ name: 'ООО КАРБОДЕЗ', url: 'https://goslend.ru' }],
-  creator: 'КАРБОДЕЗ',
-  publisher: 'ООО КАРБОДЕЗ',
+  description: `${company.brandName} — профессиональная расчистка участков, уничтожение клещей, кротов, борщевика и безопасный спил аварийных деревьев. Работаем с выездом по Москве и Московской области. Гарантия по договору.`,
+  keywords: ['уничтожение клещей', 'обработка от клещей', 'уничтожение борщевика', 'спил деревьев', 'удаление кротов', 'арбористика', 'расчистка участка', 'зеленый контур', 'дезинсекция'],
+  authors: [{ name: company.brandName, url: siteUrl }],
+  creator: company.brandName,
+  publisher: company.brandName,
+  alternates: {
+    canonical: '/',
+  },
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: 'КАРБОДЕЗ | Уничтожение клещей и арбористика',
-    description: 'ООО «КАРБОДЕЗ» — уничтожение клещей, борщевика и безопасный спил деревьев. Работаем с B2B и частными лицами.',
-    url: 'https://goslend.ru',
-    siteName: 'КАРБОДЕЗ',
+    title: `${company.brandName} | Уничтожение клещей и арбористика`,
+    description: 'Уничтожение клещей, борщевика и безопасный спил деревьев. Работаем с B2B и частными лицами по Москве и области.',
+    url: siteUrl,
+    siteName: company.brandName,
     locale: 'ru_RU',
     type: 'website',
+    images: [
+      {
+        url: company.ogImage,
+        width: 2752,
+        height: 1536,
+        alt: `${company.brandName} — профессиональная защита земельных участков`,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'КАРБОДЕЗ | Расчистка участков',
+    title: `${company.brandName} | Расчистка участков`,
     description: 'Профессиональные услуги арбористов и дезинсекторов с гарантией.',
+    images: [company.ogImage],
   },
   robots: {
     index: true,
@@ -63,45 +77,123 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationId = `${siteUrl}/#organization`;
+const businessId = `${siteUrl}/#local-business`;
+const websiteId = `${siteUrl}/#website`;
+const webPageId = `${siteUrl}/#webpage`;
+const offerCatalogId = `${siteUrl}/#services`;
+
+const areaServed = company.areaServed.map((name) => ({
+  '@type': 'AdministrativeArea',
+  name,
+}));
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: company.brandName,
+      url: siteUrl,
+      email: company.email,
+      telephone: company.phone,
+      sameAs: company.sameAs,
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: company.phone,
+          contactType: 'customer service',
+          areaServed: 'RU',
+          availableLanguage: ['ru'],
+        },
+      ],
+    },
+    {
       '@type': 'HomeAndConstructionBusiness',
-      name: 'ООО КАРБОДЕЗ',
-      url: 'https://goslend.ru',
-      telephone: '+79998959989',
+      '@id': businessId,
+      name: company.brandName,
+      url: siteUrl,
+      image: absoluteUrl(company.ogImage),
+      email: company.email,
+      telephone: company.phone,
       description: 'Официальная служба по расчистке территорий, уничтожению клещей, борщевика и безопасному спилу деревьев.',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'ул. Профессиональная, 1',
-        addressLocality: 'Москва',
-        addressRegion: 'Москва',
-        postalCode: '101000',
-        addressCountry: 'RU',
+      areaServed,
+      priceRange: company.priceRange,
+      parentOrganization: {
+        '@id': organizationId,
       },
-      priceRange: 'От 1500 руб',
+      hasOfferCatalog: {
+        '@id': offerCatalogId,
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: siteUrl,
+      name: company.brandName,
+      inLanguage: 'ru-RU',
+      publisher: {
+        '@id': organizationId,
+      },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': webPageId,
+      url: siteUrl,
+      name: `${company.brandName} | Уничтожение клещей, борщевика и арбористика`,
+      description: metadata.description,
+      inLanguage: 'ru-RU',
+      isPartOf: {
+        '@id': websiteId,
+      },
+      about: {
+        '@id': businessId,
+      },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: absoluteUrl(company.ogImage),
+        width: 2752,
+        height: 1536,
+      },
+    },
+    {
+      '@type': 'OfferCatalog',
+      '@id': offerCatalogId,
+      name: `Услуги ${company.brandName}`,
+      itemListElement: services.map((service) => ({
+        '@type': 'Offer',
+        name: `${service.pricingTitle} — ${service.price}`,
+        url: `${siteUrl}/#services`,
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          priceCurrency: 'RUB',
+          minPrice: service.minPrice,
+        },
+        itemOffered: {
+          '@type': 'Service',
+          name: service.pricingTitle,
+          alternateName: service.title,
+          description: service.description,
+          image: absoluteUrl(service.image),
+          provider: {
+            '@id': businessId,
+          },
+          areaServed,
+        },
+      })),
     },
     {
       '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Насколько безопасны препараты от клещей для детей и питомцев?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Мы используем сертифицированные инсектоакарицидные препараты 3-4 класса опасности (малоопасные). Уже через 2-3 часа после высыхания раствора на траве, территория абсолютно безопасна для детей и животных.',
-          },
+      '@id': `${siteUrl}/#faq`,
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
         },
-        {
-          '@type': 'Question',
-          name: 'Можно ли спилить дерево, если оно наклонено над крышей дома?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Да, это наша специализация. Мы работаем методом промышленного альпинизма (арбористика). Дерево спиливается частями сверху вниз, каждая ветка аккуратно спускается на веревках.',
-          },
-        },
-      ],
+      })),
     },
   ],
 };
@@ -119,7 +211,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
         />
       </head>
       <body className="font-sans bg-[#F5F5F0] text-foreground min-h-full flex flex-col">

@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
 import VelocityText from '@/components/ui/VelocityText';
+import { company } from '@/lib/site-data';
 
 export default function Licenses() {
   return (
@@ -61,7 +62,7 @@ export default function Licenses() {
                   <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[#F5F5F0] via-[#F5F5F0]/90 to-transparent rounded-b-lg pointer-events-none" />
                   {/* Diagonal watermark */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none rotate-[-30deg] opacity-[0.06]">
-                    <span className="text-[48px] md:text-[64px] font-black text-black tracking-[0.2em] uppercase whitespace-nowrap">КАРБОДЕЗ</span>
+                    <span className="text-[42px] md:text-[56px] font-black text-black tracking-[0.12em] whitespace-nowrap">{company.brandName}</span>
                   </div>
                 </div>
                 
@@ -101,7 +102,7 @@ export default function Licenses() {
                   <div>
                     <p className="text-[10px] font-black tracking-[0.2em] text-white/30 uppercase mb-2">Лицензиат</p>
                     <h4 className="text-xl md:text-2xl font-black tracking-tight text-white">
-                      ООО «КАРБОДЕЗ»
+                      {company.legalName}
                     </h4>
                   </div>
                   <div className="flex gap-8 font-mono text-sm">

@@ -20,7 +20,6 @@ function CountUp({ target, suffix, triggered }: { target: number; suffix: string
 
     const duration = 2000;
     const steps = 60;
-    const increment = target / steps;
     let current = 0;
     let step = 0;
 

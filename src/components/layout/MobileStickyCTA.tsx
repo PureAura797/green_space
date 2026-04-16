@@ -3,12 +3,13 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Phone, MessageCircle } from 'lucide-react';
+import { company } from '@/lib/site-data';
 
 const CHANNELS = [
   {
     id: 'max',
     label: 'MAX',
-    href: '#max',
+    href: company.maxUrl,
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 1000 1000" fill="currentColor">
         <path d="M512.095,308.192c-99.422-5.214-177.007,63.775-194.116,171.753 c-14.168,89.419,10.952,198.378,32.438,203.862 c9.113,2.326,31.044-14.448,46.999-29.494c3-2.829,7.536-3.305,11.053-1.154 c24.872,15.209,53.032,26.638,84.077,28.266 c102.069,5.352,192.52-74.531,197.866-176.608 C695.759,402.741,614.163,313.544,512.095,308.192z M345.605,826.578 c-3.849-2.725-9.153-1.986-12.379,1.455 c-43.12,45.99-153.474,78.25-158.529,15.48c0-49.18-11.046-90.623-23.208-136.252 c-14.895-55.885-31.465-118.049-31.465-208.398 c0-215.448,176.694-377.475,386.194-377.475S879.976,291.325,879.976,500.955 S710.49,876.337,508.201,876.337C436.434,876.337,401.607,866.228,345.605,826.578z"/>
@@ -18,7 +19,7 @@ const CHANNELS = [
   {
     id: 'telegram',
     label: 'Telegram',
-    href: 'https://t.me/goslend',
+    href: company.telegramUrl,
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
@@ -58,9 +59,11 @@ export default function MobileStickyCTA() {
 
   // Listen for Header mobile menu toggle
   useEffect(() => {
-    const handleMenuToggle = (e: any) => {
-      setIsMenuOpen(e.detail.isOpen);
-      if (e.detail.isOpen) {
+    const handleMenuToggle = (e: Event) => {
+      const { isOpen } = (e as CustomEvent<{ isOpen: boolean }>).detail;
+
+      setIsMenuOpen(isOpen);
+      if (isOpen) {
         setIsOpen(false); // Close CTA's own sub-menu if global menu opens
       }
     };
@@ -143,7 +146,7 @@ export default function MobileStickyCTA() {
 
           {/* Call CTA */}
           <a 
-            href="tel:+79998959989"
+            href={`tel:${company.phone}`}
             className="flex-1 flex items-center justify-center gap-2 h-14 bg-[#2D6A4F] text-white rounded-full font-bold text-[13px] tracking-wide uppercase hover:brightness-110 active:scale-[0.98] transition-all"
           >
             <Phone strokeWidth={2} className="w-[18px] h-[18px]" />

@@ -11,14 +11,7 @@
  * is filled white, and the inner path (complex shape) is "punched out".
  */
 
-interface Props {
-  /** Right column notch positions (normalized 0-1 from top) */
-  rightNotches?: { y: number; h: number }[];
-  /** Bottom shelf notch */
-  bottomShelf?: boolean;
-}
-
-export default function HeroOrganicMask({ rightNotches, bottomShelf }: Props) {
+export default function HeroOrganicMask() {
   // Responsive — use viewBox for scaling
   // The path defines the "hole" in the white overlay
   return (

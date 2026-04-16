@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { Play, X } from 'lucide-react';
 
@@ -34,7 +33,7 @@ export default function VideoStories() {
   // For native smooth horizontal scroll
   const handleScroll = () => {
     if (!scrollRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    const { scrollLeft, scrollWidth } = scrollRef.current;
 
     // Calculate active index based on scroll position
     const itemWidth = scrollWidth / STORIES.length;

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import TiltCard from '@/components/ui/TiltCard';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
@@ -14,11 +13,6 @@ const TEAM = [
     projects: '700+ объектов',
     specialization: 'Акарицидная обработка, фитопатология',
     image: '/images/team/agronomist.png',
-    contacts: [
-      { type: 'ТЕЛЕФОН', link: 'tel:+79998959989' },
-      { type: 'EMAIL', link: 'mailto:info@goslend.ru' },
-      { type: 'TELEGRAM', link: '#' },
-    ]
   },
   {
     id: 2,
@@ -28,11 +22,6 @@ const TEAM = [
     projects: '500+ деревьев',
     specialization: 'Промальп, аварийные деревья',
     image: '/images/team/arborist.png',
-    contacts: [
-      { type: 'ТЕЛЕФОН', link: 'tel:+79998959989' },
-      { type: 'EMAIL', link: 'mailto:info@goslend.ru' },
-      { type: 'MAX', link: '#' },
-    ]
   },
   {
     id: 3,
@@ -42,11 +31,6 @@ const TEAM = [
     projects: '400+ участков',
     specialization: 'Борщевик, кроты, грызуны',
     image: '/images/team/pest_control.png',
-    contacts: [
-      { type: 'ТЕЛЕФОН', link: 'tel:+79998959989' },
-      { type: 'TELEGRAM', link: '#' },
-      { type: 'MAX', link: '#' },
-    ]
   }
 ];
 
@@ -76,7 +60,7 @@ export default function Team() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {TEAM.map((member, index) => (
+          {TEAM.map((member) => (
             <ScrollRevealItem
               key={member.id}
               className="h-full w-full"
@@ -92,19 +76,6 @@ export default function Team() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] saturate-50 group-hover:saturate-100"
                     />
-                    
-                    {/* Floating Contacts Overlay */}
-                    <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent translate-y-[120%] group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex gap-2 z-10 justify-center">
-                      {member.contacts.map((contact) => (
-                        <a 
-                          key={contact.type} 
-                          href={contact.link}
-                          className="px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-bold tracking-widest text-white hover:bg-white hover:text-black transition-colors uppercase border border-white/20"
-                        >
-                          {contact.type}
-                        </a>
-                      ))}
-                    </div>
                   </div>
 
                   {/* Info Area */}

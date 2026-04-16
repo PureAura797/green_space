@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, CheckCircle2, Check } from 'lucide-react';
 import PrivacyModal from '../ui/PrivacyModal';
 import { IMaskInput } from 'react-imask';
+import { submitLead } from '@/lib/lead-client';
 
 const STEPS = [
   {
@@ -28,6 +29,7 @@ export default function QuizModal() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [phone, setPhone] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [toastMsg, setToastMsg] = useState<{ type: 'error' | 'success', title: string, desc: string } | null>(null);
   
   // 152-FZ Consent States
@@ -76,7 +78,7 @@ export default function QuizModal() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!consentGiven) {
@@ -94,15 +96,32 @@ export default function QuizModal() {
       return;
     }
 
-    // Success
-    setToastMsg({
-      type: 'success',
-      title: '[ РАСЧЕТ ОТПРАВЛЕН ]',
-      desc: 'Наш инженер свяжется с вами в течение 10 минут.'
-    });
-    setTimeout(() => {
-      closeModal();
-    }, 2000);
+    setIsSubmitting(true);
+
+    try {
+      const result = await submitLead({
+        source: 'Квиз расчета стоимости',
+        phone,
+        answers,
+      });
+
+      setToastMsg({
+        type: 'success',
+        title: '[ РАСЧЕТ ОТПРАВЛЕН ]',
+        desc: `Заявка №${result.ticketId} принята. Наш инженер свяжется с вами в течение 10 минут.`
+      });
+      setTimeout(() => {
+        closeModal();
+      }, 2000);
+    } catch (error) {
+      setToastMsg({
+        type: 'error',
+        title: '[ НЕ УДАЛОСЬ ОТПРАВИТЬ ]',
+        desc: error instanceof Error ? error.message : 'Попробуйте еще раз или позвоните нам напрямую.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   // react-imask handles formatting constraints
 
@@ -232,9 +251,10 @@ export default function QuizModal() {
 
                     <button
                       type="submit"
+                      disabled={!consentGiven || isSubmitting}
                       className={`w-full py-5 rounded-full text-white font-bold text-[13px] uppercase tracking-wide transition-all duration-300 ${consentGiven ? 'bg-[#2D6A4F] hover:scale-105 shadow-[0_8px_30px_rgba(45,106,79,0.4)] cursor-pointer' : 'bg-black/20 cursor-not-allowed'}`}
                     >
-                      Получить расчет
+                      {isSubmitting ? 'Отправляем...' : 'Получить расчет'}
                     </button>
                   </div>
                 </form>

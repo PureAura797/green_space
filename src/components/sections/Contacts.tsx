@@ -7,11 +7,14 @@ import VelocityText from '@/components/ui/VelocityText';
 import PrivacyModal from '@/components/ui/PrivacyModal';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
 import { IMaskInput } from 'react-imask';
+import { company } from '@/lib/site-data';
+import { submitLead } from '@/lib/lead-client';
 
 export default function Contacts() {
   const [formData, setFormData] = useState({ name: '', phone: '' });
   const [errors, setErrors] = useState({ name: '', phone: '' });
   const [toast, setToast] = useState<{ show: boolean, message: string } | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [consentGiven, setConsentGiven] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
@@ -43,7 +46,7 @@ export default function Contacts() {
     return valid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!consentGiven) {
@@ -53,9 +56,25 @@ export default function Contacts() {
     }
 
     if (validate()) {
-      const ticketId = Math.floor(100 + Math.random() * 900);
-      setToast({ show: true, message: `Заявка №${ticketId} принята. Ожидайте звонка.` });
-      setFormData({ name: '', phone: '' });
+      setIsSubmitting(true);
+
+      try {
+        const result = await submitLead({
+          source: 'Контактная форма',
+          name: formData.name,
+          phone: formData.phone,
+        });
+
+        setToast({ show: true, message: `Заявка №${result.ticketId} принята. Ожидайте звонка.` });
+        setFormData({ name: '', phone: '' });
+      } catch (error) {
+        setToast({
+          show: true,
+          message: error instanceof Error ? error.message : 'Не удалось отправить заявку. Позвоните нам напрямую.',
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -101,20 +120,23 @@ export default function Contacts() {
               <ScrollRevealItem baseY={40} className="flex flex-col gap-10">
                 <div>
                   <p className="text-[11px] font-bold tracking-widest text-black/40 uppercase mb-2">Телефон</p>
-                  <a href="tel:+79998959989" className="text-2xl md:text-3xl font-black tracking-tighter hover:text-[#2D6A4F] transition-colors leading-none block">
-                    +7 (999) 895-99-89
+                  <a href={`tel:${company.phone}`} className="text-2xl md:text-3xl font-black tracking-tighter hover:text-[#2D6A4F] transition-colors leading-none block">
+                    {company.phoneDisplay}
                   </a>
                 </div>
                 <div>
                   <p className="text-[11px] font-bold tracking-widest text-black/40 uppercase mb-2">Email</p>
-                  <a href="mailto:info@goslend.ru" className="text-xl md:text-2xl font-bold tracking-tight hover:text-[#2D6A4F] transition-colors leading-none block">
-                    info@goslend.ru
+                  <a href={`mailto:${company.email}`} className="text-xl md:text-2xl font-bold tracking-tight hover:text-[#2D6A4F] transition-colors leading-none block">
+                    {company.email}
                   </a>
                 </div>
                 <div>
-                  <p className="text-[11px] font-bold tracking-widest text-black/40 uppercase mb-2">Адрес</p>
-                  <p className="text-xl md:text-2xl font-bold tracking-tight leading-none block">
-                    г. Москва, ул. Профессиональная, 1
+                  <p className="text-[11px] font-bold tracking-widest text-black/40 uppercase mb-2">Зона работы</p>
+                  <p className="text-xl md:text-2xl font-bold tracking-tight leading-tight block">
+                    {company.serviceAreaLabel}
+                  </p>
+                  <p className="mt-2 text-sm md:text-base font-medium text-[#1D1D1F]/50 leading-relaxed">
+                    Выездная служба без приема клиентов в офисе.
                   </p>
                 </div>
               </ScrollRevealItem>
@@ -164,7 +186,7 @@ export default function Contacts() {
                 <IMaskInput
                   id="phone"
                   mask="+{7} (000) 000-00-00"
-                  placeholder="+7 (999) 895-99-89"
+                  placeholder="+7 (999) 000-00-00"
                   type="tel"
                   value={formData.phone}
                   onAccept={(value) => setFormData({ ...formData, phone: value })}
@@ -206,10 +228,10 @@ export default function Contacts() {
 
                 <button
                   type="submit"
-                  disabled={!consentGiven}
+                  disabled={!consentGiven || isSubmitting}
                   className={`w-full py-5 px-8 rounded-full font-bold text-[13px] tracking-widest uppercase transition-all duration-300 ${consentGiven ? 'bg-[#1D1D1F] text-white hover:bg-black hover:scale-[1.02] shadow-[0_10px_20px_rgba(0,0,0,0.1)] active:scale-95 cursor-pointer' : 'bg-black/10 text-black/40 cursor-not-allowed'}`}
                 >
-                  Оставить заявку
+                  {isSubmitting ? 'Отправляем...' : 'Оставить заявку'}
                 </button>
               </div>
             </form>

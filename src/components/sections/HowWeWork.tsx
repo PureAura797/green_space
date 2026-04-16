@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
 
 const STEPS = [
@@ -76,7 +75,7 @@ export default function HowWeWork() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-          {STEPS.map((step, index) => (
+          {STEPS.map((step) => (
             <ScrollRevealItem
               key={step.id}
               className="relative flex flex-col p-6 lg:p-8 bg-white rounded-[32px] border border-black/5 hover:border-black/10 hover:-translate-y-2 transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] h-full"

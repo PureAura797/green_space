@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
 import PrivacyModal from '@/components/ui/PrivacyModal';
+import { company } from '@/lib/site-data';
 
 export default function Footer() {
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
@@ -24,11 +25,12 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 lg:gap-24">
           {/* Col 1 */}
           <ScrollRevealItem baseY={20} className="flex flex-col gap-8 max-w-sm">
-            <Link href="/" className="text-4xl md:text-5xl font-black tracking-tighter uppercase text-white hover:text-white/80 transition-colors">
-              КАРБО_ДЕЗ
+            <Link href="/" className="text-4xl md:text-5xl font-black tracking-tighter text-white hover:text-white/80 transition-colors flex flex-col leading-[0.85]">
+              <span>{company.logoLine1}</span>
+              <span>{company.logoLine2}</span>
             </Link>
             <p className="text-white/50 text-base font-medium tracking-tight leading-relaxed">
-              ООО «КАРБОДЕЗ» — профессиональная защита земельных участков и арбористика. Лицензия Роспотребнадзора.
+              Профессиональная защита земельных участков, дезинсекция и арбористика. Работаем с выездом по Москве и области.
             </p>
           </ScrollRevealItem>
 
@@ -39,7 +41,6 @@ export default function Footer() {
               <h4 className="text-[11px] font-bold tracking-widest text-white/30 uppercase">Навигация</h4>
               <div className="flex flex-col gap-4">
                 <Link href="#services" className="text-white/80 hover:text-white font-medium transition-colors">Услуги</Link>
-                <Link href="#results" className="text-white/80 hover:text-white font-medium transition-colors">Результаты</Link>
                 <Link href="#team" className="text-white/80 hover:text-white font-medium transition-colors">Команда</Link>
                 <Link href="#reviews" className="text-white/80 hover:text-white font-medium transition-colors">Отзывы</Link>
                 <Link href="#faq" className="text-white/80 hover:text-white font-medium transition-colors">FAQ</Link>
@@ -61,8 +62,8 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <ScrollRevealItem baseY={30} className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[12px] font-medium tracking-wider text-white/40 uppercase">
-            © 2026 ООО «КАРБОДЕЗ». Все права защищены.
+          <p className="text-[12px] font-medium tracking-wider text-white/40">
+            © 2026 {company.brandName}. Все права защищены.
           </p>
           <div className="flex flex-wrap gap-4 md:gap-6 justify-center items-center">
             <a 

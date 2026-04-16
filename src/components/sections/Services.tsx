@@ -1,93 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import TiltCard from '@/components/ui/TiltCard';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
-
-const SERVICES = [
-  {
-    id: '01',
-    shortTitle: 'Уничтожение клещей',
-    title: 'Акарицидная обработка',
-    description: 'Раз и навсегда обезопасим газон от клещей. 100% гарантия и полная безопасность для собак и детей уже через 2 часа.',
-    price: 'от 3 500 ₽',
-    image: '/images/services/ticks.png',
-  },
-  {
-    id: '02',
-    shortTitle: 'Борьба с борщевиком',
-    title: 'Уничтожение борщевика',
-    description: 'Выжжем борщевик с корнем и перекопаем так, чтобы он больше никогда не смог вернуться на ваш участок в следующем году.',
-    price: 'от 4 000 ₽',
-    image: '/images/services/hogweed.png',
-  },
-  {
-    id: '03',
-    shortTitle: 'Защита от кротов',
-    title: 'Отлов и отпугивание',
-    description: 'Эффективная химическая газация (фумигация). Никаких неэффективных ловушек — решаем проблему гарантированно и быстро.',
-    price: 'от 4 000 ₽',
-    image: '/images/services/moles.png',
-  },
-  {
-    id: '04',
-    shortTitle: 'Короед и Древоточец',
-    title: 'Защита строений',
-    description: 'Лечение деревьев и комплексная химическая обработка деревянных домов (Сруб/Брус) от вредителей и жуков.',
-    price: 'от 6 000 ₽',
-    image: '/images/services/beetle.png',
-  },
-  {
-    id: '05',
-    shortTitle: 'Покос травы',
-    title: 'Профессиональный покос',
-    description: 'Покос травы любой сложности — от запущенных зарослей до регулярного обслуживания газонов. Работаем с участками любой площади.',
-    price: 'от 5 000 ₽',
-    image: '/images/services/mowing.png',
-  },
-  {
-    id: '06',
-    shortTitle: 'Комары',
-    title: 'Туманная обработка',
-    description: 'Генерация холодного/горячего тумана по площади участка. Комфортные летние вечера на веранде без укусов и зуда.',
-    price: 'от 3 500 ₽',
-    image: '/images/services/mosquitoes.png',
-  },
-  {
-    id: '07',
-    shortTitle: 'Осы и Шершни',
-    title: 'Ликвидация гнезд',
-    description: 'Быстрая и безопасная ликвидация опасных осиных гнезд и ульев на деревьях, под крышей дома или в хозяйственных постройках.',
-    price: 'от 4 000 ₽',
-    image: '/images/services/wasps.png',
-  },
-  {
-    id: '08',
-    shortTitle: 'Змеи и летучие мыши',
-    title: 'Барьерная защита',
-    description: 'Барьерная защита периметра от змей и безопасный отпугивающий комплекс от летучих мышей. Безопасно для фауны.',
-    price: 'от 5 000 ₽',
-    image: '/images/services/snakes.png',
-  },
-  {
-    id: '09',
-    shortTitle: 'Арбористика',
-    title: 'Обрезка деревьев',
-    description: 'Валка самых сложных и опасно нависающих деревьев по частям. Никак не повредив при этом вашу крышу, провода или забор.',
-    price: 'от 5 000 ₽',
-    image: '/images/services/arboristics.png',
-  },
-  {
-    id: '10',
-    shortTitle: 'Лечение деревьев',
-    title: 'Фитопатология',
-    description: 'Глубокая диагностика и лечение специфических болезней деревьев. Обработка дупел и профилактика грибковых поражений.',
-    price: 'от 4 000 ₽',
-    image: '/images/services/tree_treatment.png',
-  },
-];
+import { services } from '@/lib/site-data';
 
 export default function Services() {
   return (
@@ -115,7 +32,7 @@ export default function Services() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {SERVICES.map((service, index) => {
+          {services.map((service, index) => {
             // Make the second card (Borshchevik/Hogweed) the dark accent card
             const isDark = index === 1;
 
