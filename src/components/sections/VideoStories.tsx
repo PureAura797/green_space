@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { Play } from 'lucide-react';
+import { Play, X } from 'lucide-react';
 
 const STORIES = [
   { id: '01', title: 'Обработка участка 15 соток', image: '/images/videos/01_ticks.png', video: '/videos/demo.mp4' },
@@ -35,7 +35,7 @@ export default function VideoStories() {
   const handleScroll = () => {
     if (!scrollRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-    
+
     // Calculate active index based on scroll position
     const itemWidth = scrollWidth / STORIES.length;
     const newIndex = Math.round(scrollLeft / itemWidth);
@@ -60,7 +60,7 @@ export default function VideoStories() {
             </h3>
           </ScrollRevealItem>
         </div>
-        
+
         <ScrollRevealItem baseY={30} className="hidden md:flex flex-col items-end gap-3 pb-2">
           <div className="font-bold text-[13px] tracking-widest text-black/40">
             {String(activeIndex + 1).padStart(2, '0')} / {String(STORIES.length).padStart(2, '0')}
@@ -77,7 +77,7 @@ export default function VideoStories() {
       </ScrollRevealContainer>
 
       {/* Horizontal Scroll Area */}
-      <div 
+      <div
         ref={scrollRef}
         onScroll={handleScroll}
         className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar pl-4 md:pl-8 pr-[50vw] gap-6 pb-8"
@@ -94,14 +94,14 @@ export default function VideoStories() {
             onClick={() => setPlayingVideo(story)}
           >
             {/* Smooth Video Cover Image */}
-            <Image 
+            <Image
               src={story.image}
               alt={story.title}
               fill
               sizes="(max-width: 768px) 85vw, 380px"
               className="object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)]"
             />
-            
+
             {/* Elegant Gradients */}
             <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none transition-opacity duration-500" />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
@@ -127,7 +127,8 @@ export default function VideoStories() {
       </div>
 
       {/* Custom CSS to hide scrollbar in Webkit */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
@@ -140,21 +141,24 @@ export default function VideoStories() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#1D1D1F]/90 backdrop-blur-xl p-0 md:p-8"
+            onClick={() => setPlayingVideo(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4 md:p-8 cursor-pointer"
           >
-            <button 
-              onClick={() => setPlayingVideo(null)}
-              className="absolute top-6 right-6 md:top-8 md:right-8 z-[110] text-[#1D1D1F] bg-white hover:bg-zinc-200 transition-colors px-6 py-2.5 rounded-full font-bold text-[13px] tracking-wide flex items-center shadow-2xl"
-            >
-              Закрыть
-            </button>
-
             <motion.div
               initial={{ scale: 0.95, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 20 }}
-              className="relative w-full h-full md:w-auto md:h-full md:aspect-[9/16] bg-black overflow-hidden md:rounded-[40px] shadow-2xl"
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+              className="relative w-full max-w-[420px] aspect-[9/16] max-h-[85vh] bg-black overflow-hidden rounded-[32px] md:rounded-[40px] shadow-[0_20px_80px_rgba(0,0,0,0.8)] border border-white/10 cursor-default"
             >
+              {/* Close Button */}
+              <button
+                onClick={() => setPlayingVideo(null)}
+                className="absolute top-4 right-4 z-[110] w-10 h-10 flex items-center justify-center bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 rounded-full transition-all"
+              >
+                <X size={18} strokeWidth={2.5} />
+              </button>
+
               <video
                 src={playingVideo.video}
                 autoPlay
@@ -163,9 +167,9 @@ export default function VideoStories() {
                 loop
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-0 left-0 w-full p-8 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
+              <div className="absolute top-0 left-0 w-full p-6 pt-16 bg-gradient-to-b from-black/80 via-black/30 to-transparent pointer-events-none">
                 <p className="text-white/70 font-bold uppercase tracking-[0.2em] text-[10px] mb-3">Кейс {playingVideo.id}</p>
-                <h3 className="text-white font-black tracking-tighter text-2xl md:text-3xl leading-[1.1] max-w-[80%]">
+                <h3 className="text-white font-black tracking-tighter text-xl md:text-2xl leading-[1.1] max-w-[85%]">
                   {playingVideo.title}
                 </h3>
               </div>
