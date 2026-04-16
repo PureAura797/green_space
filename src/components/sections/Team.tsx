@@ -15,7 +15,7 @@ const TEAM = [
     specialization: 'Акарицидная обработка, фитопатология',
     image: '/images/team/agronomist.png',
     contacts: [
-      { type: 'ТЕЛЕФОН', link: 'tel:+79990000000' },
+      { type: 'ТЕЛЕФОН', link: 'tel:+79998959989' },
       { type: 'EMAIL', link: 'mailto:info@goslend.ru' },
       { type: 'TELEGRAM', link: '#' },
     ]
@@ -29,7 +29,7 @@ const TEAM = [
     specialization: 'Промальп, аварийные деревья',
     image: '/images/team/arborist.png',
     contacts: [
-      { type: 'ТЕЛЕФОН', link: 'tel:+79990000000' },
+      { type: 'ТЕЛЕФОН', link: 'tel:+79998959989' },
       { type: 'EMAIL', link: 'mailto:info@goslend.ru' },
       { type: 'MAX', link: '#' },
     ]
@@ -43,7 +43,7 @@ const TEAM = [
     specialization: 'Борщевик, кроты, грызуны',
     image: '/images/team/pest_control.png',
     contacts: [
-      { type: 'ТЕЛЕФОН', link: 'tel:+79990000000' },
+      { type: 'ТЕЛЕФОН', link: 'tel:+79998959989' },
       { type: 'TELEGRAM', link: '#' },
       { type: 'MAX', link: '#' },
     ]

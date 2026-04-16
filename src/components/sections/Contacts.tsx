@@ -101,8 +101,8 @@ export default function Contacts() {
               <ScrollRevealItem baseY={40} className="flex flex-col gap-10">
                 <div>
                   <p className="text-[11px] font-bold tracking-widest text-black/40 uppercase mb-2">Телефон</p>
-                  <a href="tel:+79990000000" className="text-2xl md:text-3xl font-black tracking-tighter hover:text-[#2D6A4F] transition-colors leading-none block">
-                    +7 (999) 000-00-00
+                  <a href="tel:+79998959989" className="text-2xl md:text-3xl font-black tracking-tighter hover:text-[#2D6A4F] transition-colors leading-none block">
+                    +7 (999) 895-99-89
                   </a>
                 </div>
                 <div>
@@ -164,7 +164,7 @@ export default function Contacts() {
                 <IMaskInput
                   id="phone"
                   mask="+{7} (000) 000-00-00"
-                  placeholder="+7 (999) 000-00-00"
+                  placeholder="+7 (999) 895-99-89"
                   type="tel"
                   value={formData.phone}
                   onAccept={(value) => setFormData({ ...formData, phone: value })}

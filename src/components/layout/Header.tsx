@@ -86,13 +86,13 @@ export default function Header() {
         >
           {/* Phone — icon pill */}
           <a
-            href="tel:+79990000000"
+            href="tel:+79998959989"
             className={`hidden md:flex items-center justify-center w-10 h-10 rounded-full transition-all duration-500 ${
               scrolled
                 ? 'bg-[#F5F5F7] text-[#1D1D1F]/60 hover:bg-[#E8E8ED]'
                 : 'bg-white/10 backdrop-blur-md border border-white/15 text-white/70 hover:bg-white/20'
             }`}
-            title="+7 (999) 000-00-00"
+            title="+7 (999) 895-99-89"
           >
             <Phone size={16} strokeWidth={1.5} />
           </a>
@@ -156,8 +156,8 @@ export default function Header() {
               ))}
             </nav>
             <div className="mt-auto mb-12 flex flex-col gap-5">
-              <a href="tel:+79990000000" className="text-xl font-mono tracking-wider text-[#1D1D1F]/50">
-                +7 (999) 000-00-00
+              <a href="tel:+79998959989" className="text-xl font-mono tracking-wider text-[#1D1D1F]/50">
+                +7 (999) 895-99-89
               </a>
               <Link
                 href="#contacts"

@@ -143,7 +143,7 @@ export default function MobileStickyCTA() {
 
           {/* Call CTA */}
           <a 
-            href="tel:+74950000000"
+            href="tel:+79998959989"
             className="flex-1 flex items-center justify-center gap-2 h-14 bg-[#2D6A4F] text-white rounded-full font-bold text-[13px] tracking-wide uppercase hover:brightness-110 active:scale-[0.98] transition-all"
           >
             <Phone strokeWidth={2} className="w-[18px] h-[18px]" />

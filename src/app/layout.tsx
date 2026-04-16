@@ -70,7 +70,7 @@ const jsonLd = {
       '@type': 'HomeAndConstructionBusiness',
       name: 'ООО КАРБОДЕЗ',
       url: 'https://goslend.ru',
-      telephone: '+79990000000',
+      telephone: '+79998959989',
       description: 'Официальная служба по расчистке территорий, уничтожению клещей, борщевика и безопасному спилу деревьев.',
       address: {
         '@type': 'PostalAddress',

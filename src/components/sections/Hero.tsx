@@ -145,8 +145,8 @@ export default function Hero() {
              </svg>
            </a>
            
-           <a href="tel:+74950000000" className="hidden sm:flex items-center justify-center h-12 px-7 text-white rounded-full text-[14px] font-bold tracking-wider hover:brightness-110 transition-all shadow-lg" style={{ backgroundColor: ACCENT }}>
-             +7 495 000-00-00
+           <a href="tel:+79998959989" className="hidden sm:flex items-center justify-center h-12 px-7 text-white rounded-full text-[14px] font-bold tracking-wider hover:brightness-110 transition-all shadow-lg" style={{ backgroundColor: ACCENT }}>
+             +7 (999) 895-99-89
            </a>
            
            <Fillet position="tr" size={32} className="-bottom-[32px] right-0" color={FRAME_BG} />
