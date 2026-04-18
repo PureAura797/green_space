@@ -37,14 +37,14 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out px-4 md:px-8 ${
+      className={`fixed inset-x-0 top-0 z-50 pointer-events-none transition-all duration-500 ease-out px-4 md:px-8 ${
         scrolled ? 'pt-3' : 'pt-4'
       }`}
     >
-      <div className="flex items-center justify-between w-full max-w-[1400px] mx-auto relative">
+      <div className="flex items-center justify-between w-full max-w-[1400px] mx-auto relative pointer-events-none">
         
         {/* Left Island — Logo */}
-        <div className={`transition-all duration-500 ease-out ${scrolled || isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'}`}>
+        <div className={`transition-all duration-500 ease-out ${scrolled || isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-8 pointer-events-none'}`}>
           <Link
             href="/"
             className={`inline-flex flex-col justify-center font-black tracking-tighter leading-[0.9] text-[#1D1D1F] text-[12px] px-6 h-[52px] rounded-full transition-all duration-500 ${
@@ -61,7 +61,7 @@ export default function Header() {
         {/* Center Island — Desktop Nav */}
         <nav 
           className={`hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-[2px] px-2 h-[52px] rounded-full transition-all duration-500 ease-out ${
-            scrolled && !isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
+            scrolled && !isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-8 pointer-events-none'
           } bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5`}
         >
           {NAV_LINKS.map((link) => (
@@ -78,7 +78,7 @@ export default function Header() {
         {/* Right Island — Actions */}
         <div 
           className={`flex items-center gap-1.5 p-1.5 h-[52px] rounded-full transition-all duration-500 ease-out ${
-            scrolled || isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none'
+            scrolled || isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-8 pointer-events-none'
           } ${
             isOpen 
               ? 'bg-transparent shadow-none border-transparent' 
