@@ -215,11 +215,16 @@ export default function Hero() {
         </div>
 
         {/* 4. BOTTOM-LEFT: "Выезд за 2 часа" badge (desktop only) */}
-        <div className="hidden lg:flex absolute bottom-0 left-0 rounded-tr-[32px] px-8 py-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
-           <div className="inline-flex items-center bg-[#1D1D1F] rounded-full px-5 py-2.5">
-             <span className="text-[11px] text-white font-black tracking-[0.2em] uppercase">
-               Выезд за 2 часа
-             </span>
+        <div className="hidden lg:flex absolute bottom-0 left-0 rounded-tr-[32px] p-6 lg:p-8 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+           <div className="relative overflow-hidden flex flex-col justify-center gap-1.5 px-6 py-5 bg-white rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] transition-transform hover:-translate-y-1 w-[200px] h-[110px]">
+              <span className="text-[10px] font-black text-black/40 uppercase tracking-[0.2em] relative z-10">
+                Оперативность
+              </span>
+              <div className="flex items-end gap-1.5 relative z-10">
+                 <span className="text-[36px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
+                 <span className="text-[15px] font-bold text-black/20 pb-0.5">часа</span>
+              </div>
+              <span className="text-[10px] font-semibold text-black/30 mt-0.5">выезд на объект</span>
            </div>
            <Fillet position="bl" size={32} className="-top-[32px] left-0" color={FRAME_BG} />
            <Fillet position="bl" size={32} className="bottom-0 -right-[32px]" color={FRAME_BG} />
