@@ -224,14 +224,12 @@ export default function Hero() {
           className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[calc(50%+48px)] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
         >
            <motion.div variants={fadeUp} className="mb-6 pointer-events-auto flex flex-wrap gap-2 lg:gap-3">
-             <div className="inline-flex items-center gap-2.5 bg-white shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
-               <div className="w-2.5 h-2.5 rounded-full bg-[#34C759] animate-pulse" />
+             <div className="inline-flex items-center bg-white shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
                <span className="text-[10px] lg:text-[11px] text-[#1D1D1F] font-black tracking-[0.15em] lg:tracking-[0.2em] uppercase">
                  Москва и Область
                </span>
              </div>
-             <div className="inline-flex items-center gap-2.5 bg-[#1D1D1F] border-2 border-white/10 shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
-               <span className="text-[14px]">⚡️</span>
+             <div className="inline-flex items-center bg-[#1D1D1F] border-2 border-white/10 shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
                <span className="text-[10px] lg:text-[11px] text-white font-black tracking-[0.15em] lg:tracking-[0.2em] uppercase">
                  Выезд за 2 часа
                </span>
