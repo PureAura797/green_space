@@ -259,6 +259,19 @@ export default function Hero() {
              с гарантией результата до 3 лет.
            </motion.p>
 
+
+            {/* Phone number — prominent for elderly users */}
+            <motion.a
+              variants={fadeUp}
+              href={`tel:${company.phone}`}
+              className="inline-flex items-center gap-3 text-white/90 hover:text-white text-[20px] sm:text-[24px] font-bold tracking-wide mb-8 pointer-events-auto transition-colors duration-300 group"
+              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
+            >
+              <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/25 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              {company.phoneDisplay}
+            </motion.a>
            <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-2 sm:p-2.5 rounded-[32px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
                href="#contacts"
