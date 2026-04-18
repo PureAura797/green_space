@@ -221,9 +221,9 @@ export default function Hero() {
           variants={stagger} 
           initial="hidden" 
           animate="visible" 
-          className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[10%] lg:bottom-auto lg:top-[calc(50%+48px)] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
+          className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[4%] lg:bottom-auto lg:top-[calc(50%+48px)] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
         >
-           <motion.div variants={fadeUp} className="mb-6 pointer-events-auto flex flex-wrap gap-2 lg:gap-3">
+           <motion.div variants={fadeUp} className="mb-3 lg:mb-6 pointer-events-auto flex flex-wrap gap-2 lg:gap-3">
              <div className="inline-flex items-center bg-white shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
                <span className="text-[10px] lg:text-[11px] text-[#1D1D1F] font-black tracking-[0.15em] lg:tracking-[0.2em] uppercase">
                  Москва и Область
@@ -238,7 +238,7 @@ export default function Hero() {
 
            <motion.h1 
              variants={fadeUp} 
-             className="text-[40px] min-[375px]:text-[46px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-6 break-words hyphens-auto"
+             className="text-[36px] min-[375px]:text-[42px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-3 lg:mb-6 break-words hyphens-auto"
              style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
            >
              Безопасность<br/>вашего<br/>
@@ -249,7 +249,7 @@ export default function Hero() {
 
            <motion.p
              variants={fadeUp}
-             className="text-white/80 text-[15px] sm:text-[18px] max-w-[480px] leading-relaxed font-medium mb-10"
+             className="text-white/80 text-[14px] sm:text-[18px] max-w-[480px] leading-relaxed font-medium mb-4 lg:mb-10"
              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
            >
              Профессиональная защита территорий. 
@@ -262,7 +262,7 @@ export default function Hero() {
             <motion.a
               variants={fadeUp}
               href={`tel:${company.phone}`}
-              className="inline-flex items-center gap-3 text-white/90 hover:text-white text-[20px] sm:text-[24px] font-bold tracking-wide mb-8 pointer-events-auto transition-colors duration-300 group"
+              className="inline-flex items-center gap-3 text-white/90 hover:text-white text-[18px] sm:text-[24px] font-bold tracking-wide mb-4 lg:mb-8 pointer-events-auto transition-colors duration-300 group"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
             >
               <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/25 transition-colors">
@@ -273,7 +273,7 @@ export default function Hero() {
            <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-2 sm:p-2.5 rounded-[32px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
                href="#contacts"
-               className="group relative overflow-hidden flex items-center justify-between h-[60px] lg:h-[68px] pl-6 pr-2 lg:pl-8 lg:pr-2.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full" 
+               className="group relative overflow-hidden flex items-center justify-between h-[52px] lg:h-[68px] pl-6 pr-2 lg:pl-8 lg:pr-2.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full" 
              >
                {/* Rolling Text Wrapper */}
                <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
@@ -290,7 +290,7 @@ export default function Hero() {
              </a>
              <a 
                href="#services"
-               className="group relative overflow-hidden flex items-center justify-between h-[60px] lg:h-[68px] pl-6 pr-2 lg:pl-8 lg:pr-2.5 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 sm:w-auto w-full"
+               className="group relative overflow-hidden flex items-center justify-between h-[52px] lg:h-[68px] pl-6 pr-2 lg:pl-8 lg:pr-2.5 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 sm:w-auto w-full"
              >
                {/* Rolling Text Wrapper */}
                <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
