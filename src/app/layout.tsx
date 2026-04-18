@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Onest, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -213,20 +214,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
         />
-        {/* Yandex.Metrika counter */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(m,e,t,r,i,k,a){
-                m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                m[i].l=1*new Date();
-                for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
-                k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-              })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=108582466','ym');
-              ym(108582466,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",accurateTrackBounce:true,trackLinks:true});
-            `,
-          }}
-        />
         <noscript>
           <div>
             <img src="https://mc.yandex.ru/watch/108582466" style={{ position: 'absolute', left: '-9999px' }} alt="" />
@@ -234,6 +221,18 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className="font-sans bg-[#F5F5F0] text-foreground min-h-full flex flex-col">
+        {/* Yandex.Metrika counter */}
+        <Script id="yandex-metrika" strategy="afterInteractive">
+          {`
+            (function(m,e,t,r,i,k,a){
+              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+              m[i].l=1*new Date();
+              for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+            })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=108582466','ym');
+            ym(108582466,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",accurateTrackBounce:true,trackLinks:true});
+          `}
+        </Script>
         <FilmGrain />
         <Preloader />
         <SmoothScroll>
