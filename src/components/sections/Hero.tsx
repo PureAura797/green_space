@@ -277,10 +277,14 @@ export default function Hero() {
 
             {/* Mobile-only badge (on desktop it's in the bottom-left cutout) */}
             <motion.div variants={fadeUp} className="lg:hidden mb-3 pointer-events-auto">
-              <div className="inline-flex items-center bg-[#1D1D1F] rounded-full px-4 py-2">
-                <span className="text-[10px] text-white font-black tracking-[0.15em] uppercase">
-                  Выезд за 2 часа
+              <div className="inline-flex flex-col justify-center gap-1 px-5 py-4 bg-white/95 backdrop-blur-sm rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/[0.03]">
+                <span className="text-[9px] font-black text-black/40 uppercase tracking-[0.2em]">
+                  Оперативность
                 </span>
+                <div className="flex items-end gap-1">
+                  <span className="text-[28px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
+                  <span className="text-[13px] font-bold text-black/20 pb-0.5">часа</span>
+                </div>
               </div>
             </motion.div>
 
