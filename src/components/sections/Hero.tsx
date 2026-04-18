@@ -112,12 +112,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full h-[100svh] p-4 lg:p-6 overflow-hidden flex flex-col" style={{ backgroundColor: FRAME_BG }}>
+    <section className="relative w-full h-[100svh] p-3 lg:p-6 overflow-hidden flex flex-col" style={{ backgroundColor: FRAME_BG }}>
       {/* 
         MAIN CONTAINER (The "Black" Video Area)
-        Everything is mapped inside this perfectly rounded container 
+        Section padding: 12px mobile, 24px desktop
+        Container radius: 28px mobile, 32px desktop
+        → inner radii = container - padding = 16px / 8px
       */}
-      <div className="relative w-full h-full rounded-[32px] overflow-hidden bg-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">
+      <div className="relative w-full h-full rounded-[28px] lg:rounded-[32px] overflow-hidden bg-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">
         
         {/* Z-0: Poster background (instant paint) + deferred video */}
         <div 
@@ -137,29 +139,31 @@ export default function Hero() {
             ═══════════════════════════════════════════ */}
 
         {/* 1. TOP-LEFT: Logo / Branding Area */}
-        <div className="absolute top-0 left-0 rounded-br-[32px] h-[72px] lg:h-[100px] flex items-center pl-6 pr-8 z-[10]" style={{ backgroundColor: FRAME_BG }}>
-           <span className="text-xl lg:text-3xl font-black tracking-tighter text-[#1D1D1F] flex flex-col leading-[0.85] lg:leading-[0.85]">
+        <div className="absolute top-0 left-0 rounded-br-[24px] lg:rounded-br-[32px] h-[64px] lg:h-[100px] flex items-center pl-5 pr-6 lg:pl-6 lg:pr-8 z-[10]" style={{ backgroundColor: FRAME_BG }}>
+           <span className="text-lg lg:text-3xl font-black tracking-tighter text-[#1D1D1F] flex flex-col leading-[0.85] lg:leading-[0.85]">
              <span>{company.logoLine1}</span>
              <span>{company.logoLine2}</span>
            </span>
-           <Fillet position="tl" size={32} className="-bottom-[32px] left-0" color={FRAME_BG} />
-           <Fillet position="tl" size={32} className="top-0 -right-[32px]" color={FRAME_BG} />
+           <Fillet position="tl" size={24} className="-bottom-[24px] left-0 lg:hidden" color={FRAME_BG} />
+           <Fillet position="tl" size={32} className="-bottom-[32px] left-0 hidden lg:block" color={FRAME_BG} />
+           <Fillet position="tl" size={24} className="top-0 -right-[24px] lg:hidden" color={FRAME_BG} />
+           <Fillet position="tl" size={32} className="top-0 -right-[32px] hidden lg:block" color={FRAME_BG} />
         </div>
 
         {/* 2. TOP-RIGHT: Navigation & Contact Pill */}
-        <div className="absolute top-0 right-0 rounded-bl-[32px] h-[72px] lg:h-[100px] flex items-center px-4 lg:px-8 gap-3 lg:gap-4 z-[10]" style={{ backgroundColor: FRAME_BG }}>
+        <div className="absolute top-0 right-0 rounded-bl-[24px] lg:rounded-bl-[32px] h-[64px] lg:h-[100px] flex items-center px-3 lg:px-8 gap-2 lg:gap-4 z-[10]" style={{ backgroundColor: FRAME_BG }}>
            <div className="hidden lg:flex items-center gap-7 mr-2 text-[13px] font-semibold tracking-wide uppercase text-black/60">
              <a href="#services" className="hover:text-black transition-colors">Услуги</a>
              <a href="#about" className="hover:text-black transition-colors">О нас</a>
              <a href="#faq" className="hover:text-black transition-colors">Вопросы</a>
            </div>
            
-           <a href={company.telegramUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
-             <Send className="w-[18px] h-[18px] -ml-0.5" />
+           <a href={company.telegramUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
+             <Send className="w-4 h-4 lg:w-[18px] lg:h-[18px] -ml-0.5" />
            </a>
 
-           <a href={company.maxUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
-             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1000 1000" fill="currentColor">
+           <a href={company.maxUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
+             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1000 1000" fill="currentColor" className="lg:w-[18px] lg:h-[18px]">
                 <path d="M512.095,308.192c-99.422-5.214-177.007,63.775-194.116,171.753 c-14.168,89.419,10.952,198.378,32.438,203.862 c9.113,2.326,31.044-14.448,46.999-29.494c3-2.829,7.536-3.305,11.053-1.154 c24.872,15.209,53.032,26.638,84.077,28.266 c102.069,5.352,192.52-74.531,197.866-176.608 C695.759,402.741,614.163,313.544,512.095,308.192z M345.605,826.578 c-3.849-2.725-9.153-1.986-12.379,1.455 c-43.12,45.99-153.474,78.25-158.529,15.48c0-49.18-11.046-90.623-23.208-136.252 c-14.895-55.885-31.465-118.049-31.465-208.398 c0-215.448,176.694-377.475,386.194-377.475S879.976,291.325,879.976,500.955 S710.49,876.337,508.201,876.337C436.434,876.337,401.607,866.228,345.605,826.578z"/>
              </svg>
            </a>
@@ -168,8 +172,10 @@ export default function Hero() {
              {company.phoneDisplay}
            </a>
            
-           <Fillet position="tr" size={32} className="-bottom-[32px] right-0" color={FRAME_BG} />
-           <Fillet position="tr" size={32} className="top-0 -left-[32px]" color={FRAME_BG} />
+           <Fillet position="tr" size={24} className="-bottom-[24px] right-0 lg:hidden" color={FRAME_BG} />
+           <Fillet position="tr" size={32} className="-bottom-[32px] right-0 hidden lg:block" color={FRAME_BG} />
+           <Fillet position="tr" size={24} className="top-0 -left-[24px] lg:hidden" color={FRAME_BG} />
+           <Fillet position="tr" size={32} className="top-0 -left-[32px] hidden lg:block" color={FRAME_BG} />
         </div>
 
         {/* 3. BOTTOM-RIGHT: Trust Badges - PURE TYPOGRAPHY AESTHETIC */}
@@ -214,15 +220,16 @@ export default function Hero() {
            <Fillet position="br" size={32} className="bottom-0 -left-[32px]" color={FRAME_BG} />
         </div>
 
-        {/* 4. BOTTOM: "Выезд за 2 часа" badge — right on mobile, left on desktop */}
-        <div className="flex absolute bottom-[160px] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-tl-[24px] lg:rounded-tl-none lg:rounded-tr-[32px] p-4 lg:p-8 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
-           <div className="relative overflow-hidden flex flex-col justify-center gap-1 lg:gap-1.5 px-4 py-3 lg:px-6 lg:py-5 bg-white rounded-[18px] lg:rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[140px] h-[80px] lg:w-[200px] lg:h-[110px]">
-              <span className="text-[8px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.2em] relative z-10">
+        {/* 4. BOTTOM: "Оперативность 2 часа" — right on mobile, left on desktop */}
+        <div className="flex absolute bottom-[140px] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-tl-[24px] lg:rounded-tl-none lg:rounded-tr-[32px] p-3 lg:p-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+           {/* inner_radius = outer_radius(24) - padding(12) = 12px mobile, 32-24=8 nah, use 20px desktop for visual balance */}
+           <div className="relative overflow-hidden flex flex-col justify-center gap-0.5 lg:gap-1.5 px-4 py-3 lg:px-6 lg:py-5 bg-white rounded-[12px] lg:rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[120px] h-[68px] lg:w-[200px] lg:h-[110px]">
+              <span className="text-[7px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.15em] lg:tracking-[0.2em] relative z-10">
                 Оперативность
               </span>
               <div className="flex items-end gap-1 lg:gap-1.5 relative z-10">
-                 <span className="text-[26px] lg:text-[36px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
-                 <span className="text-[12px] lg:text-[15px] font-bold text-black/20 pb-0.5">часа</span>
+                 <span className="text-[22px] lg:text-[36px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
+                 <span className="text-[11px] lg:text-[15px] font-bold text-black/20 pb-0.5">часа</span>
               </div>
               <span className="hidden lg:block text-[10px] font-semibold text-black/30 mt-0.5">выезд на объект</span>
            </div>
@@ -266,20 +273,17 @@ export default function Hero() {
            </motion.p>
 
 
-            {/* Phone number — prominent for elderly users */}
+            {/* Phone number — clean text, no icon */}
             <motion.a
               variants={fadeUp}
               href={`tel:${company.phone}`}
-              className="inline-flex items-center gap-3 text-white/90 hover:text-white text-[18px] sm:text-[24px] font-bold tracking-wide mb-4 lg:mb-8 pointer-events-auto transition-colors duration-300 group"
+              className="inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] font-bold tracking-wide mb-4 lg:mb-8 pointer-events-auto transition-colors duration-300"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
             >
-              <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-white/25 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              </span>
               {company.phoneDisplay}
             </motion.a>
 
-           <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-2 sm:p-2.5 rounded-[32px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pointer-events-auto sm:w-fit w-full">
+           <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-2 sm:p-2.5 rounded-[24px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
                href="#contacts"
                className="group relative overflow-hidden flex items-center justify-between h-[52px] lg:h-[68px] pl-6 pr-2 lg:pl-8 lg:pr-2.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full" 
