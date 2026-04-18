@@ -214,20 +214,22 @@ export default function Hero() {
            <Fillet position="br" size={32} className="bottom-0 -left-[32px]" color={FRAME_BG} />
         </div>
 
-        {/* 4. BOTTOM-LEFT: "Выезд за 2 часа" badge (desktop only) */}
-        <div className="hidden lg:flex absolute bottom-0 left-0 rounded-tr-[32px] p-6 lg:p-8 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
-           <div className="relative overflow-hidden flex flex-col justify-center gap-1.5 px-6 py-5 bg-white rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] transition-transform hover:-translate-y-1 w-[200px] h-[110px]">
-              <span className="text-[10px] font-black text-black/40 uppercase tracking-[0.2em] relative z-10">
+        {/* 4. BOTTOM-LEFT: "Выезд за 2 часа" badge (all screens) */}
+        <div className="flex absolute bottom-0 left-0 rounded-tr-[24px] lg:rounded-tr-[32px] p-4 lg:p-8 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+           <div className="relative overflow-hidden flex flex-col justify-center gap-1 lg:gap-1.5 px-4 py-3 lg:px-6 lg:py-5 bg-white rounded-[18px] lg:rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[140px] h-[80px] lg:w-[200px] lg:h-[110px]">
+              <span className="text-[8px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.2em] relative z-10">
                 Оперативность
               </span>
-              <div className="flex items-end gap-1.5 relative z-10">
-                 <span className="text-[36px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
-                 <span className="text-[15px] font-bold text-black/20 pb-0.5">часа</span>
+              <div className="flex items-end gap-1 lg:gap-1.5 relative z-10">
+                 <span className="text-[26px] lg:text-[36px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
+                 <span className="text-[12px] lg:text-[15px] font-bold text-black/20 pb-0.5">часа</span>
               </div>
-              <span className="text-[10px] font-semibold text-black/30 mt-0.5">выезд на объект</span>
+              <span className="hidden lg:block text-[10px] font-semibold text-black/30 mt-0.5">выезд на объект</span>
            </div>
-           <Fillet position="bl" size={32} className="-top-[32px] left-0" color={FRAME_BG} />
-           <Fillet position="bl" size={32} className="bottom-0 -right-[32px]" color={FRAME_BG} />
+           <Fillet position="bl" size={32} className="-top-[32px] left-0 hidden lg:block" color={FRAME_BG} />
+           <Fillet position="bl" size={24} className="-top-[24px] left-0 lg:hidden" color={FRAME_BG} />
+           <Fillet position="bl" size={32} className="bottom-0 -right-[32px] hidden lg:block" color={FRAME_BG} />
+           <Fillet position="bl" size={24} className="bottom-0 -right-[24px] lg:hidden" color={FRAME_BG} />
         </div>
 
         {/* ═══════════════════════════════════════════
@@ -274,19 +276,6 @@ export default function Hero() {
               </span>
               {company.phoneDisplay}
             </motion.a>
-
-            {/* Mobile-only badge (on desktop it's in the bottom-left cutout) */}
-            <motion.div variants={fadeUp} className="lg:hidden mb-3 pointer-events-auto">
-              <div className="inline-flex flex-col justify-center gap-1 px-5 py-4 bg-white/95 backdrop-blur-sm rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/[0.03]">
-                <span className="text-[9px] font-black text-black/40 uppercase tracking-[0.2em]">
-                  Оперативность
-                </span>
-                <div className="flex items-end gap-1">
-                  <span className="text-[28px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
-                  <span className="text-[13px] font-bold text-black/20 pb-0.5">часа</span>
-                </div>
-              </div>
-            </motion.div>
 
            <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-2 sm:p-2.5 rounded-[32px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
