@@ -215,7 +215,7 @@ export default function Hero() {
         </div>
 
         {/* 4. BOTTOM: "Выезд за 2 часа" badge — right on mobile, left on desktop */}
-        <div className="flex absolute bottom-0 right-0 lg:right-auto lg:left-0 rounded-tl-[24px] lg:rounded-tl-none lg:rounded-tr-[32px] p-4 lg:p-8 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+        <div className="flex absolute bottom-[160px] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-tl-[24px] lg:rounded-tl-none lg:rounded-tr-[32px] p-4 lg:p-8 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
            <div className="relative overflow-hidden flex flex-col justify-center gap-1 lg:gap-1.5 px-4 py-3 lg:px-6 lg:py-5 bg-white rounded-[18px] lg:rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[140px] h-[80px] lg:w-[200px] lg:h-[110px]">
               <span className="text-[8px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.2em] relative z-10">
                 Оперативность
