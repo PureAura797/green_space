@@ -214,6 +214,17 @@ export default function Hero() {
            <Fillet position="br" size={32} className="bottom-0 -left-[32px]" color={FRAME_BG} />
         </div>
 
+        {/* 4. BOTTOM-LEFT: "Выезд за 2 часа" badge (desktop only) */}
+        <div className="hidden lg:flex absolute bottom-0 left-0 rounded-tr-[32px] px-8 py-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+           <div className="inline-flex items-center bg-[#1D1D1F] rounded-full px-5 py-2.5">
+             <span className="text-[11px] text-white font-black tracking-[0.2em] uppercase">
+               Выезд за 2 часа
+             </span>
+           </div>
+           <Fillet position="bl" size={32} className="-top-[32px] left-0" color={FRAME_BG} />
+           <Fillet position="bl" size={32} className="bottom-0 -right-[32px]" color={FRAME_BG} />
+        </div>
+
         {/* ═══════════════════════════════════════════
             MAIN CONTENT (Center-Left)
             ═══════════════════════════════════════════ */}
@@ -223,18 +234,6 @@ export default function Hero() {
           animate="visible" 
           className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[4%] lg:bottom-auto lg:top-[calc(50%+48px)] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
         >
-           <motion.div variants={fadeUp} className="mb-3 lg:mb-6 pointer-events-auto flex flex-wrap gap-2 lg:gap-3">
-             <div className="inline-flex items-center bg-white shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
-               <span className="text-[10px] lg:text-[11px] text-[#1D1D1F] font-black tracking-[0.15em] lg:tracking-[0.2em] uppercase">
-                 Москва и Область
-               </span>
-             </div>
-             <div className="inline-flex items-center bg-[#1D1D1F] border-2 border-white/10 shadow-xl rounded-full px-4 py-2 transition-transform hover:scale-[1.02]">
-               <span className="text-[10px] lg:text-[11px] text-white font-black tracking-[0.15em] lg:tracking-[0.2em] uppercase">
-                 Выезд за 2 часа
-               </span>
-             </div>
-           </motion.div>
 
            <motion.h1 
              variants={fadeUp} 
@@ -270,6 +269,16 @@ export default function Hero() {
               </span>
               {company.phoneDisplay}
             </motion.a>
+
+            {/* Mobile-only badge (on desktop it's in the bottom-left cutout) */}
+            <motion.div variants={fadeUp} className="lg:hidden mb-3 pointer-events-auto">
+              <div className="inline-flex items-center bg-[#1D1D1F] rounded-full px-4 py-2">
+                <span className="text-[10px] text-white font-black tracking-[0.15em] uppercase">
+                  Выезд за 2 часа
+                </span>
+              </div>
+            </motion.div>
+
            <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-2 sm:p-2.5 rounded-[32px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
                href="#contacts"
