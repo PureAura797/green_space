@@ -138,12 +138,12 @@ export default function Header() {
             className="fixed inset-0 -z-10 bg-[#F5F5F0]/95 flex flex-col px-6 pt-32 lg:hidden w-full h-[100dvh]"
             style={{ position: 'fixed' }}
           >
-            <nav className="flex flex-col gap-1">
+            <nav className="flex flex-col gap-1 items-center text-center">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.name}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
                 >
                   <Link
@@ -156,7 +156,7 @@ export default function Header() {
                 </motion.div>
               ))}
             </nav>
-            <div className="mt-auto mb-12 flex flex-col gap-5">
+            <div className="mt-auto mb-12 flex flex-col items-center gap-5 w-full max-w-[400px] mx-auto">
               <a href={`tel:${company.phone}`} className="text-xl font-mono tracking-wider text-[#1D1D1F]/50">
                 {company.phoneDisplay}
               </a>
