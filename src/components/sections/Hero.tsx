@@ -214,8 +214,8 @@ export default function Hero() {
            <Fillet position="br" size={32} className="bottom-0 -left-[32px]" color={FRAME_BG} />
         </div>
 
-        {/* 4. BOTTOM-LEFT: "Выезд за 2 часа" badge (all screens) */}
-        <div className="flex absolute bottom-0 left-0 rounded-tr-[24px] lg:rounded-tr-[32px] p-4 lg:p-8 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+        {/* 4. BOTTOM: "Выезд за 2 часа" badge — right on mobile, left on desktop */}
+        <div className="flex absolute bottom-0 right-0 lg:right-auto lg:left-0 rounded-tl-[24px] lg:rounded-tl-none lg:rounded-tr-[32px] p-4 lg:p-8 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
            <div className="relative overflow-hidden flex flex-col justify-center gap-1 lg:gap-1.5 px-4 py-3 lg:px-6 lg:py-5 bg-white rounded-[18px] lg:rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[140px] h-[80px] lg:w-[200px] lg:h-[110px]">
               <span className="text-[8px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.2em] relative z-10">
                 Оперативность
@@ -226,10 +226,12 @@ export default function Hero() {
               </div>
               <span className="hidden lg:block text-[10px] font-semibold text-black/30 mt-0.5">выезд на объект</span>
            </div>
+           {/* Desktop fillets (bottom-left position) */}
            <Fillet position="bl" size={32} className="-top-[32px] left-0 hidden lg:block" color={FRAME_BG} />
-           <Fillet position="bl" size={24} className="-top-[24px] left-0 lg:hidden" color={FRAME_BG} />
            <Fillet position="bl" size={32} className="bottom-0 -right-[32px] hidden lg:block" color={FRAME_BG} />
-           <Fillet position="bl" size={24} className="bottom-0 -right-[24px] lg:hidden" color={FRAME_BG} />
+           {/* Mobile fillets (bottom-right position) */}
+           <Fillet position="br" size={24} className="-top-[24px] right-0 lg:hidden" color={FRAME_BG} />
+           <Fillet position="br" size={24} className="bottom-0 -left-[24px] lg:hidden" color={FRAME_BG} />
         </div>
 
         {/* ═══════════════════════════════════════════
