@@ -56,6 +56,7 @@ export default function Services() {
                     src={service.image}
                     alt={service.shortTitle}
                     fill
+                    sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 40px), 430px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   {/* Subtle Gradient for legibility */}

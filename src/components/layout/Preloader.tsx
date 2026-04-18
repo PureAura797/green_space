@@ -3,11 +3,20 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const PRELOADER_KEY = 'zk_preloader_seen';
+
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // Skip preloader on repeat visits within the same session
+    if (window.sessionStorage.getItem(PRELOADER_KEY)) {
+      setLoading(false);
+      return;
+    }
+    window.sessionStorage.setItem(PRELOADER_KEY, '1');
+
     // Lock scroll
     document.body.style.overflow = 'hidden';
     // Ensure we start at top of page so the hero video is loaded in view
@@ -17,23 +26,23 @@ export default function Preloader() {
     const interval = setInterval(() => {
       // Non-linear progress simulation: fast start, slows down near end
       const remaining = 100 - current;
-      const step = Math.max(1, Math.floor(remaining * 0.15));
+      const step = Math.max(3, Math.floor(remaining * 0.3));
       current += step;
       
       if (current >= 99) {
         current = 100;
         clearInterval(interval);
         
-        // Hold at 100% for a beat before starting EXIT sequence
-        setTimeout(() => setLoading(false), 400); 
+        // Short hold at 100% then exit
+        setTimeout(() => setLoading(false), 100); 
         
-        // Restore scroll after the exit animation completes (1.2s)
+        // Restore scroll after exit animation
         setTimeout(() => {
           document.body.style.overflow = '';
-        }, 1800);
+        }, 700);
       }
       setProgress(current);
-    }, 40);
+    }, 28);
 
     return () => {
       clearInterval(interval);
@@ -46,8 +55,7 @@ export default function Preloader() {
       {loading && (
         <motion.div
           key="preloader"
-          // We keep the container around slightly longer than the hole animation to avoid flashing
-          exit={{ opacity: 0, transition: { delay: 1.2, duration: 0.1 } }} 
+          exit={{ opacity: 0, transition: { delay: 0.5, duration: 0.1 } }} 
           className="fixed inset-0 z-[9999] bg-transparent pointer-events-none select-none flex items-center justify-center"
         >
           {/* SVG Mask Layer */}
@@ -80,7 +88,7 @@ export default function Preloader() {
                     translateX: "-50%", 
                     translateY: "-50%", 
                     rx: 2000, 
-                    transition: { duration: 1.4, ease: [0.76, 0, 0.24, 1] } 
+                    transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] } 
                   }}
                   fill="black"
                 />

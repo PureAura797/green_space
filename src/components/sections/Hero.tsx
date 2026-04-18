@@ -81,27 +81,33 @@ function FloatingPointer({
    HERO SECTION — GLITCH REFERENCE 1:1
    ═══════════════════════════════════════════ */
 export default function Hero() {
-  // Force iOS autoplay on first user interaction if blocked by Low Power Mode
+  // Deferred video load: set src AFTER page paint, then autoplay
   useEffect(() => {
-    const tryPlayVideo = () => {
-      const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
-      if (video && video.paused) {
+    const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
+    if (!video) return;
+
+    const loadAndPlay = () => {
+      if (!video.src || !video.src.includes('hero_bg')) {
+        video.src = '/videos/hero_bg.mp4';
+      }
+      if (video.paused) {
         video.play().catch(() => {});
       }
     };
 
-    // Try immediately
-    tryPlayVideo();
+    // Delay video load slightly so the UI paints first
+    const timerId = window.setTimeout(loadAndPlay, 800);
 
-    // Try on interaction
-    window.addEventListener('scroll', tryPlayVideo, { once: true, passive: true });
-    window.addEventListener('touchstart', tryPlayVideo, { once: true, passive: true });
-    window.addEventListener('click', tryPlayVideo, { once: true, passive: true });
+    // Also try on first interaction (iOS Low Power Mode fallback)
+    window.addEventListener('scroll', loadAndPlay, { once: true, passive: true });
+    window.addEventListener('touchstart', loadAndPlay, { once: true, passive: true });
+    window.addEventListener('click', loadAndPlay, { once: true, passive: true });
 
     return () => {
-      window.removeEventListener('scroll', tryPlayVideo);
-      window.removeEventListener('touchstart', tryPlayVideo);
-      window.removeEventListener('click', tryPlayVideo);
+      window.clearTimeout(timerId);
+      window.removeEventListener('scroll', loadAndPlay);
+      window.removeEventListener('touchstart', loadAndPlay);
+      window.removeEventListener('click', loadAndPlay);
     };
   }, []);
 
@@ -113,11 +119,12 @@ export default function Hero() {
       */}
       <div className="relative w-full h-full rounded-[32px] overflow-hidden bg-[#111] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]">
         
-        {/* Z-0: Full-bleed video (Using dangerouslySetInnerHTML bypasses React hydration bugs on iOS Safari for muted/autoplay) */}
+        {/* Z-0: Poster background (instant paint) + deferred video */}
         <div 
-          className="absolute inset-0 w-full h-full z-0 opacity-90 pointer-events-none"
+          className="absolute inset-0 w-full h-full z-0 opacity-90 pointer-events-none bg-cover bg-center"
+          style={{ backgroundImage: 'url(/images/videos/01_ticks.png)' }}
           dangerouslySetInnerHTML={{
-            __html: `<video id="hero-bg-video" class="w-full h-full object-cover" src="/videos/hero_bg.mp4" autoplay loop muted playsinline preload="auto"></video>`
+            __html: `<video id="hero-bg-video" class="w-full h-full object-cover" poster="/images/videos/01_ticks.png" autoplay loop muted playsinline preload="metadata"></video>`
           }}
         />
         
