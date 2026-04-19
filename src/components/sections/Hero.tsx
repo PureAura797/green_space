@@ -218,7 +218,7 @@ export default function Hero() {
         </div>
 
         {/* 4. BOTTOM: "Оперативность 2 часа" — right on mobile, left on desktop */}
-        <div className="flex absolute bottom-[28%] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-l-[24px] lg:rounded-l-none lg:rounded-tr-[32px] p-3 lg:p-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+        <div className="flex absolute bottom-[32%] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-l-[24px] lg:rounded-l-none lg:rounded-tr-[32px] p-3 lg:p-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
            <div className="relative overflow-hidden flex flex-col justify-center gap-1 lg:gap-1.5 px-5 py-3.5 lg:px-6 lg:py-5 bg-white rounded-[12px] lg:rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[140px] h-[80px] lg:w-[200px] lg:h-[110px]">
               <span className="text-[9px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.15em] lg:tracking-[0.2em] relative z-10">
                 Оперативность
@@ -262,7 +262,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:hidden absolute left-5 right-[180px] bottom-[calc(28%+20px)] z-[10] text-white/80 text-[13px] sm:text-[18px] leading-relaxed font-medium pointer-events-none"
+          className="lg:hidden absolute left-5 right-5 bottom-[calc(32%+115px)] z-[10] text-white/80 text-[13px] min-[375px]:text-[14px] sm:text-[18px] leading-relaxed font-medium pointer-events-none"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
         >
           Профессиональная защита территорий.
@@ -278,7 +278,7 @@ export default function Hero() {
           className="lg:hidden absolute left-5 right-5 bottom-6 z-[10] bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[28px] shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto"
         >
           <a
-            href="#contacts"
+            href="#quiz"
             className="group relative overflow-hidden flex items-center justify-between h-[48px] pl-5 pr-1.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full"
           >
             <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
