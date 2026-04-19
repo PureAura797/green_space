@@ -320,14 +320,14 @@ export default function Hero() {
            </motion.div>
         </motion.div>
 
-        {/* DESKTOP CTA — bottom-right inner corner, stacked */}
+        {/* DESKTOP CTA — bottom-right inner corner, stacked in white pill */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden lg:flex absolute bottom-[24px] right-[400px] z-[10] flex-col gap-2.5 pointer-events-auto"
+          className="hidden lg:flex absolute bottom-[24px] right-[400px] z-[10] bg-white/95 backdrop-blur-xl p-2.5 rounded-[20px] shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex-col gap-2 pointer-events-auto"
         >
-          <a href="#contacts" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#2D6A4F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 w-[300px] shadow-[0_10px_40px_rgba(0,0,0,0.3)]">
+          <a href="#contacts" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#2D6A4F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 w-[300px]">
             <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-4">
               <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Рассчитать стоимость</span>
               <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Рассчитать стоимость</span>
@@ -336,7 +336,7 @@ export default function Hero() {
               <ArrowUpRight className="w-5 h-5 text-[#2D6A4F]" strokeWidth={2.5} />
             </div>
           </a>
-          <a href="#services" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#1D1D1F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 w-[300px] shadow-[0_10px_40px_rgba(0,0,0,0.3)]">
+          <a href="#services" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#1D1D1F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 w-[300px]">
             <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-4">
               <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Наши цены</span>
               <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Наши цены</span>
