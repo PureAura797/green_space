@@ -47,14 +47,13 @@ export default function Header() {
         <div className={`transition-all duration-500 ease-out ${scrolled || isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-8 pointer-events-none'}`}>
           <Link
             href="/"
-            className={`inline-flex flex-col justify-center font-black tracking-tighter leading-[0.9] text-[#1D1D1F] text-[12px] px-6 h-[52px] rounded-full transition-all duration-500 ${
+            className={`inline-flex items-center justify-center px-5 h-[52px] rounded-full transition-all duration-500 ${
               isOpen 
                 ? 'bg-transparent shadow-none border-transparent' 
                 : 'bg-white/90 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5'
             }`}
           >
-            <span>{company.logoLine1}</span>
-            <span>{company.logoLine2}</span>
+            <img src="/icons/logo.svg" alt={company.brandName} className="h-[24px] w-auto" />
           </Link>
         </div>
 
