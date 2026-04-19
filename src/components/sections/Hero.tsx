@@ -265,8 +265,9 @@ export default function Hero() {
           className="lg:hidden absolute left-5 right-[165px] bottom-[calc(32%+12px)] z-[10] text-white/80 text-[13px] min-[375px]:text-[14px] sm:text-[18px] leading-snug font-medium pointer-events-none"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
         >
-          Защита территорий <span className="text-white font-bold">от 3 500 ₽</span>.
-          Гарантия по договору до 3 лет.
+          Защита территорий<br/>
+          <span className="text-white font-bold">от 3 500 ₽</span>.<br/>
+          Гарантия до 3 лет.
         </motion.p>
 
         {/* MOBILE 4: CTA buttons */}
