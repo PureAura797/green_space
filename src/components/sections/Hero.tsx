@@ -247,7 +247,7 @@ export default function Hero() {
           variants={stagger} 
           initial="hidden" 
           animate="visible" 
-          className="absolute left-3 right-3 lg:right-auto lg:left-16 bottom-[3%] lg:bottom-auto lg:top-[calc(50%+48px)] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
+          className="absolute left-3 right-3 lg:right-auto lg:left-16 bottom-[3%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none lg:pb-[140px]"
         >
 
            <motion.h1 
@@ -263,7 +263,7 @@ export default function Hero() {
 
            <motion.p
              variants={fadeUp}
-             className="text-white/80 text-[14px] sm:text-[18px] max-w-[60%] sm:max-w-[480px] leading-relaxed font-medium mb-4 lg:mb-10"
+             className="text-white/80 text-[14px] sm:text-[18px] lg:text-[20px] max-w-[60%] sm:max-w-[480px] lg:max-w-[520px] leading-relaxed font-medium mb-3 lg:mb-8"
              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
            >
              Профессиональная защита территорий. 
@@ -276,7 +276,7 @@ export default function Hero() {
             <motion.a
               variants={fadeUp}
               href={`tel:${company.phone}`}
-              className="inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] font-bold tracking-wide mb-4 lg:mb-8 pointer-events-auto transition-colors duration-300"
+              className="inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] lg:text-[28px] font-bold tracking-wide mb-4 lg:mb-6 pointer-events-auto transition-colors duration-300"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
             >
               {company.phoneDisplay}
