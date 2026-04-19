@@ -262,12 +262,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:hidden absolute left-5 right-5 bottom-[calc(32%+115px)] z-[10] text-white/80 text-[13px] min-[375px]:text-[14px] sm:text-[18px] leading-relaxed font-medium pointer-events-none"
+          className="lg:hidden absolute left-5 right-[165px] bottom-[calc(32%+12px)] z-[10] text-white/80 text-[13px] min-[375px]:text-[14px] sm:text-[18px] leading-snug font-medium pointer-events-none"
           style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
         >
-          Профессиональная защита территорий.
-          Фиксируем цену в договоре <span className="text-white font-bold">от 3 500 ₽</span>{' '}
-          с гарантией результата до 3 лет.
+          Защита территорий <span className="text-white font-bold">от 3 500 ₽</span>.
+          Гарантия по договору до 3 лет.
         </motion.p>
 
         {/* MOBILE 4: CTA buttons */}
