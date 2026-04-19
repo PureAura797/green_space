@@ -138,16 +138,12 @@ export default function Hero() {
             WHITE PROTRUSIONS (Bento Cavities)
             ═══════════════════════════════════════════ */}
 
-        {/* 1. TOP-LEFT: Logo + Phone (desktop) */}
-        <div className="absolute top-0 left-0 rounded-br-[24px] lg:rounded-br-[32px] h-[64px] lg:h-[100px] flex items-center pl-5 pr-6 lg:pl-6 lg:pr-10 gap-4 lg:gap-8 z-[10]" style={{ backgroundColor: FRAME_BG }}>
+        {/* 1. TOP-LEFT: Logo / Branding Area */}
+        <div className="absolute top-0 left-0 rounded-br-[24px] lg:rounded-br-[32px] h-[64px] lg:h-[100px] flex items-center pl-5 pr-6 lg:pl-6 lg:pr-8 z-[10]" style={{ backgroundColor: FRAME_BG }}>
            <span className="text-lg lg:text-3xl font-black tracking-tighter text-[#1D1D1F] flex flex-col leading-[0.85] lg:leading-[0.85]">
              <span>{company.logoLine1}</span>
              <span>{company.logoLine2}</span>
            </span>
-           {/* Phone number — desktop only, in the top-left shelf */}
-           <a href={`tel:${company.phone}`} className="hidden lg:flex items-center text-[#1D1D1F] font-bold text-[16px] tracking-wide hover:text-[#2D6A4F] transition-colors">
-             {company.phoneDisplay}
-           </a>
            <Fillet position="tl" size={24} className="-bottom-[24px] left-0 lg:hidden" color={FRAME_BG} />
            <Fillet position="tl" size={32} className="-bottom-[32px] left-0 hidden lg:block" color={FRAME_BG} />
            <Fillet position="tl" size={24} className="top-0 -right-[24px] lg:hidden" color={FRAME_BG} />
@@ -172,8 +168,7 @@ export default function Hero() {
              </svg>
            </a>
            
-           {/* Phone pill — tablet only (sm-lg), hidden on desktop (moved to top-left shelf) */}
-           <a href={`tel:${company.phone}`} className="hidden sm:flex lg:hidden items-center justify-center h-12 px-7 text-white rounded-full text-[14px] font-bold tracking-wider hover:brightness-110 transition-all shadow-lg" style={{ backgroundColor: ACCENT }}>
+           <a href={`tel:${company.phone}`} className="hidden sm:flex items-center justify-center h-12 px-7 text-white rounded-full text-[14px] font-bold tracking-wider hover:brightness-110 transition-all shadow-lg" style={{ backgroundColor: ACCENT }}>
              {company.phoneDisplay}
            </a>
            
@@ -225,59 +220,24 @@ export default function Hero() {
            <Fillet position="br" size={32} className="bottom-0 -left-[32px]" color={FRAME_BG} />
         </div>
 
-        {/* 4. BOTTOM: "Оперативность 2 часа" — MOBILE ONLY */}
-        <div className="flex lg:hidden absolute bottom-[168px] right-0 rounded-l-[24px] p-3 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
-           <div className="relative overflow-hidden flex flex-col justify-center gap-1 px-5 py-3.5 bg-white rounded-[12px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[140px] h-[80px]">
-              <span className="text-[9px] font-black text-black/40 uppercase tracking-[0.15em] relative z-10">
+        {/* 4. BOTTOM: "Оперативность 2 часа" — right on mobile, left on desktop */}
+        <div className="flex absolute bottom-[168px] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-l-[24px] lg:rounded-l-none lg:rounded-tr-[32px] p-3 lg:p-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+           <div className="relative overflow-hidden flex flex-col justify-center gap-1 lg:gap-1.5 px-5 py-3.5 lg:px-6 lg:py-5 bg-white rounded-[12px] lg:rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[140px] h-[80px] lg:w-[200px] lg:h-[110px]">
+              <span className="text-[9px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.15em] lg:tracking-[0.2em] relative z-10">
                 Оперативность
               </span>
-              <div className="flex items-end gap-1 relative z-10">
-                 <span className="text-[28px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
-                 <span className="text-[13px] font-bold text-black/20 pb-0.5">часа</span>
+              <div className="flex items-end gap-1 lg:gap-1.5 relative z-10">
+                 <span className="text-[28px] lg:text-[36px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
+                 <span className="text-[13px] lg:text-[15px] font-bold text-black/20 pb-0.5">часа</span>
               </div>
+              <span className="hidden lg:block text-[10px] font-semibold text-black/30 mt-0.5">выезд на объект</span>
            </div>
-           <Fillet position="br" size={24} className="-top-[24px] right-0" color={FRAME_BG} />
-           <Fillet position="tr" size={24} className="-bottom-[24px] right-0" color={FRAME_BG} />
-        </div>
-
-        {/* 5. DESKTOP BOTTOM SHELF: Description (left) + CTA (right) */}
-        <div className="hidden lg:flex absolute bottom-0 left-0 rounded-tr-[32px] px-8 py-6 z-[10] items-center gap-10" style={{ backgroundColor: FRAME_BG }}>
-           {/* Description */}
-           <p className="text-[#1D1D1F]/70 text-[15px] max-w-[360px] leading-relaxed font-medium">
-             Профессиональная защита территорий. Фиксируем цену в договоре{' '}
-             <span className="text-[#1D1D1F] font-bold">от 3 500 ₽</span>{' '}
-             с гарантией результата до 3 лет.
-           </p>
-           {/* CTA buttons — stacked */}
-           <div className="flex flex-col gap-2.5">
-              <a
-                href="#contacts"
-                className="group relative overflow-hidden flex items-center justify-between h-[56px] pl-7 pr-2 rounded-full bg-[#2D6A4F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 w-[280px]"
-              >
-                <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-4">
-                  <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Рассчитать стоимость</span>
-                  <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Рассчитать стоимость</span>
-                </div>
-                <div className="w-[44px] h-[44px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-md transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45">
-                  <ArrowUpRight className="w-5 h-5 text-[#2D6A4F]" strokeWidth={2.5} />
-                </div>
-              </a>
-              <a
-                href="#services"
-                className="group relative overflow-hidden flex items-center justify-between h-[56px] pl-7 pr-2 rounded-full bg-[#1D1D1F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 w-[280px]"
-              >
-                <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-4">
-                  <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Наши цены</span>
-                  <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Наши цены</span>
-                </div>
-                <div className="w-[44px] h-[44px] rounded-full bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 group-hover:bg-white">
-                  <ArrowUpRight className="w-5 h-5 text-white group-hover:text-[#1D1D1F] transition-colors duration-300" strokeWidth={2.5} />
-                </div>
-              </a>
-           </div>
-           {/* Fillets */}
-           <Fillet position="bl" size={32} className="-top-[32px] left-0" color={FRAME_BG} />
-           <Fillet position="bl" size={32} className="bottom-0 -right-[32px]" color={FRAME_BG} />
+           {/* Desktop fillets (bottom-left position) */}
+           <Fillet position="bl" size={32} className="-top-[32px] left-0 hidden lg:block" color={FRAME_BG} />
+           <Fillet position="bl" size={32} className="bottom-0 -right-[32px] hidden lg:block" color={FRAME_BG} />
+           {/* Mobile fillets — only RIGHT side (left side uses rounded-l-[24px]) */}
+           <Fillet position="br" size={24} className="-top-[24px] right-0 lg:hidden" color={FRAME_BG} />
+           <Fillet position="tr" size={24} className="-bottom-[24px] right-0 lg:hidden" color={FRAME_BG} />
         </div>
 
         {/* ═══════════════════════════════════════════
@@ -287,7 +247,7 @@ export default function Hero() {
           variants={stagger} 
           initial="hidden" 
           animate="visible" 
-          className="absolute left-3 right-3 lg:right-auto lg:left-16 bottom-[3%] lg:bottom-auto lg:top-[45%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
+          className="absolute left-3 right-3 lg:right-auto lg:left-16 bottom-[3%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none lg:pb-[140px]"
         >
 
            <motion.h1 
@@ -303,7 +263,7 @@ export default function Hero() {
 
            <motion.p
              variants={fadeUp}
-             className="lg:hidden text-white/80 text-[14px] sm:text-[18px] max-w-[60%] sm:max-w-[480px] leading-relaxed font-medium mb-3"
+             className="text-white/80 text-[14px] sm:text-[18px] lg:text-[20px] max-w-[60%] sm:max-w-[480px] lg:max-w-[520px] leading-relaxed font-medium mb-3 lg:mb-8"
              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
            >
              Профессиональная защита территорий. 
@@ -312,17 +272,17 @@ export default function Hero() {
            </motion.p>
 
 
-            {/* Phone number — mobile only (desktop → top-left shelf) */}
+            {/* Phone number — clean text, no icon */}
             <motion.a
               variants={fadeUp}
               href={`tel:${company.phone}`}
-              className="lg:hidden inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] font-bold tracking-wide mb-4 pointer-events-auto transition-colors duration-300"
+              className="inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] lg:text-[28px] font-bold tracking-wide mb-4 lg:mb-6 pointer-events-auto transition-colors duration-300"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
             >
               {company.phoneDisplay}
             </motion.a>
 
-           <motion.div variants={fadeUp} className="lg:hidden bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[20px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto sm:w-fit w-full">
+           <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[20px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
                href="#contacts"
                className="group relative overflow-hidden flex items-center justify-between h-[48px] lg:h-[68px] pl-5 pr-1.5 lg:pl-8 lg:pr-2.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full" 
