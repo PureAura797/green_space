@@ -25,9 +25,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 lg:gap-24">
           {/* Col 1 */}
           <ScrollRevealItem baseY={20} className="flex flex-col gap-8 max-w-sm">
-            <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
-              <img src="/icons/logo.svg" alt={company.brandName} className="h-[40px] md:h-[48px] w-auto brightness-0 invert" />
-              <span className="text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-white/40 uppercase leading-tight">Зелёный<br/>Контур</span>
+            <Link href="/" className="flex items-center gap-5 hover:opacity-80 transition-opacity">
+              <img src="/icons/logo.svg" alt={company.brandName} className="h-[56px] md:h-[56px] w-auto brightness-0 invert" />
+              <span className="text-[14px] md:text-[13px] font-bold tracking-[0.2em] text-white/40 uppercase leading-tight">Зелёный<br/>Контур</span>
             </Link>
             <p className="text-white/50 text-base font-medium tracking-tight leading-relaxed">
               Профессиональная защита земельных участков, дезинсекция и арбористика. Работаем с выездом по Москве и области.

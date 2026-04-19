@@ -1,0 +1,17 @@
+{
+  "name": "Зелёный Контур",
+  "short_name": "ЗК",
+  "description": "Профессиональная защита территорий — уничтожение клещей, борщевика и арбористика",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F5F0",
+  "theme_color": "#1D1D1F",
+  "icons": [
+    {
+      "src": "/icons/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
