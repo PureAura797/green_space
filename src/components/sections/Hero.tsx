@@ -222,25 +222,22 @@ export default function Hero() {
 
         {/* 4. BOTTOM: "Оперативность 2 часа" — right on mobile, left on desktop */}
         <div className="flex absolute bottom-[168px] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-l-[24px] lg:rounded-l-none lg:rounded-tr-[32px] p-3 lg:p-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
-           {/* inner_radius = outer_radius(24) - padding(12) = 12px mobile */}
-           <div className="relative overflow-hidden flex flex-col justify-center gap-0.5 lg:gap-1.5 px-4 py-3 lg:px-6 lg:py-5 bg-white rounded-[12px] lg:rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[120px] h-[68px] lg:w-[200px] lg:h-[110px]">
-              <span className="text-[7px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.15em] lg:tracking-[0.2em] relative z-10">
+           <div className="relative overflow-hidden flex flex-col justify-center gap-1 lg:gap-1.5 px-5 py-3.5 lg:px-6 lg:py-5 bg-white rounded-[12px] lg:rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[140px] h-[80px] lg:w-[200px] lg:h-[110px]">
+              <span className="text-[9px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.15em] lg:tracking-[0.2em] relative z-10">
                 Оперативность
               </span>
               <div className="flex items-end gap-1 lg:gap-1.5 relative z-10">
-                 <span className="text-[22px] lg:text-[36px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
-                 <span className="text-[11px] lg:text-[15px] font-bold text-black/20 pb-0.5">часа</span>
+                 <span className="text-[28px] lg:text-[36px] font-black text-[#1D1D1F] leading-[0.85] tracking-tight">2</span>
+                 <span className="text-[13px] lg:text-[15px] font-bold text-black/20 pb-0.5">часа</span>
               </div>
               <span className="hidden lg:block text-[10px] font-semibold text-black/30 mt-0.5">выезд на объект</span>
            </div>
            {/* Desktop fillets (bottom-left position) */}
            <Fillet position="bl" size={32} className="-top-[32px] left-0 hidden lg:block" color={FRAME_BG} />
            <Fillet position="bl" size={32} className="bottom-0 -right-[32px] hidden lg:block" color={FRAME_BG} />
-           {/* Mobile fillets (right-side floating, top + bottom) */}
+           {/* Mobile fillets — only RIGHT side (left side uses rounded-l-[24px]) */}
            <Fillet position="br" size={24} className="-top-[24px] right-0 lg:hidden" color={FRAME_BG} />
            <Fillet position="tr" size={24} className="-bottom-[24px] right-0 lg:hidden" color={FRAME_BG} />
-           <Fillet position="br" size={24} className="bottom-0 -left-[24px] lg:hidden" color={FRAME_BG} />
-           <Fillet position="tr" size={24} className="top-0 -left-[24px] lg:hidden" color={FRAME_BG} />
         </div>
 
         {/* ═══════════════════════════════════════════
