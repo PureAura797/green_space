@@ -5,47 +5,27 @@ import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollR
 const STEPS = [
   {
     id: '01',
-    title: 'Быстрая заявка',
-    description: 'Вы просто оставляете заявку или звоните нам. Мы перезваниваем в течение 5 минут и сразу согласовываем удобное время.',
+    title: 'Быстрая\nзаявка',
+    description: 'Оставляете заявку или звоните — перезваниваем в течение 5 минут и согласовываем время.',
     tag: 'до 5 мин',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-      </svg>
-    ),
   },
   {
     id: '02',
-    title: 'Бесплатный осмотр',
-    description: 'Инженер приедет точно в срок, бесплатно осмотрит участок и честно расскажет, что нужно сделать (без скрытых доплат).',
+    title: 'Бесплатный\nосмотр',
+    description: 'Инженер приедет в срок, осмотрит участок и честно расскажет, что нужно сделать.',
     tag: '1 день',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
-      </svg>
-    ),
   },
   {
     id: '03',
-    title: 'Эко-обработка',
-    description: 'Идеально чистая работа. Наши специалисты всё подготовят, сделают свою работу на 100% и аккуратно уберут за собой.',
+    title: 'Эко-\nобработка',
+    description: 'Специалисты подготовят участок, выполнят работу на 100% и аккуратно уберут за собой.',
     tag: 'от 2 часов',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-      </svg>
-    ),
   },
   {
     id: '04',
-    title: 'Официальная гарантия',
-    description: 'Контролируем результат. Бесплатно приедем и сделаем повторную обработку по первому же зову, если что-то пошло не так.',
-    tag: 'гарантия по договору',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/>
-      </svg>
-    ),
+    title: 'Гарантия\nрезультата',
+    description: 'Контролируем результат. Бесплатно приедем повторно, если что-то пошло не так.',
+    tag: 'по договору',
   },
 ];
 
@@ -69,39 +49,43 @@ export default function HowWeWork() {
           </div>
           <ScrollRevealItem baseY={30} className="md:w-1/3 mt-8 md:mt-0">
             <p className="text-[#1D1D1F]/60 text-base md:text-lg font-medium tracking-tight leading-relaxed">
-              От первой заявки до финального результата — всего 4 простых шага с прозрачной коммуникацией на каждом этапе.
+              От первой заявки до финального результата — 4 простых шага с прозрачной коммуникацией на каждом этапе.
             </p>
           </ScrollRevealItem>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-          {STEPS.map((step) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+          {STEPS.map((step, i) => (
             <ScrollRevealItem
               key={step.id}
-              className="relative flex flex-col p-6 lg:p-8 bg-white rounded-[32px] border border-black/5 hover:border-black/10 hover:-translate-y-2 transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] h-full"
+              className="group relative flex flex-col bg-white rounded-[32px] overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_80px_rgba(0,0,0,0.08)]"
             >
-              {/* Header: Title & Big Number */}
-              <div className="flex justify-between items-start mb-10 w-full">
-                <h4 className="text-2xl font-black tracking-tight leading-[1.1] text-[#1D1D1F] max-w-[75%]">
+              {/* Top accent zone — green gradient header */}
+              <div className="relative h-[180px] lg:h-[200px] bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] flex items-end p-7 lg:p-8 overflow-hidden">
+                {/* Watermark number */}
+                <span
+                  className="absolute -right-2 -top-4 text-[160px] font-black leading-none text-white/[0.08] select-none pointer-events-none tracking-tighter"
+                  aria-hidden="true"
+                >
+                  {step.id}
+                </span>
+                {/* Title */}
+                <h4 className="relative z-10 text-[26px] lg:text-[28px] font-black text-white leading-[1.05] tracking-tight whitespace-pre-line">
                   {step.title}
                 </h4>
-                <div className="text-4xl lg:text-[44px] leading-none font-black text-black/10 tracking-tighter shrink-0 select-none">
-                  {step.id}
-                </div>
               </div>
 
-              {/* Description */}
-              <p className="text-[15px] font-medium text-black/50 leading-relaxed mb-auto pb-8">
-                {step.description}
-              </p>
-
-              {/* Footer: Icon & Tag */}
-              <div className="mt-8 pt-6 border-t border-black/5 flex justify-between items-center w-full">
-                <div className="w-12 h-12 rounded-full bg-[#F5F5F0] flex items-center justify-center text-[#2D6A4F]">
-                  {step.icon}
-                </div>
-                <div className="px-4 py-2 bg-[#F5F5F0] rounded-full text-[11px] font-bold uppercase tracking-widest text-[#1D1D1F]/50">
-                  <span className="text-sm font-bold tracking-tight text-[#1D1D1F]">{step.tag}</span>
+              {/* Bottom content zone */}
+              <div className="flex flex-col flex-1 p-7 lg:p-8 pt-6">
+                <p className="text-[14px] font-medium text-black/45 leading-[1.7] mb-8">
+                  {step.description}
+                </p>
+                {/* Tag */}
+                <div className="mt-auto flex items-center gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#2D6A4F]" />
+                  <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#1D1D1F]">
+                    {step.tag}
+                  </span>
                 </div>
               </div>
             </ScrollRevealItem>

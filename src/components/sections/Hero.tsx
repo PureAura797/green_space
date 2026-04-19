@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Send, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { company } from '@/lib/site-data';
 
@@ -124,9 +124,9 @@ export default function Hero() {
         {/* Z-0: Poster background (instant paint) + deferred video */}
         <div 
           className="absolute inset-0 w-full h-full z-0 opacity-90 pointer-events-none bg-cover bg-center"
-          style={{ backgroundImage: 'url(/images/videos/01_ticks.png)' }}
+          style={{ backgroundImage: 'url(/images/hero_poster.jpg)' }}
           dangerouslySetInnerHTML={{
-            __html: `<video id="hero-bg-video" class="w-full h-full object-cover" poster="/images/videos/01_ticks.png" autoplay loop muted playsinline preload="metadata"></video>`
+            __html: `<video id="hero-bg-video" class="w-full h-full object-cover" poster="/images/hero_poster.jpg" autoplay loop muted playsinline preload="metadata"></video>`
           }}
         />
         
@@ -159,7 +159,7 @@ export default function Hero() {
            </div>
            
            <a href={company.telegramUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
-             <Send className="w-4 h-4 lg:w-[18px] lg:h-[18px] -ml-0.5" />
+              <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 lg:w-[18px] lg:h-[18px]"><path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/></svg>
            </a>
 
            <a href={company.maxUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 bg-black text-white rounded-full hover:scale-105 hover:bg-[#111] transition-transform shrink-0 shadow-lg">
@@ -221,7 +221,7 @@ export default function Hero() {
         </div>
 
         {/* 4. BOTTOM: "Оперативность 2 часа" — right on mobile, left on desktop */}
-        <div className="flex absolute bottom-[168px] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-l-[24px] lg:rounded-l-none lg:rounded-tr-[32px] p-3 lg:p-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+        <div className="flex absolute bottom-[210px] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-l-[24px] lg:rounded-l-none lg:rounded-tr-[32px] p-3 lg:p-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
            <div className="relative overflow-hidden flex flex-col justify-center gap-1 lg:gap-1.5 px-5 py-3.5 lg:px-6 lg:py-5 bg-white rounded-[12px] lg:rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[140px] h-[80px] lg:w-[200px] lg:h-[110px]">
               <span className="text-[9px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.15em] lg:tracking-[0.2em] relative z-10">
                 Оперативность
@@ -241,94 +241,129 @@ export default function Hero() {
         </div>
 
         {/* ═══════════════════════════════════════════
-            MAIN CONTENT (Center-Left)
+            MOBILE CONTENT — 4 independent blocks
             ═══════════════════════════════════════════ */}
-        <motion.div 
-          variants={stagger} 
-          initial="hidden" 
-          animate="visible" 
-          className="absolute left-3 right-3 lg:right-auto lg:left-16 bottom-[3%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none lg:pb-[140px]"
+
+
+
+        {/* MOBILE 2: Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:hidden absolute left-5 right-3 bottom-[52%] z-[10] text-[44px] min-[375px]:text-[50px] sm:text-[68px] font-black text-white leading-[1.05] tracking-[-0.03em] break-words hyphens-auto pointer-events-none"
+          style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
         >
+          Безопасность<br/>вашего<br/>
+          <span className="text-transparent bg-clip-text pr-2" style={{ backgroundImage: 'linear-gradient(to right, #ffffff, rgba(255,255,255,0.5))' }}>
+            участка<span style={{ color: ACCENT }}>.</span>
+          </span>
+        </motion.h1>
 
-           <motion.h1 
-             variants={fadeUp} 
-             className="text-[36px] min-[375px]:text-[42px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-3 lg:mb-6 break-words hyphens-auto"
-             style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
-           >
-             Безопасность<br/>вашего<br/>
-             <span className="text-transparent bg-clip-text pr-2" style={{ backgroundImage: 'linear-gradient(to right, #ffffff, rgba(255,255,255,0.5))' }}>
-               участка<span style={{ color: ACCENT }}>.</span>
-             </span>
-           </motion.h1>
+        {/* MOBILE 3: Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:hidden absolute left-5 right-[180px] bottom-[235px] z-[10] text-white/80 text-[14px] sm:text-[18px] leading-relaxed font-medium pointer-events-none"
+          style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
+        >
+          Профессиональная защита территорий.
+          Фиксируем цену в договоре <span className="text-white font-bold">от 3 500 ₽</span>{' '}
+          с гарантией результата до 3 лет.
+        </motion.p>
 
-           <motion.p
-             variants={fadeUp}
-             className="text-white/80 text-[14px] sm:text-[18px] lg:text-[20px] max-w-[60%] sm:max-w-[480px] lg:max-w-[520px] leading-relaxed font-medium mb-3 lg:mb-8"
-             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
-           >
-             Профессиональная защита территорий. 
-             Фиксируем цену в договоре <span className="text-white font-bold">от 3 500 ₽</span>{' '}
-             с гарантией результата до 3 лет.
-           </motion.p>
-
-
-            {/* Phone number — clean text, no icon */}
-            <motion.a
-              variants={fadeUp}
-              href={`tel:${company.phone}`}
-              className="inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] lg:text-[28px] font-bold tracking-wide mb-4 lg:mb-6 pointer-events-auto transition-colors duration-300"
-              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
-            >
-              {company.phoneDisplay}
-            </motion.a>
-
-           <motion.div variants={fadeUp} className="lg:hidden bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[20px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto sm:w-fit w-full">
-             <a 
-               href="#contacts"
-               className="group relative overflow-hidden flex items-center justify-between h-[48px] lg:h-[68px] pl-5 pr-1.5 lg:pl-8 lg:pr-2.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full" 
-             >
-               {/* Rolling Text Wrapper */}
-               <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
-                 <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
-                   Рассчитать стоимость
-                 </span>
-                 <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
-                   Рассчитать стоимость
-                 </span>
-               </div>
-               <div className="w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-md transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45">
-                 <ArrowUpRight className="w-5 h-5 text-[#2D6A4F]" strokeWidth={2.5} />
-               </div>
-             </a>
-             <a 
-               href="#services"
-               className="group relative overflow-hidden flex items-center justify-between h-[48px] lg:h-[68px] pl-5 pr-1.5 lg:pl-8 lg:pr-2.5 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 sm:w-auto w-full"
-             >
-               {/* Rolling Text Wrapper */}
-               <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
-                 <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
-                   Наши цены
-                 </span>
-                 <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
-                   Наши цены
-                 </span>
-               </div>
-               <div className="w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] rounded-full bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 group-hover:bg-white">
-                 <ArrowUpRight className="w-5 h-5 text-white group-hover:text-[#1D1D1F] transition-colors duration-300" strokeWidth={2.5} />
-               </div>
-             </a>
-           </motion.div>
+        {/* MOBILE 4: CTA buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:hidden absolute left-5 right-5 bottom-6 z-[10] bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[28px] shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto"
+        >
+          <a
+            href="#contacts"
+            className="group relative overflow-hidden flex items-center justify-between h-[48px] pl-5 pr-1.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full"
+          >
+            <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
+              <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
+                Рассчитать стоимость
+              </span>
+              <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
+                Рассчитать стоимость
+              </span>
+            </div>
+            <div className="w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-md transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45">
+              <ArrowUpRight className="w-5 h-5 text-[#2D6A4F]" strokeWidth={2.5} />
+            </div>
+          </a>
+          <a
+            href="#services"
+            className="group relative overflow-hidden flex items-center justify-between h-[48px] pl-5 pr-1.5 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 sm:w-auto w-full"
+          >
+            <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
+              <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
+                Наши цены
+              </span>
+              <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
+                Наши цены
+              </span>
+            </div>
+            <div className="w-[40px] h-[40px] rounded-full bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 group-hover:bg-white">
+              <ArrowUpRight className="w-5 h-5 text-white group-hover:text-[#1D1D1F] transition-colors duration-300" strokeWidth={2.5} />
+            </div>
+          </a>
+          <a
+            href={`tel:${company.phone}`}
+            className="group flex items-center justify-between h-[48px] pl-5 pr-1.5 rounded-full bg-black/[0.04] text-[#1D1D1F] font-bold text-[13px] tracking-[0.05em] transition-all hover:bg-black/[0.07] active:scale-95 w-full"
+          >
+            <span className="text-[13px] font-bold tracking-wider">{company.phoneDisplay}</span>
+            <div className="w-[40px] h-[40px] rounded-full bg-[#2D6A4F] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <Phone className="w-4 h-4 text-white" strokeWidth={2.5} />
+            </div>
+          </a>
         </motion.div>
+
+        {/* ═══════════════════════════════════════════
+            DESKTOP CONTENT — heading + description only
+            ═══════════════════════════════════════════ */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="visible"
+          className="hidden lg:block absolute lg:left-16 lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
+        >
+          <motion.h1
+            variants={fadeUp}
+            className="text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-6 break-words hyphens-auto"
+            style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
+          >
+            Безопасность<br/>вашего<br/>
+            <span className="text-transparent bg-clip-text pr-2" style={{ backgroundImage: 'linear-gradient(to right, #ffffff, rgba(255,255,255,0.5))' }}>
+              участка<span style={{ color: ACCENT }}>.</span>
+            </span>
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            className="text-white/80 text-[20px] max-w-[520px] leading-relaxed font-medium mb-8"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
+          >
+            Профессиональная защита территорий.
+            Фиксируем цену в договоре <span className="text-white font-bold">от 3 500 ₽</span>{' '}
+            с гарантией результата до 3 лет.
+          </motion.p>
+        </motion.div>
+
 
         {/* DESKTOP CTA — bottom-right inner corner, stacked in white pill */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden lg:flex absolute bottom-[24px] right-[400px] z-[10] bg-white/95 backdrop-blur-xl p-2.5 rounded-[20px] shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex-col gap-2 pointer-events-auto"
+          className="hidden lg:flex absolute bottom-[20px] right-[380px] z-[10] bg-white/95 backdrop-blur-xl p-2.5 rounded-[28px] shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex-col gap-2 pointer-events-auto"
         >
-          <a href="#contacts" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#2D6A4F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 w-[300px]">
-            <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-4">
+          <a href="#contacts" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] uppercase tracking-[0.08em] transition-all hover:bg-[#245640] active:scale-95 w-[340px]">
+            <div className="relative overflow-hidden inline-flex items-center h-[24px] mr-4">
               <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Рассчитать стоимость</span>
               <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Рассчитать стоимость</span>
             </div>
@@ -336,8 +371,8 @@ export default function Hero() {
               <ArrowUpRight className="w-5 h-5 text-[#2D6A4F]" strokeWidth={2.5} />
             </div>
           </a>
-          <a href="#services" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#1D1D1F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 w-[300px]">
-            <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-4">
+          <a href="#services" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] uppercase tracking-[0.08em] transition-all hover:bg-black active:scale-95 w-[340px]">
+            <div className="relative overflow-hidden inline-flex items-center h-[24px] mr-4">
               <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Наши цены</span>
               <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Наши цены</span>
             </div>
