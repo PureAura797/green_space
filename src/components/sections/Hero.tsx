@@ -221,7 +221,7 @@ export default function Hero() {
         </div>
 
         {/* 4. BOTTOM: "Оперативность 2 часа" — right on mobile, left on desktop */}
-        <div className="flex absolute bottom-[140px] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-tl-[24px] lg:rounded-tl-none lg:rounded-tr-[32px] p-3 lg:p-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
+        <div className="flex absolute bottom-[168px] lg:bottom-0 right-0 lg:right-auto lg:left-0 rounded-tl-[24px] lg:rounded-tl-none lg:rounded-tr-[32px] p-3 lg:p-6 z-[10] items-center" style={{ backgroundColor: FRAME_BG }}>
            {/* inner_radius = outer_radius(24) - padding(12) = 12px mobile, 32-24=8 nah, use 20px desktop for visual balance */}
            <div className="relative overflow-hidden flex flex-col justify-center gap-0.5 lg:gap-1.5 px-4 py-3 lg:px-6 lg:py-5 bg-white rounded-[12px] lg:rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] w-[120px] h-[68px] lg:w-[200px] lg:h-[110px]">
               <span className="text-[7px] lg:text-[10px] font-black text-black/40 uppercase tracking-[0.15em] lg:tracking-[0.2em] relative z-10">
@@ -248,7 +248,7 @@ export default function Hero() {
           variants={stagger} 
           initial="hidden" 
           animate="visible" 
-          className="absolute left-4 right-4 lg:right-auto lg:left-16 bottom-[4%] lg:bottom-auto lg:top-[calc(50%+48px)] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
+          className="absolute left-3 right-3 lg:right-auto lg:left-16 bottom-[3%] lg:bottom-auto lg:top-[calc(50%+48px)] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none"
         >
 
            <motion.h1 
@@ -283,10 +283,10 @@ export default function Hero() {
               {company.phoneDisplay}
             </motion.a>
 
-           <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-2 sm:p-2.5 rounded-[24px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pointer-events-auto sm:w-fit w-full">
+           <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[20px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
                href="#contacts"
-               className="group relative overflow-hidden flex items-center justify-between h-[52px] lg:h-[68px] pl-6 pr-2 lg:pl-8 lg:pr-2.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full" 
+               className="group relative overflow-hidden flex items-center justify-between h-[48px] lg:h-[68px] pl-5 pr-1.5 lg:pl-8 lg:pr-2.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full" 
              >
                {/* Rolling Text Wrapper */}
                <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
@@ -297,13 +297,13 @@ export default function Hero() {
                    Рассчитать стоимость
                  </span>
                </div>
-               <div className="w-[44px] h-[44px] lg:w-[48px] lg:h-[48px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-md transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45">
+               <div className="w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-md transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45">
                  <ArrowUpRight className="w-5 h-5 text-[#2D6A4F]" strokeWidth={2.5} />
                </div>
              </a>
              <a 
                href="#services"
-               className="group relative overflow-hidden flex items-center justify-between h-[52px] lg:h-[68px] pl-6 pr-2 lg:pl-8 lg:pr-2.5 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 sm:w-auto w-full"
+               className="group relative overflow-hidden flex items-center justify-between h-[48px] lg:h-[68px] pl-5 pr-1.5 lg:pl-8 lg:pr-2.5 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 sm:w-auto w-full"
              >
                {/* Rolling Text Wrapper */}
                <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
@@ -314,7 +314,7 @@ export default function Hero() {
                    Наши цены
                  </span>
                </div>
-               <div className="w-[44px] h-[44px] lg:w-[48px] lg:h-[48px] rounded-full bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 group-hover:bg-white">
+               <div className="w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] rounded-full bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 group-hover:bg-white">
                  <ArrowUpRight className="w-5 h-5 text-white group-hover:text-[#1D1D1F] transition-colors duration-300" strokeWidth={2.5} />
                </div>
              </a>
