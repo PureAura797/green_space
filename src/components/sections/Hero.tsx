@@ -241,18 +241,17 @@ export default function Hero() {
         </div>
 
         {/* ═══════════════════════════════════════════
-            MAIN CONTENT (Center-Left)
+            MAIN CONTENT — MOBILE STACK (lg:hidden)
             ═══════════════════════════════════════════ */}
         <motion.div 
           variants={stagger} 
           initial="hidden" 
           animate="visible" 
-          className="absolute left-3 right-3 lg:right-auto lg:left-16 bottom-[3%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none lg:pb-[140px]"
+          className="lg:hidden absolute left-3 right-3 bottom-[3%] z-[10] max-w-3xl pointer-events-none"
         >
-
            <motion.h1 
              variants={fadeUp} 
-             className="text-[36px] min-[375px]:text-[42px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-3 lg:mb-6 break-words hyphens-auto"
+             className="text-[36px] min-[375px]:text-[42px] sm:text-[68px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-3 break-words hyphens-auto"
              style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
            >
              Безопасность<br/>вашего<br/>
@@ -260,65 +259,115 @@ export default function Hero() {
                участка<span style={{ color: ACCENT }}>.</span>
              </span>
            </motion.h1>
-
            <motion.p
              variants={fadeUp}
-             className="text-white/80 text-[14px] sm:text-[18px] lg:text-[20px] max-w-[60%] sm:max-w-[480px] lg:max-w-[520px] leading-relaxed font-medium mb-3 lg:mb-8"
+             className="text-white/80 text-[14px] sm:text-[18px] max-w-[60%] sm:max-w-[480px] leading-relaxed font-medium mb-3"
              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
            >
              Профессиональная защита территорий. 
              Фиксируем цену в договоре <span className="text-white font-bold">от 3 500 ₽</span>{' '}
              с гарантией результата до 3 лет.
            </motion.p>
-
-
-            {/* Phone number — clean text, no icon */}
-            <motion.a
-              variants={fadeUp}
-              href={`tel:${company.phone}`}
-              className="inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] lg:text-[28px] font-bold tracking-wide mb-4 lg:mb-6 pointer-events-auto transition-colors duration-300"
-              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
-            >
-              {company.phoneDisplay}
-            </motion.a>
-
+           <motion.a
+             variants={fadeUp}
+             href={`tel:${company.phone}`}
+             className="inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] font-bold tracking-wide mb-4 pointer-events-auto transition-colors duration-300"
+             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
+           >
+             {company.phoneDisplay}
+           </motion.a>
            <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[20px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto sm:w-fit w-full">
-             <a 
-               href="#contacts"
-               className="group relative overflow-hidden flex items-center justify-between h-[48px] lg:h-[68px] pl-5 pr-1.5 lg:pl-8 lg:pr-2.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full" 
-             >
-               {/* Rolling Text Wrapper */}
+             <a href="#contacts" className="group relative overflow-hidden flex items-center justify-between h-[48px] pl-5 pr-1.5 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 sm:w-auto w-full">
                <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
-                 <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
-                   Рассчитать стоимость
-                 </span>
-                 <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
-                   Рассчитать стоимость
-                 </span>
+                 <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Рассчитать стоимость</span>
+                 <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Рассчитать стоимость</span>
                </div>
-               <div className="w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-md transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45">
+               <div className="w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-md transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45">
                  <ArrowUpRight className="w-5 h-5 text-[#2D6A4F]" strokeWidth={2.5} />
                </div>
              </a>
-             <a 
-               href="#services"
-               className="group relative overflow-hidden flex items-center justify-between h-[48px] lg:h-[68px] pl-5 pr-1.5 lg:pl-8 lg:pr-2.5 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] lg:text-[15px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 sm:w-auto w-full"
-             >
-               {/* Rolling Text Wrapper */}
+             <a href="#services" className="group relative overflow-hidden flex items-center justify-between h-[48px] pl-5 pr-1.5 rounded-full bg-[#1D1D1F] text-white font-bold text-[13px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 sm:w-auto w-full">
                <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-6">
-                 <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">
-                   Наши цены
-                 </span>
-                 <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">
-                   Наши цены
-                 </span>
+                 <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Наши цены</span>
+                 <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Наши цены</span>
                </div>
-               <div className="w-[40px] h-[40px] lg:w-[48px] lg:h-[48px] rounded-full bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 group-hover:bg-white">
+               <div className="w-[40px] h-[40px] rounded-full bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 group-hover:bg-white">
                  <ArrowUpRight className="w-5 h-5 text-white group-hover:text-[#1D1D1F] transition-colors duration-300" strokeWidth={2.5} />
                </div>
              </a>
            </motion.div>
         </motion.div>
+
+        {/* ═══════════════════════════════════════════
+            DESKTOP CONTENT — distributed to 4 corners
+            ═══════════════════════════════════════════ */}
+
+        {/* CORNER 1: Phone — top-left inner corner (below logo) */}
+        <motion.a
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          href={`tel:${company.phone}`}
+          className="hidden lg:inline-block absolute top-[120px] left-8 z-[10] text-white/90 hover:text-white text-[24px] font-bold tracking-wide pointer-events-auto transition-colors duration-300"
+          style={{ textShadow: '0 2px 30px rgba(0,0,0,0.7)' }}
+        >
+          {company.phoneDisplay}
+        </motion.a>
+
+        {/* CORNER 2: Heading — center-left, vertically centered */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.7 }}
+          className="hidden lg:block absolute top-[50%] left-16 -translate-y-1/2 z-[10] text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] pointer-events-none"
+          style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
+        >
+          Безопасность<br/>вашего<br/>
+          <span className="text-transparent bg-clip-text pr-2" style={{ backgroundImage: 'linear-gradient(to right, #ffffff, rgba(255,255,255,0.5))' }}>
+            участка<span style={{ color: ACCENT }}>.</span>
+          </span>
+        </motion.h1>
+
+        {/* CORNER 3: Description — bottom-right inner corner (left of rating) */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="hidden lg:block absolute bottom-[24px] right-[400px] z-[10] text-white/80 text-[18px] max-w-[380px] leading-relaxed font-medium pointer-events-none"
+          style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
+        >
+          Профессиональная защита территорий. 
+          Фиксируем цену в договоре <span className="text-white font-bold">от 3 500 ₽</span>{' '}
+          с гарантией результата до 3 лет.
+        </motion.p>
+
+        {/* CORNER 4: CTA — bottom-left inner corner (above "2ч" cutout), stacked */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+          className="hidden lg:flex absolute bottom-[140px] left-8 z-[10] flex-col gap-3 pointer-events-auto"
+        >
+          <a href="#contacts" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#2D6A4F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-[#245640] active:scale-95 w-[300px] shadow-[0_10px_40px_rgba(0,0,0,0.3)]">
+            <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-4">
+              <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Рассчитать стоимость</span>
+              <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Рассчитать стоимость</span>
+            </div>
+            <div className="w-[44px] h-[44px] rounded-full bg-white flex items-center justify-center shrink-0 shadow-md transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45">
+              <ArrowUpRight className="w-5 h-5 text-[#2D6A4F]" strokeWidth={2.5} />
+            </div>
+          </a>
+          <a href="#services" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#1D1D1F] text-white font-bold text-[14px] uppercase tracking-[0.1em] transition-all hover:bg-black active:scale-95 w-[300px] shadow-[0_10px_40px_rgba(0,0,0,0.3)]">
+            <div className="relative overflow-hidden inline-flex items-center h-[20px] mr-4">
+              <span className="block transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[120%]">Наши цены</span>
+              <span className="absolute inset-0 flex items-center justify-start translate-y-[120%] transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0" aria-hidden="true">Наши цены</span>
+            </div>
+            <div className="w-[44px] h-[44px] rounded-full bg-white/10 flex items-center justify-center shrink-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-45 group-hover:bg-white">
+              <ArrowUpRight className="w-5 h-5 text-white group-hover:text-[#1D1D1F] transition-colors duration-300" strokeWidth={2.5} />
+            </div>
+          </a>
+        </motion.div>
+
 
          <div className="hidden lg:flex absolute top-[15vh] right-[5%] lg:right-[8%] z-[5] pointer-events-none flex-col gap-10 items-end">
              <FloatingPointer service={SERVICES[0]} lineClass="w-12" />
