@@ -247,12 +247,12 @@ export default function Hero() {
           variants={stagger} 
           initial="hidden" 
           animate="visible" 
-          className="absolute left-3 right-3 lg:right-auto lg:left-16 bottom-[3%] lg:bottom-[24px] lg:top-[120px] z-[10] max-w-3xl pointer-events-none lg:flex lg:flex-col lg:justify-between"
+          className="absolute left-3 right-3 lg:right-auto lg:left-16 bottom-[3%] lg:bottom-auto lg:top-[50%] lg:-translate-y-1/2 z-[10] max-w-3xl pointer-events-none lg:pb-[140px]"
         >
 
            <motion.h1 
              variants={fadeUp} 
-             className="text-[36px] min-[375px]:text-[42px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-3 lg:mb-0 break-words hyphens-auto"
+             className="text-[36px] min-[375px]:text-[42px] sm:text-[68px] lg:text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-3 lg:mb-6 break-words hyphens-auto"
              style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
            >
              Безопасность<br/>вашего<br/>
@@ -261,11 +261,9 @@ export default function Hero() {
              </span>
            </motion.h1>
 
-           {/* Middle group: description + phone */}
-           <div>
            <motion.p
              variants={fadeUp}
-              className="text-white/80 text-[14px] sm:text-[18px] lg:text-[20px] max-w-[60%] sm:max-w-[480px] lg:max-w-[520px] leading-relaxed font-medium mb-3 lg:mb-4"
+             className="text-white/80 text-[14px] sm:text-[18px] lg:text-[20px] max-w-[60%] sm:max-w-[480px] lg:max-w-[520px] leading-relaxed font-medium mb-3 lg:mb-8"
              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
            >
              Профессиональная защита территорий. 
@@ -278,14 +276,11 @@ export default function Hero() {
             <motion.a
               variants={fadeUp}
               href={`tel:${company.phone}`}
-              className="inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] lg:text-[28px] font-bold tracking-wide mb-4 lg:mb-0 pointer-events-auto transition-colors duration-300"
+              className="inline-block text-white/90 hover:text-white text-[18px] sm:text-[24px] lg:text-[28px] font-bold tracking-wide mb-4 lg:mb-6 pointer-events-auto transition-colors duration-300"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
             >
               {company.phoneDisplay}
             </motion.a>
-           </div>
-
-           {/* Bottom group: CTA */}
 
            <motion.div variants={fadeUp} className="bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[20px] sm:rounded-full shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto sm:w-fit w-full">
              <a 
