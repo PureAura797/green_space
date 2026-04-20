@@ -12,10 +12,10 @@ export const company = {
   priceRange: 'от 3 500 ₽',
   areaServed: ['Москва', 'Московская область'],
   serviceAreaLabel: 'Москва и Московская область',
-  telegramUrl: 'http://t.me/gardendez',
+  telegramUrl: 'https://t.me/green_outline',
   maxUrl: 'https://max.ru/u/f9LHodD0cOLKNnLRWaIf4ovFT8ZmEZipdSgZP_TGY1dfHYWkff3SZ0Jmhws',
   sameAs: [
-    'http://t.me/gardendez',
+    'https://t.me/green_outline',
     'https://max.ru/u/f9LHodD0cOLKNnLRWaIf4ovFT8ZmEZipdSgZP_TGY1dfHYWkff3SZ0Jmhws',
   ],
   ogImage: '/images/lead-bg.png',

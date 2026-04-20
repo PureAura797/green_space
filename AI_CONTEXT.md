@@ -85,7 +85,7 @@ Lead forms:
 - Required env vars are documented in `.env.example`.
 - The recipient/contact email is `dezinsektsiauchastkov@yandex.ru`.
 - MAX messenger URL is `https://max.ru/u/f9LHodD0cOLKNnLRWaIf4ovFT8ZmEZipdSgZP_TGY1dfHYWkff3SZ0Jmhws`.
-- Telegram URL is `http://t.me/gardendez`.
+- Telegram URL is `https://t.me/green_outline`.
 - Do not commit real SMTP passwords; set `SMTP_PASS` in local `.env.local` and Vercel environment variables.
 
 Production build:
@@ -127,7 +127,7 @@ This is fine for animation-heavy UI, but static content could later be moved to 
    - Without `SMTP_PASS`, `/api/lead` returns a clear setup error instead of pretending success.
 
 2. External contact links should be rechecked before production.
-   - Telegram currently uses `http://t.me/gardendez`.
+   - Telegram currently uses `https://t.me/green_outline`.
    - MAX currently uses the provided `max.ru` profile URL.
    - Email currently uses `dezinsektsiauchastkov@yandex.ru`.
 
@@ -139,7 +139,7 @@ This is fine for animation-heavy UI, but static content could later be moved to 
 4. Real business data should be verified.
    - Phone: `+7 (999) 895-99-89`
    - Email: `dezinsektsiauchastkov@yandex.ru`
-   - Telegram: `http://t.me/gardendez`
+   - Telegram: `https://t.me/green_outline`
    - MAX: `https://max.ru/u/f9LHodD0cOLKNnLRWaIf4ovFT8ZmEZipdSgZP_TGY1dfHYWkff3SZ0Jmhws`
    - Public address is hidden until a real client-facing office address is available.
    - License details, reviews, ratings, partners, and requisites should be checked before production.
