@@ -104,16 +104,16 @@ export default function Contacts() {
           <div className="lg:w-1/2 flex flex-col justify-between">
             <div>
               <ScrollRevealItem baseY={20}>
-                <h2 className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
+                <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
                   Связаться
-                </h2>
+                </p>
               </ScrollRevealItem>
               <ScrollRevealItem baseY={30}>
                 <VelocityText skewFactor={4}>
-                  <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F] mb-12 lg:mb-16">
+                  <h2 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F] mb-12 lg:mb-16">
                     Решим вашу<br />
                     <span className="text-black/30">проблему</span>
-                  </h3>
+                  </h2>
                 </VelocityText>
               </ScrollRevealItem>
               

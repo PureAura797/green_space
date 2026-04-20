@@ -48,15 +48,15 @@ export default function VideoStories() {
       <ScrollRevealContainer className="max-w-[1400px] mx-auto px-4 md:px-8 mb-12 flex justify-between items-end">
         <div className="max-w-2xl">
           <ScrollRevealItem baseY={20}>
-            <h2 className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
+            <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
               Видео-отчёты
-            </h2>
+            </p>
           </ScrollRevealItem>
           <ScrollRevealItem baseY={30}>
-            <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
+            <h2 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
               Результаты<br />
               <span className="text-black/30">наших работ</span>
-            </h3>
+            </h2>
           </ScrollRevealItem>
         </div>
 

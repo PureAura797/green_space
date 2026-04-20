@@ -10,7 +10,7 @@ import FilmGrain from '@/components/ui/FilmGrain';
 import Preloader from '@/components/layout/Preloader';
 import CookieBanner from '@/components/ui/CookieBanner';
 import { cn } from "@/lib/utils";
-import { absoluteUrl, company, faqs, services, siteUrl } from '@/lib/site-data';
+import { absoluteUrl, aggregateRating, company, faqs, howToSteps, reviews, services, siteUrl } from '@/lib/site-data';
 
 const onest = Onest({
   subsets: ['latin', 'cyrillic'],
@@ -83,6 +83,8 @@ const businessId = `${siteUrl}/#local-business`;
 const websiteId = `${siteUrl}/#website`;
 const webPageId = `${siteUrl}/#webpage`;
 const offerCatalogId = `${siteUrl}/#services`;
+const howToId = `${siteUrl}/#how-to`;
+const aggregateRatingId = `${siteUrl}/#aggregate-rating`;
 
 const areaServed = company.areaServed.map((name) => ({
   '@type': 'AdministrativeArea',
@@ -113,6 +115,7 @@ const jsonLd = {
     {
       '@type': 'HomeAndConstructionBusiness',
       '@id': businessId,
+      additionalType: ['https://schema.org/PestControl'],
       name: company.brandName,
       url: siteUrl,
       image: absoluteUrl(company.ogImage),
@@ -127,6 +130,38 @@ const jsonLd = {
       hasOfferCatalog: {
         '@id': offerCatalogId,
       },
+      aggregateRating: {
+        '@id': aggregateRatingId,
+      },
+      review: reviews.map((review) => ({
+        '@type': 'Review',
+        author: {
+          '@type': 'Person',
+          name: review.name,
+        },
+        datePublished: review.dateIso,
+        reviewBody: review.text,
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: review.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        itemReviewed: {
+          '@id': businessId,
+        },
+      })),
+    },
+    {
+      '@type': 'AggregateRating',
+      '@id': aggregateRatingId,
+      itemReviewed: {
+        '@id': businessId,
+      },
+      ratingValue: aggregateRating.ratingValue,
+      reviewCount: aggregateRating.reviewCount,
+      bestRating: aggregateRating.bestRating,
+      worstRating: aggregateRating.worstRating,
     },
     {
       '@type': 'WebSite',
@@ -182,6 +217,22 @@ const jsonLd = {
           },
           areaServed,
         },
+      })),
+    },
+    {
+      '@type': 'HowTo',
+      '@id': howToId,
+      name: 'Как мы обрабатываем участок — процесс от заявки до гарантии',
+      description: 'Четыре прозрачных шага: от быстрой заявки до гарантийного сопровождения результата.',
+      totalTime: 'P1D',
+      supply: [],
+      tool: [],
+      step: howToSteps.map((step) => ({
+        '@type': 'HowToStep',
+        position: step.position,
+        name: step.name,
+        text: step.text,
+        ...(step.duration ? { timeRequired: step.duration } : {}),
       })),
     },
     {

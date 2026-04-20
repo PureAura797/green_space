@@ -18,16 +18,16 @@ export default function FAQ() {
           {/* Header Column */}
           <div className="lg:w-1/3">
             <ScrollRevealItem baseY={20}>
-              <h2 className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
+              <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
                 FAQ
-              </h2>
+              </p>
             </ScrollRevealItem>
             <ScrollRevealItem baseY={30}>
               <VelocityText skewFactor={4}>
-                <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F] mb-6">
+                <h2 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F] mb-6">
                   Частые<br />
                   <span className="text-black/30">вопросы</span>
-                </h3>
+                </h2>
               </VelocityText>
             </ScrollRevealItem>
             <ScrollRevealItem baseY={40}>

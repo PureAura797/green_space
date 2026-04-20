@@ -12,16 +12,16 @@ export default function Licenses() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24">
           <div className="max-w-2xl">
             <ScrollRevealItem>
-              <h2 className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
+              <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
                 Сертификация
-              </h2>
+              </p>
             </ScrollRevealItem>
             <ScrollRevealItem>
               <VelocityText skewFactor={4}>
-                <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
+                <h2 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
                   Официальные<br />
                   <span className="text-black/30">допуски</span>
-                </h3>
+                </h2>
               </VelocityText>
             </ScrollRevealItem>
           </div>
@@ -101,9 +101,9 @@ export default function Licenses() {
                 <div className="bg-[#1D1D1F] rounded-[24px] p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                   <div>
                     <p className="text-[10px] font-black tracking-[0.2em] text-white/30 uppercase mb-2">Лицензиат</p>
-                    <h4 className="text-xl md:text-2xl font-black tracking-tight text-white">
+                    <h3 className="text-xl md:text-2xl font-black tracking-tight text-white">
                       {company.legalName}
-                    </h4>
+                    </h3>
                   </div>
                   <div className="flex gap-8 font-mono text-sm">
                     <div>

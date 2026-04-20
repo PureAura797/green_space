@@ -223,6 +223,91 @@ export const faqs = [
   },
 ] as const;
 
+// Client testimonials — also powers JSON-LD Review[] + AggregateRating
+export const reviews = [
+  {
+    id: 1,
+    name: 'Игорь Дмитриевич',
+    date: '12.05.2025',
+    dateIso: '2025-05-12',
+    rating: 5,
+    ratingDisplay: '★★★★★',
+    text: 'Обработали участок 20 соток от клещей. Работали в костюмах, профессиональным оборудованием. Результат отличный, клещей нет.',
+  },
+  {
+    id: 2,
+    name: 'Анна К.',
+    date: '28.06.2025',
+    dateIso: '2025-06-28',
+    rating: 5,
+    ratingDisplay: '★★★★★',
+    text: 'Борщевик заполнял всю заднюю часть двора. Ребята приехали дважды с интервалом в месяц. Сейчас чистый газон, ни одного ростка.',
+  },
+  {
+    id: 3,
+    name: 'СНТ «Лесное»',
+    date: '15.07.2025',
+    dateIso: '2025-07-15',
+    rating: 5,
+    ratingDisplay: '★★★★★',
+    text: 'Заключили договор на обслуживание общих территорий. Все четко, по графику, с предоставлением актов выполненных работ.',
+  },
+  {
+    id: 4,
+    name: 'Владимир',
+    date: '02.08.2025',
+    dateIso: '2025-08-02',
+    rating: 5,
+    ratingDisplay: '★★★★★',
+    text: 'Вылечили три старые ели от короеда стволовыми инъекциями. Деревья ожили, хвоя перестала осыпаться. Огромное спасибо.',
+  },
+  {
+    id: 5,
+    name: 'Елена Маслова',
+    date: '10.09.2025',
+    dateIso: '2025-09-10',
+    rating: 5,
+    ratingDisplay: '★★★★★',
+    text: 'Кроты изрыли весь газон, никакие отпугиватели из магазина не помогали. Специалисты решили проблему за неделю.',
+  },
+] as const;
+
+// Aggregate rating shown in Numbers section — used in JSON-LD
+export const aggregateRating = {
+  ratingValue: 4.9,
+  reviewCount: 187, // Авито + Яндекс combined public rating count
+  bestRating: 5,
+  worstRating: 1,
+} as const;
+
+// Process steps used by HowWeWork section — also powers JSON-LD HowTo
+export const howToSteps = [
+  {
+    position: 1,
+    name: 'Быстрая заявка',
+    text: 'Оставляете заявку или звоните — перезваниваем в течение 5 минут и согласовываем время.',
+    duration: 'PT5M',
+  },
+  {
+    position: 2,
+    name: 'Бесплатный осмотр',
+    text: 'Инженер приедет в срок, осмотрит участок и честно расскажет, что нужно сделать.',
+    duration: 'P1D',
+  },
+  {
+    position: 3,
+    name: 'Эко-обработка',
+    text: 'Специалисты подготовят участок, выполнят работу на 100% и аккуратно уберут за собой.',
+    duration: 'PT2H',
+  },
+  {
+    position: 4,
+    name: 'Гарантия результата',
+    text: 'Контролируем результат. Бесплатно приедем повторно, если что-то пошло не так.',
+    duration: 'P3M',
+  },
+] as const;
+
 export const absoluteUrl = (path = '') => {
   if (path.startsWith('http')) return path;
   return `${siteUrl}${path.startsWith('/') ? path : `/${path}`}`;

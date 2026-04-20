@@ -42,15 +42,15 @@ export default function HowWeWork() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24">
           <div className="max-w-2xl">
             <ScrollRevealItem baseY={20}>
-              <h2 className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
+              <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[#2D6A4F] mb-6">
                 Процесс
-              </h2>
+              </p>
             </ScrollRevealItem>
             <ScrollRevealItem baseY={30}>
-              <h3 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
+              <h2 className="text-4xl md:text-5xl lg:text-[64px] font-black leading-[0.9] tracking-tighter text-[#1D1D1F]">
                 Прозрачный процесс<br />
                 <span className="text-black/30">от А до Я</span>
-              </h3>
+              </h2>
             </ScrollRevealItem>
           </div>
           <ScrollRevealItem baseY={30} className="md:w-1/3 mt-8 md:mt-0">
@@ -85,9 +85,9 @@ export default function HowWeWork() {
               {/* Bottom content zone */}
               <div className="flex flex-col flex-1 p-7 lg:p-8">
                 {/* Title — moved here from green zone so it doesn't overlap the 3D object */}
-                <h4 className="text-[24px] lg:text-[26px] font-black text-[#1D1D1F] leading-[1.1] tracking-tight mb-4 whitespace-pre-line">
+                <h3 className="text-[24px] lg:text-[26px] font-black text-[#1D1D1F] leading-[1.1] tracking-tight mb-4 whitespace-pre-line">
                   {step.title}
-                </h4>
+                </h3>
                 <p className="text-[14px] font-medium text-black/45 leading-[1.7] mb-8">
                   {step.description}
                 </p>
