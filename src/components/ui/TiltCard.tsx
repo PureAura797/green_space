@@ -73,7 +73,7 @@ export default function TiltCard({
       }}
       className={`relative rounded-[inherit] ${className}`}
     >
-      <div className="w-full h-full rounded-[inherit] overflow-hidden">
+      <div className="w-full h-full rounded-[inherit]">
         {children}
       </div>
 
