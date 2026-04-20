@@ -251,10 +251,7 @@ export default function Hero() {
           className="lg:hidden absolute left-5 right-3 bottom-[52%] z-[10] text-[44px] min-[375px]:text-[50px] sm:text-[68px] font-black text-white leading-[1.05] tracking-[-0.03em] break-words hyphens-auto pointer-events-none"
           style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
         >
-          Безопасность<br/>вашего<br/>
-          <span className="text-transparent bg-clip-text pr-2" style={{ backgroundImage: 'linear-gradient(to right, #ffffff, rgba(255,255,255,0.5))' }}>
-            участка<span style={{ color: ACCENT }}>.</span>
-          </span>
+          Сезон<br/>без клещей<br/>и борщевика
         </motion.h1>
 
         {/* MOBILE 3: Description */}
@@ -275,7 +272,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:hidden absolute left-5 right-5 bottom-6 z-[10] bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[28px] shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto"
+          className="lg:hidden absolute left-5 right-5 bottom-6 z-[10] bg-white/95 backdrop-blur-xl p-1.5 sm:p-2.5 rounded-[28px] shadow-[0_12px_40px_rgba(0,0,0,0.18)] flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2 pointer-events-auto"
         >
           <a
             href="#quiz"
@@ -334,10 +331,7 @@ export default function Hero() {
             className="text-[96px] font-black text-white leading-[1.05] tracking-[-0.03em] mb-6 break-words hyphens-auto"
             style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
           >
-            Безопасность<br/>вашего<br/>
-            <span className="text-transparent bg-clip-text pr-2" style={{ backgroundImage: 'linear-gradient(to right, #ffffff, rgba(255,255,255,0.5))' }}>
-              участка<span style={{ color: ACCENT }}>.</span>
-            </span>
+            Сезон<br/>без клещей<br/>и борщевика
           </motion.h1>
 
           <motion.p
@@ -357,7 +351,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden lg:flex absolute bottom-[20px] right-[380px] z-[10] bg-white/95 backdrop-blur-xl p-2.5 rounded-[28px] shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex-col gap-2 pointer-events-auto"
+          className="hidden lg:flex absolute bottom-[20px] right-[380px] z-[10] bg-white/95 backdrop-blur-xl p-2.5 rounded-[28px] shadow-[0_12px_40px_rgba(0,0,0,0.18)] flex-col gap-2 pointer-events-auto"
         >
           <a href="#contacts" className="group relative overflow-hidden flex items-center justify-between h-[60px] pl-7 pr-2 rounded-full bg-[#2D6A4F] text-white font-bold text-[13px] uppercase tracking-[0.08em] transition-all hover:bg-[#245640] active:scale-95 w-[340px]">
             <div className="relative overflow-hidden inline-flex items-center h-[24px] mr-4">
