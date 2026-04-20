@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ScrollRevealContainer, ScrollRevealItem } from '@/components/ui/ScrollReveal';
 
 const STEPS = [
@@ -8,24 +9,29 @@ const STEPS = [
     title: 'Быстрая\nзаявка',
     description: 'Оставляете заявку или звоните — перезваниваем в течение 5 минут и согласовываем время.',
     tag: 'до 5 мин',
+    image: '/images/how-we-work/01-request.jpeg',
   },
   {
     id: '02',
     title: 'Бесплатный\nосмотр',
     description: 'Инженер приедет в срок, осмотрит участок и честно расскажет, что нужно сделать.',
     tag: '1 день',
+    image: '/images/how-we-work/02-inspection.jpeg',
   },
   {
     id: '03',
     title: 'Эко-\nобработка',
     description: 'Специалисты подготовят участок, выполнят работу на 100% и аккуратно уберут за собой.',
     tag: 'от 2 часов',
+    image: '/images/how-we-work/03-treatment.jpeg',
   },
   {
     id: '04',
     title: 'Гарантия\nрезультата',
     description: 'Контролируем результат. Бесплатно приедем повторно, если что-то пошло не так.',
     tag: 'по договору',
+    image: '/images/how-we-work/04-warranty.jpeg',
+    objectPosition: '75% center',
   },
 ];
 
@@ -60,23 +66,28 @@ export default function HowWeWork() {
               key={step.id}
               className="group relative flex flex-col bg-white rounded-[32px] overflow-hidden cursor-default transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_80px_rgba(0,0,0,0.08)]"
             >
-              {/* Top accent zone — green gradient header */}
-              <div className="relative h-[180px] lg:h-[200px] bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] flex items-end p-7 lg:p-8 overflow-hidden">
-                {/* Watermark number */}
-                <span
-                  className="absolute -right-2 -top-4 text-[160px] font-black leading-none text-white/[0.08] select-none pointer-events-none tracking-tighter"
+              {/* Top accent zone — green with full-opacity 3D render */}
+              <div className="relative h-[220px] lg:h-[260px] bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] overflow-hidden">
+                {/* Full-opacity atmospheric 3D render */}
+                <Image
+                  src={step.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover pointer-events-none select-none"
+                  style={{ objectPosition: step.objectPosition ?? 'center' }}
                   aria-hidden="true"
-                >
-                  {step.id}
-                </span>
-                {/* Title */}
-                <h4 className="relative z-10 text-[26px] lg:text-[28px] font-black text-white leading-[1.05] tracking-tight whitespace-pre-line">
-                  {step.title}
-                </h4>
+                />
+                {/* Subtle edge vignette — softens edges, unifies across cards without obscuring subject */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(27,67,50,0.5)_100%)] pointer-events-none" />
               </div>
 
               {/* Bottom content zone */}
-              <div className="flex flex-col flex-1 p-7 lg:p-8 pt-6">
+              <div className="flex flex-col flex-1 p-7 lg:p-8">
+                {/* Title — moved here from green zone so it doesn't overlap the 3D object */}
+                <h4 className="text-[24px] lg:text-[26px] font-black text-[#1D1D1F] leading-[1.1] tracking-tight mb-4 whitespace-pre-line">
+                  {step.title}
+                </h4>
                 <p className="text-[14px] font-medium text-black/45 leading-[1.7] mb-8">
                   {step.description}
                 </p>
